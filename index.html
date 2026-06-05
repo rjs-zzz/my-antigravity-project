@@ -19,13 +19,13 @@
         extend: {
           colors: {
             brand: {
-              navy: '#1C1C1C',      /* Dark Gray (90% Black) */
-              dark: '#2D2D2D',      /* Charcoal Gray (85% Black) - 바탕색 */
-              slate: '#3D3D3D',     /* Medium Gray */
-              primary: '#2D2D2D',   /* Deep background/headers */
-              teal: '#9EE2D2',      /* Light Mint Green - 영문색/보조 */
-              orange: '#0A5C47',    /* Premium Deep Green - 바탕 주색 */
-              accent: '#0F755A',    /* Vibrant Green for hover/accent */
+              navy: '#F8FAFC',      /* Slate 50 - Light canvas background */
+              dark: '#FFFFFF',      /* White - Card backgrounds */
+              slate: '#E2E8F0',     /* Slate 200 - Borders/Dividers */
+              primary: '#0A5C47',   /* Premium Deep Green - Main highlights */
+              teal: '#0A6A56',      /* Deep Teal - Text elements */
+              orange: '#0A5C47',    /* Premium Deep Green - Brand highlights */
+              accent: '#0F755A',    /* Vibrant Green - Button hover states */
             }
           },
           fontFamily: {
@@ -40,16 +40,16 @@
   <style>
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      background-color: #1C1C1C;
-      color: #FFFFFF;
+      background-color: #F8FAFC;
+      color: #1E293B;
     }
     .glass-card {
-      background: rgba(45, 45, 45, 0.75);
+      background: rgba(255, 255, 255, 0.85); shadow-md;
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
     .glass-card-hover:hover {
-      background: rgba(45, 45, 45, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border-color: rgba(10, 92, 71, 0.3);
       box-shadow: 0 10px 30px -10px rgba(10, 92, 71, 0.15);
       transform: translateY(-4px);
@@ -68,7 +68,7 @@
       background-color: #0A5C47;
       color: #FFFFFF !important;
       font-weight: 700;
-      border-left: 4px solid #9EE2D2;
+      border-left: 4px solid #0A6A56;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -90,7 +90,7 @@
   <!-- Top Utilities and Header Navigation -->
   <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="main-header">
     <!-- Top Utility Bar -->
-    <div class="bg-brand-navy/90 border-b border-white/5 py-2 px-6 text-xs text-slate-400 flex justify-between items-center">
+    <div class="bg-slate-100/90 border-b border-slate-200/80 py-2 px-6 text-xs text-slate-600 flex justify-between items-center">
       <div class="flex items-center gap-4">
         <span><i class="fa-solid fa-phone mr-1"></i> 대표전화 033-258-2000</span>
         <span><i class="fa-solid fa-clock mr-1"></i> 응급실 24시간 운영 (033-258-2293)</span>
@@ -109,14 +109,14 @@
     </div>
 
     <!-- Main Navigation Bar -->
-    <nav class="bg-brand-navy/85 backdrop-blur-md border-b border-white/10 py-4 px-8 flex justify-between items-center relative">
+    <nav class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm py-4 px-8 flex justify-between items-center relative">
       <div class="flex items-center gap-3">
         <div class="h-10 w-10 bg-brand-orange rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-orange/20">
           K
         </div>
         <div>
           <span class="text-xl font-bold tracking-tight text-white font-outfit">KNUH</span>
-          <span class="text-xs text-slate-400 block -mt-1 font-medium">강원대학교병원</span>
+          <span class="text-xs text-slate-500 block -mt-1 font-medium">강원대학교병원</span>
         </div>
       </div>
 
@@ -140,7 +140,7 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <button class="text-slate-300 hover:text-brand-orange transition-colors" onclick="toggleChatbot()">
+        <button class="text-slate-700 hover:text-brand-orange transition-colors" onclick="toggleChatbot()">
           <i class="fa-solid fa-magnifying-glass text-lg"></i>
         </button>
         <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-5 py-2 rounded-xl text-xs font-bold transition-all shadow-lg shadow-brand-orange/25 flex items-center gap-2" onclick="toggleChatbot()">
@@ -149,16 +149,16 @@
       </div>
 
       <!-- Megamenu Dropdown Container (SNUH Bundang Style) -->
-      <div id="megamenu-dropdown" class="absolute left-0 top-full w-full bg-brand-dark/95 border-b border-brand-orange/20 shadow-2xl transition-all duration-300 max-h-0 overflow-hidden z-40">
-        <div class="max-w-7xl mx-auto py-10 px-8 grid grid-cols-12 gap-8 text-slate-300">
+      <div id="megamenu-dropdown" class="absolute left-0 top-full w-full bg-white border-b border-slate-200 shadow-2xl transition-all duration-300 max-h-0 overflow-hidden z-40">
+        <div class="max-w-7xl mx-auto py-10 px-8 grid grid-cols-12 gap-8 text-slate-700">
           
           <!-- Category Grid (Left 8 Columns) -->
           <div class="col-span-8 grid grid-cols-4 gap-6 text-sm">
             <div>
-              <h4 class="text-white font-bold text-base mb-4 border-b border-slate-700/50 pb-2 flex items-center gap-2">
+              <h4 class="text-slate-900 font-extrabold text-base mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
                 <i class="fa-solid fa-stethoscope text-brand-orange"></i> 진료안내
               </h4>
-              <ul class="space-y-2 text-slate-400">
+              <ul class="space-y-2 text-slate-600">
                 <li><a href="#departments-section" class="hover:text-brand-orange transition-colors">진료과/의료진</a></li>
                 <li><a href="javascript:void(0)" onclick="toggleChatbot()" class="hover:text-brand-orange transition-colors">진료예약안내 (챗봇)</a></li>
                 <li><a href="#" class="hover:text-brand-orange transition-colors">진료절차안내</a></li>
@@ -168,10 +168,10 @@
             </div>
             
             <div>
-              <h4 class="text-white font-bold text-base mb-4 border-b border-slate-700/50 pb-2 flex items-center gap-2">
+              <h4 class="text-slate-900 font-extrabold text-base mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
                 <i class="fa-solid fa-hospital-user text-brand-orange"></i> 병원소개
               </h4>
-              <ul class="space-y-2 text-slate-400">
+              <ul class="space-y-2 text-slate-600">
                 <li><a href="#" class="hover:text-brand-orange transition-colors">병원장 인사말</a></li>
                 <li><a href="#" class="hover:text-brand-orange transition-colors">미션 및 비전</a></li>
                 <li><a href="#" class="hover:text-brand-orange transition-colors">병원 연혁</a></li>
@@ -181,10 +181,10 @@
             </div>
 
             <div>
-              <h4 class="text-white font-bold text-base mb-4 border-b border-slate-700/50 pb-2 flex items-center gap-2">
+              <h4 class="text-slate-900 font-extrabold text-base mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
                 <i class="fa-solid fa-map-location-dot text-brand-orange"></i> 병원안내
               </h4>
-              <ul class="space-y-2 text-slate-400">
+              <ul class="space-y-2 text-slate-600">
                 <li><a href="#map-section" class="hover:text-brand-orange transition-colors">오시는 길</a></li>
                 <li><a href="#map-section" class="hover:text-brand-orange transition-colors">원내배치도</a></li>
                 <li><a href="#map-section" class="hover:text-brand-orange transition-colors">5대 센터/건물 안내</a></li>
@@ -194,10 +194,10 @@
             </div>
 
             <div>
-              <h4 class="text-white font-bold text-base mb-4 border-b border-slate-700/50 pb-2 flex items-center gap-2">
+              <h4 class="text-slate-900 font-extrabold text-base mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
                 <i class="fa-solid fa-hands-holding-child text-brand-orange"></i> 공공의료
               </h4>
-              <ul class="space-y-2 text-slate-400">
+              <ul class="space-y-2 text-slate-600">
                 <li><a href="#" class="hover:text-brand-orange transition-colors">공공의료본부 소개</a></li>
                 <li><a href="#" class="hover:text-brand-orange transition-colors">사회공헌사업</a></li>
                 <li><a href="#" class="hover:text-brand-orange transition-colors">발전후원회</a></li>
@@ -207,12 +207,12 @@
           </div>
 
           <!-- Preview & Visual Area (Right 4 Columns) -->
-          <div class="col-span-4 border-l border-slate-800 pl-8 flex flex-col justify-between">
+          <div class="col-span-4 border-l border-slate-200 pl-8 flex flex-col justify-between">
             <div>
-              <h4 class="text-white font-bold text-base mb-3">병원 전경 약도</h4>
-              <div class="rounded-xl overflow-hidden relative border border-slate-700 h-36">
+              <h4 class="text-slate-900 font-extrabold text-base mb-3">병원 전경 약도</h4>
+              <div class="rounded-xl overflow-hidden relative border border-slate-200 h-36">
                 <img src="hospital_panoramic.png" alt="Hospital Layout" class="w-full h-full object-cover opacity-80">
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent flex items-end p-3">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent flex items-end p-3">
                   <span class="text-xs text-white font-semibold flex items-center gap-1">
                     <i class="fa-solid fa-location-dot text-brand-orange"></i> 5대 빌딩 안내지도
                   </span>
@@ -221,11 +221,11 @@
             </div>
             
             <div class="grid grid-cols-2 gap-2 mt-4">
-              <a href="#map-section" class="bg-slate-800 hover:bg-brand-orange/20 hover:text-white p-3 rounded-lg text-center text-xs font-semibold border border-slate-700 transition-all flex flex-col items-center gap-1">
+              <a href="#map-section" class="bg-slate-50 hover:bg-brand-orange/10 hover:text-brand-orange p-3 rounded-lg text-center text-xs font-semibold border border-slate-200 transition-all flex flex-col items-center gap-1">
                 <i class="fa-solid fa-diamond-turn-right text-brand-orange text-lg"></i>
                 오시는길 안내
               </a>
-              <a href="javascript:void(0)" onclick="toggleChatbot()" class="bg-slate-800 hover:bg-brand-orange/20 hover:text-white p-3 rounded-lg text-center text-xs font-semibold border border-slate-700 transition-all flex flex-col items-center gap-1">
+              <a href="javascript:void(0)" onclick="toggleChatbot()" class="bg-slate-50 hover:bg-brand-orange/10 hover:text-brand-orange p-3 rounded-lg text-center text-xs font-semibold border border-slate-200 transition-all flex flex-col items-center gap-1">
                 <i class="fa-solid fa-calendar-check text-brand-orange text-lg"></i>
                 원격 진료예약
               </a>
@@ -243,8 +243,8 @@
     <div class="absolute inset-0 z-0">
       <img src="hospital_main_banner.png" alt="Hospital Banner" class="w-full h-full object-cover">
       <!-- Dark Overlays & Gradients -->
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-brand-navy/50"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40"></div>
     </div>
 
     <!-- Banner Content -->
@@ -254,33 +254,33 @@
           <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
           2026 KNUH 미래의학 PoC
         </span>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight font-sans">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight font-sans">
           강원의료의 <br class="hidden md:block">
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-amber-500">질과 품격</span>을 높이는 병원
         </h1>
-        <p class="text-slate-300 text-sm md:text-base max-w-xl font-normal leading-relaxed">
+        <p class="text-slate-600 text-sm md:text-base max-w-xl font-normal leading-relaxed">
           최신의 의료 인프라와 융합 기술을 활용하여 한 차원 높은 스마트 진료 서비스를 제공합니다. AI 예약 챗봇을 통한 편리한 진료 접수를 지금 시작해 보세요.
         </p>
       </div>
 
       <!-- "무엇이 궁금하신가요?" Search Box -->
-      <div class="max-w-2xl bg-brand-navy/60 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-2xl">
-        <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2">
+      <div class="max-w-2xl bg-white/95 backdrop-blur-md p-6 rounded-2xl border border-slate-200 shadow-2xl">
+        <h3 class="text-slate-800 font-bold text-sm mb-3 flex items-center gap-2">
           <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
         </h3>
         <div class="flex gap-2">
-          <input type="text" placeholder="진료과명, 의료진명, 질환명을 입력하세요..." class="w-full bg-slate-900/80 border border-slate-700 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-white px-4 py-3 rounded-xl text-sm focus:outline-none transition-all placeholder-slate-500">
+          <input type="text" placeholder="진료과명, 의료진명, 질환명을 입력하세요..." class="w-full bg-slate-900/80 border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-900 px-4 py-3 rounded-xl text-sm focus:outline-none transition-all placeholder-slate-500">
           <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-6 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-1 shadow-lg shadow-brand-orange/20">
             검색
           </button>
         </div>
         <!-- Hashtags -->
         <div class="flex flex-wrap gap-2 mt-4 text-xs">
-          <button onclick="toggleChatbot()" class="bg-slate-800 hover:bg-brand-orange/20 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700/50 transition-all">#초진예약</button>
-          <a href="#map-section" class="bg-slate-800 hover:bg-brand-orange/20 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700/50 transition-all">#오시는길</a>
-          <button onclick="toggleChatbot()" class="bg-slate-800 hover:bg-brand-orange/20 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700/50 transition-all">#응급진료안내</button>
-          <a href="#" class="bg-slate-800 hover:bg-brand-orange/20 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700/50 transition-all">#비급여진료비용</a>
-          <a href="#" class="bg-slate-800 hover:bg-brand-orange/20 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700/50 transition-all">#채용안내</a>
+          <button onclick="toggleChatbot()" class="bg-slate-100 hover:bg-brand-orange/10 text-slate-600 hover:text-brand-orange px-3 py-1.5 rounded-lg border border-slate-200/50 transition-all">#초진예약</button>
+          <a href="#map-section" class="bg-slate-100 hover:bg-brand-orange/10 text-slate-600 hover:text-brand-orange px-3 py-1.5 rounded-lg border border-slate-200/50 transition-all">#오시는길</a>
+          <button onclick="toggleChatbot()" class="bg-slate-100 hover:bg-brand-orange/10 text-slate-600 hover:text-brand-orange px-3 py-1.5 rounded-lg border border-slate-200/50 transition-all">#응급진료안내</button>
+          <a href="#" class="bg-slate-100 hover:bg-brand-orange/10 text-slate-600 hover:text-brand-orange px-3 py-1.5 rounded-lg border border-slate-200/50 transition-all">#비급여진료비용</a>
+          <a href="#" class="bg-slate-100 hover:bg-brand-orange/10 text-slate-600 hover:text-brand-orange px-3 py-1.5 rounded-lg border border-slate-200/50 transition-all">#채용안내</a>
         </div>
       </div>
     </div>
@@ -292,8 +292,8 @@
         <button onclick="openChatbotFlow('first-visit')" class="glass-card text-left p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-xl flex justify-between items-center">
           <div class="space-y-1">
             <span class="text-[10px] text-brand-teal font-semibold tracking-wider uppercase">Quick Booking</span>
-            <h4 class="text-white font-bold text-lg">첫방문 간편예약</h4>
-            <p class="text-slate-400 text-xs">처음 오신 환자를 위한 빠른 챗봇 접수</p>
+            <h4 class="text-slate-900 font-bold text-lg">첫방문 간편예약</h4>
+            <p class="text-slate-500 text-xs">처음 오신 환자를 위한 빠른 챗봇 접수</p>
           </div>
           <div class="h-12 w-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-user-plus"></i>
@@ -304,8 +304,8 @@
         <button onclick="openChatbotFlow('online')" class="glass-card text-left p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-xl flex justify-between items-center">
           <div class="space-y-1">
             <span class="text-[10px] text-brand-teal font-semibold tracking-wider uppercase">Smart Reservation</span>
-            <h4 class="text-white font-bold text-lg">온라인 진료예약</h4>
-            <p class="text-slate-400 text-xs">일반 재진 환자 진료예약 및 관리</p>
+            <h4 class="text-slate-900 font-bold text-lg">온라인 진료예약</h4>
+            <p class="text-slate-500 text-xs">일반 재진 환자 진료예약 및 관리</p>
           </div>
           <div class="h-12 w-12 rounded-xl bg-brand-orange/10 text-brand-orange flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-calendar-plus"></i>
@@ -313,11 +313,11 @@
         </button>
 
         <!-- 진료예약 (챗봇) -->
-        <button onclick="openChatbotFlow('chatbot')" class="glass-card text-left p-6 rounded-2xl border border-brand-orange/30 bg-brand-orange/10 relative overflow-hidden group hover:bg-brand-orange/20 transition-all shadow-xl flex justify-between items-center">
+        <button onclick="openChatbotFlow('chatbot')" class="glass-card text-left p-6 rounded-2xl border border-brand-orange/30 bg-brand-orange/5 relative overflow-hidden group hover:bg-brand-orange/20 transition-all shadow-xl flex justify-between items-center">
           <div class="space-y-1">
             <span class="text-[10px] text-brand-teal font-semibold tracking-wider uppercase">AI Automated</span>
-            <h4 class="text-white font-bold text-lg">진료예약 (챗봇)</h4>
-            <p class="text-slate-300 text-xs">예약 전담 인공지능 챗봇 연동</p>
+            <h4 class="text-slate-900 font-bold text-lg">진료예약 (챗봇)</h4>
+            <p class="text-slate-600 text-xs">예약 전담 인공지능 챗봇 연동</p>
           </div>
           <div class="h-12 w-12 rounded-xl bg-brand-orange text-white font-medium flex items-center justify-center text-xl animate-bounce">
             <i class="fa-solid fa-comments-dollar"></i>
@@ -328,8 +328,8 @@
         <button onclick="openChatbotFlow('checkup')" class="glass-card text-left p-6 rounded-2xl border border-white/5 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-xl flex justify-between items-center">
           <div class="space-y-1">
             <span class="text-[10px] text-brand-teal font-semibold tracking-wider uppercase">Health Screening</span>
-            <h4 class="text-white font-bold text-lg">건강검진 예약</h4>
-            <p class="text-slate-400 text-xs">원격 검진 종합 예약 챗봇 연동</p>
+            <h4 class="text-slate-900 font-bold text-lg">건강검진 예약</h4>
+            <p class="text-slate-500 text-xs">원격 검진 종합 예약 챗봇 연동</p>
           </div>
           <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-teal-500/20 to-emerald-500/20 text-teal-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-file-medical"></i>
@@ -340,22 +340,22 @@
   </section>
 
   <!-- Interactive AI Booking Chatbot Window/Widget (Slide-out panel) -->
-  <div id="booking-chatbot-widget" class="fixed top-0 right-0 w-full md:w-[480px] h-screen bg-brand-dark/95 border-l border-brand-orange/30 shadow-2xl z-[100] translate-x-full transition-transform duration-500 flex flex-col">
+  <div id="booking-chatbot-widget" class="fixed top-0 right-0 w-full md:w-[480px] h-screen bg-white border-l border-slate-200 shadow-2xl z-[100] translate-x-full transition-transform duration-500 flex flex-col">
     <!-- Chatbot Header -->
-    <div class="p-5 border-b border-slate-800 bg-brand-navy flex justify-between items-center">
+    <div class="p-5 border-b border-slate-200 bg-brand-orange flex justify-between items-center">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-brand-orange rounded-full flex items-center justify-center text-white relative animate-pulse">
           <i class="fa-solid fa-robot text-lg"></i>
-          <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-brand-navy rounded-full"></span>
+          <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-brand-orange rounded-full"></span>
         </div>
         <div>
-          <h3 class="text-white font-bold text-sm">KNUH 스마트 예약 챗봇</h3>
-          <span class="text-xs text-emerald-400 flex items-center gap-1">
+          <h3 class="text-white font-extrabold text-sm">KNUH 스마트 예약 챗봇</h3>
+          <span class="text-xs text-emerald-100 flex items-center gap-1">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> 실시간 상담원 연결가능
           </span>
         </div>
       </div>
-      <button class="text-slate-400 hover:text-white text-xl" onclick="toggleChatbot()">
+      <button class="text-white/80 hover:text-white text-xl" onclick="toggleChatbot()">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -367,7 +367,7 @@
         <div class="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center text-white text-xs flex-shrink-0">
           <i class="fa-solid fa-robot"></i>
         </div>
-        <div class="bg-slate-800/80 rounded-2xl rounded-tl-none p-3.5 max-w-[80%] text-slate-200">
+        <div class="bg-slate-100 rounded-2xl rounded-tl-none p-3.5 max-w-[80%] text-slate-800">
           안녕하세요! 강원대학교병원 스마트 예약 도우미입니다. 최근 새롭게 오픈한 챗봇 예약 서비스를 이용해주셔서 감사합니다.<br><br>
           어떤 예약을 도와드릴까요?
         </div>
@@ -388,9 +388,9 @@
     </div>
 
     <!-- Input Footer -->
-    <div class="p-4 border-t border-slate-800 bg-brand-navy">
+    <div class="p-4 border-t border-slate-200 bg-slate-50">
       <div class="flex gap-2">
-        <input type="text" id="chatbot-input" placeholder="메시지를 입력해 주세요..." class="w-full bg-slate-900 border border-slate-700 focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange rounded-xl px-4 py-3 text-xs text-white placeholder-slate-500">
+        <input type="text" id="chatbot-input" placeholder="메시지를 입력해 주세요..." class="w-full bg-slate-900 border border-slate-200 focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange rounded-xl px-4 py-3 text-xs text-slate-900 placeholder-slate-500">
         <button onclick="handleInputSubmit()" class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-4 rounded-xl text-xs font-bold transition-colors">
           <i class="fa-solid fa-paper-plane"></i>
         </button>
@@ -400,12 +400,12 @@
 
   <!-- Departments Section (Korea University Anam Style Layout) -->
   <section class="max-w-7xl mx-auto px-8 py-20" id="departments-section">
-    <div class="border-b border-slate-800 pb-6 mb-12 flex justify-between items-end">
+    <div class="border-b border-slate-200 pb-6 mb-12 flex justify-between items-end">
       <div>
         <span class="text-xs text-brand-teal font-semibold uppercase tracking-wider">Clinical Departments</span>
-        <h2 class="text-3xl font-bold text-white mt-1">임상과 및 전문 클리닉 소개</h2>
+        <h2 class="text-3xl font-bold text-slate-900 mt-1">임상과 및 전문 클리닉 소개</h2>
       </div>
-      <p class="text-slate-400 text-xs max-w-md hidden md:block">
+      <p class="text-slate-500 text-xs max-w-md hidden md:block">
         대학병원의 깊이 있는 진료 과목을 한눈에 살펴보세요. 관리에 지장을 주는 복잡한 일정 대신, 직관적인 진료과 소개와 관련 세부 클리닉들을 정비했습니다.
       </p>
     </div>
@@ -414,48 +414,48 @@
     <div class="grid grid-cols-12 gap-8">
       
       <!-- Left side: Department Lists (Korea University Anam style) -->
-      <div class="col-span-12 md:col-span-4 lg:col-span-3 border-r border-slate-800 pr-4">
-        <h4 class="text-white font-bold text-sm mb-4 px-3 tracking-wide">진료과 카테고리</h4>
+      <div class="col-span-12 md:col-span-4 lg:col-span-3 border-r border-slate-200 pr-4">
+        <h4 class="text-slate-900 font-extrabold text-sm mb-4 px-3 tracking-wide">진료과 카테고리</h4>
         <div class="space-y-1 max-h-[600px] overflow-y-auto custom-scrollbar" id="dept-tabs-container">
           <!-- Department Tabs -->
-          <button onclick="selectDepartment('family-med')" id="tab-family-med" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center active-tab">
+          <button onclick="selectDepartment('family-med')" id="tab-family-med" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center active-tab">
             가정의학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('rheumatology')" id="tab-rheumatology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('rheumatology')" id="tab-rheumatology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             류마티스내과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('urology')" id="tab-urology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('urology')" id="tab-urology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             비뇨의학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('hpb-surgery')" id="tab-hpb-surgery" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('hpb-surgery')" id="tab-hpb-surgery" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             간담췌외과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('colorectal-surgery')" id="tab-colorectal-surgery" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('colorectal-surgery')" id="tab-colorectal-surgery" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             대장항문외과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('infectious-diseases')" id="tab-infectious-diseases" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('infectious-diseases')" id="tab-infectious-diseases" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             감염내과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('endocrinology')" id="tab-endocrinology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('endocrinology')" id="tab-endocrinology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             내분비내과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('anesthesiology')" id="tab-anesthesiology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('anesthesiology')" id="tab-anesthesiology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             마취통증의학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('radiation-oncology')" id="tab-radiation-oncology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('radiation-oncology')" id="tab-radiation-oncology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             방사선종양학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('obstetrics-gynecology')" id="tab-obstetrics-gynecology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('obstetrics-gynecology')" id="tab-obstetrics-gynecology" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             산부인과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('plastic-surgery')" id="tab-plastic-surgery" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('plastic-surgery')" id="tab-plastic-surgery" class="w-full text-left px-4 py-3 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
             성형외과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
         </div>
       </div>
 
       <!-- Right side: Content display (Clean introduction & Clinics cards) -->
-      <div class="col-span-12 md:col-span-8 lg:col-span-9 bg-brand-dark/50 border border-slate-800 rounded-2xl p-8" id="department-details-pane">
+      <div class="col-span-12 md:col-span-8 lg:col-span-9 bg-white border border-slate-200/80 shadow-md rounded-2xl p-8" id="department-details-pane">
         <!-- Content will be swapped dynamically by JS. Default is Family Medicine. -->
         <div class="space-y-6">
           <div class="flex justify-between items-start">
@@ -468,35 +468,35 @@
             </button>
           </div>
           
-          <div class="text-slate-300 text-sm leading-relaxed border-t border-slate-800 pt-6">
-            <h4 class="font-bold text-white mb-2 text-base">소개글</h4>
+          <div class="text-slate-700 text-sm leading-relaxed border-t border-slate-200 pt-6">
+            <h4 class="font-bold text-slate-900 font-bold mb-2 text-base">소개글</h4>
             <p>
               가정의학과는 특정 연령이나 장기, 질병에 국한되지 않고 개인과 가족의 건강을 총체적이고 지속적으로 관리하는 진료과입니다. 일상에서 흔히 겪는 가벼운 증상부터 성인병 및 만성 질환 관리, 질병의 예방, 예방접종, 건강증진 상담 등을 폭넓게 담당하며, 환자의 고유한 신체·심리적 조화를 함께 돌보고 있습니다.
             </p>
           </div>
 
-          <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800/80">
-            <h4 class="font-bold text-white mb-4 text-sm flex items-center gap-2">
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <h4 class="font-bold text-slate-900 font-bold mb-4 text-sm flex items-center gap-2">
               <i class="fa-solid fa-clipboard-list text-brand-orange"></i> 가정의학과 관련 전문 클리닉
             </h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              <div class="bg-brand-dark border border-slate-700/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
+              <div class="bg-brand-dark border border-slate-200/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
                 <span class="text-xs text-slate-400 font-bold block mb-1">Clinic 01</span>
                 <h5 class="text-white font-bold text-sm">금연클리닉</h5>
               </div>
-              <div class="bg-brand-dark border border-slate-700/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
+              <div class="bg-brand-dark border border-slate-200/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
                 <span class="text-xs text-slate-400 font-bold block mb-1">Clinic 02</span>
                 <h5 class="text-white font-bold text-sm">노인병클리닉</h5>
               </div>
-              <div class="bg-brand-dark border border-slate-700/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
+              <div class="bg-brand-dark border border-slate-200/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
                 <span class="text-xs text-slate-400 font-bold block mb-1">Clinic 03</span>
                 <h5 class="text-white font-bold text-sm">비만클리닉</h5>
               </div>
-              <div class="bg-brand-dark border border-slate-700/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
+              <div class="bg-brand-dark border border-slate-200/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
                 <span class="text-xs text-slate-400 font-bold block mb-1">Clinic 04</span>
                 <h5 class="text-white font-bold text-sm">여행자 클리닉</h5>
               </div>
-              <div class="bg-brand-dark border border-slate-700/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
+              <div class="bg-brand-dark border border-slate-200/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
                 <span class="text-xs text-slate-400 font-bold block mb-1">Clinic 05</span>
                 <h5 class="text-white font-bold text-sm">주치의클리닉</h5>
               </div>
@@ -511,18 +511,18 @@
   <!-- Doctor Introduction Section (Ajou Right Image, Anam Left History Scroll, Text-Based Calendar) -->
   <section class="bg-brand-dark/30 border-y border-slate-800/80 py-20" id="doctors-section">
     <div class="max-w-7xl mx-auto px-8">
-      <div class="border-b border-slate-800 pb-6 mb-12 flex justify-between items-end">
+      <div class="border-b border-slate-200 pb-6 mb-12 flex justify-between items-end">
         <div>
           <span class="text-xs text-brand-teal font-semibold uppercase tracking-wider">Medical Staff</span>
           <h2 class="text-3xl font-bold text-white mt-1">의료진 진료안내 및 예약</h2>
         </div>
-        <p class="text-slate-400 text-xs max-w-md hidden md:block">
+        <p class="text-slate-500 text-xs max-w-md hidden md:block">
           복잡한 기호(○, △, ⓧ) 대신, 달력 형태의 일정표 내에 실제 진료 장소(본관, 암센터, 어린이병원 등)를 텍스트로 친절하게 안내합니다.
         </p>
       </div>
 
       <!-- Doctor Container Layout: Two-Column (Profile Left, Image Right) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start bg-brand-dark border border-slate-800 rounded-3xl p-8 lg:p-12 relative overflow-hidden shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start bg-white border border-slate-200/80 shadow-xl rounded-3xl p-8 lg:p-12 relative overflow-hidden shadow-2xl">
         
         <!-- Background Accent Glow -->
         <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl"></div>
@@ -533,63 +533,63 @@
           <div>
             <div class="flex items-center gap-3">
               <span class="bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs px-2.5 py-1 rounded-md font-semibold">재활의학과 과장</span>
-              <span class="bg-slate-800 text-slate-400 text-xs px-2.5 py-1 rounded-md font-medium">기획조정실장</span>
+              <span class="bg-slate-800 text-slate-500 text-xs px-2.5 py-1 rounded-md font-medium">기획조정실장</span>
             </div>
             <h3 class="text-4xl font-extrabold text-white mt-2">박희원 <span class="text-lg text-slate-400 font-normal ml-2">교수</span></h3>
-            <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+            <p class="text-slate-700 text-sm mt-3 leading-relaxed">
               <strong>전문분야:</strong> 소아뇌성마비, 소아 운동 치료, 추간판 탈출증, 무릎 관절염, 테니스 엘보, 오십견, 석회성 건염, 기타 재활의학 전반
             </p>
           </div>
 
           <!-- Tabbed Profile CV Details (Korea University Anam Style Scroll) -->
-          <div class="border-t border-slate-800 pt-6">
+          <div class="border-t border-slate-200 pt-6">
             <!-- CV Tabs Menu -->
-            <div class="flex gap-2 border-b border-slate-800 pb-3 mb-4 text-xs font-semibold">
+            <div class="flex gap-2 border-b border-slate-200 pb-3 mb-4 text-xs font-semibold">
               <button onclick="switchDoctorTab('cv')" id="tab-doc-cv" class="text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all">학력 및 경력</button>
-              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-400 hover:text-white pb-3 px-1 transition-all">학회 및 연구논문</button>
-              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-400 hover:text-white pb-3 px-1 transition-all">수상내역</button>
+              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-500 hover:text-slate-900 pb-3 px-1 transition-all">학회 및 연구논문</button>
+              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-500 hover:text-slate-900 pb-3 px-1 transition-all">수상내역</button>
             </div>
             
             <!-- Scrollable CV Info Pane -->
-            <div class="max-h-[140px] overflow-y-auto custom-scrollbar text-xs text-slate-300 space-y-3 leading-relaxed pr-2" id="doctor-cv-pane">
+            <div class="max-h-[140px] overflow-y-auto custom-scrollbar text-xs text-slate-600 space-y-3 leading-relaxed pr-2" id="doctor-cv-pane">
               <!-- Default: Academic/Career -->
               <div class="space-y-2">
-                <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2007 - 2009</span> <span>고려대학교 의과대학 재활의학 석사</span></div>
-                <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">1999 - 2005</span> <span>고려대학교 의과대학 학사</span></div>
-                <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2018 - 현재</span> <span>강원대학교병원 재활의학과 교수 및 기획조정실장</span></div>
-                <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2012 - 2017</span> <span>강원대학교병원 재활의학과 부교수</span></div>
+                <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2007 - 2009</span> <span>고려대학교 의과대학 재활의학 석사</span></div>
+                <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">1999 - 2005</span> <span>고려대학교 의과대학 학사</span></div>
+                <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2018 - 현재</span> <span>강원대학교병원 재활의학과 교수 및 기획조정실장</span></div>
+                <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2012 - 2017</span> <span>강원대학교병원 재활의학과 부교수</span></div>
               </div>
             </div>
           </div>
 
           <!-- Calendar-style schedule table (No symbol representation, full-text based) -->
-          <div class="border-t border-slate-800 pt-6">
+          <div class="border-t border-slate-200 pt-6">
             <div class="flex justify-between items-center mb-4">
-              <h4 class="font-bold text-white text-sm flex items-center gap-2">
+              <h4 class="font-bold text-slate-900 font-bold text-sm flex items-center gap-2">
                 <i class="fa-solid fa-calendar-days text-brand-orange"></i> 2026년 1월 진료일정표
               </h4>
-              <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-info mr-1"></i>일정을 클릭하면 챗봇 예약 단계로 바로 진동합니다.</span>
+              <span class="text-[10px] text-slate-600"><i class="fa-solid fa-circle-info mr-1"></i>일정을 클릭하면 챗봇 예약 단계로 바로 진동합니다.</span>
             </div>
             
             <div class="grid grid-cols-7 gap-1.5 text-center text-xs">
               <!-- Days of week -->
               <div class="text-brand-accent font-bold py-2 bg-slate-800/40 rounded-lg">일</div>
-              <div class="text-slate-300 font-bold py-2 bg-slate-800/40 rounded-lg">월</div>
-              <div class="text-slate-300 font-bold py-2 bg-slate-800/40 rounded-lg">화</div>
-              <div class="text-slate-300 font-bold py-2 bg-slate-800/40 rounded-lg">수</div>
-              <div class="text-slate-300 font-bold py-2 bg-slate-800/40 rounded-lg">목</div>
-              <div class="text-slate-300 font-bold py-2 bg-slate-800/40 rounded-lg">금</div>
-              <div class="text-slate-500 font-bold py-2 bg-slate-800/40 rounded-lg">토</div>
+              <div class="text-slate-700 font-bold py-2 bg-slate-100 rounded-lg">월</div>
+              <div class="text-slate-700 font-bold py-2 bg-slate-100 rounded-lg">화</div>
+              <div class="text-slate-700 font-bold py-2 bg-slate-100 rounded-lg">수</div>
+              <div class="text-slate-700 font-bold py-2 bg-slate-100 rounded-lg">목</div>
+              <div class="text-slate-700 font-bold py-2 bg-slate-100 rounded-lg">금</div>
+              <div class="text-slate-500 font-bold py-2 bg-slate-100 rounded-lg">토</div>
 
               <!-- Month dates (January 2026 starts on Thursday) -->
               <!-- Empty placeholders for Wed Dec 31 -->
-              <div class="p-1 min-h-[50px] border border-slate-800/50 rounded-lg bg-slate-900/10"></div>
-              <div class="p-1 min-h-[50px] border border-slate-800/50 rounded-lg bg-slate-900/10"></div>
-              <div class="p-1 min-h-[50px] border border-slate-800/50 rounded-lg bg-slate-900/10"></div>
-              <div class="p-1 min-h-[50px] border border-slate-800/50 rounded-lg bg-slate-900/10"></div>
+              <div class="p-1 min-h-[50px] border border-slate-200 rounded-lg bg-slate-50"></div>
+              <div class="p-1 min-h-[50px] border border-slate-200 rounded-lg bg-slate-50"></div>
+              <div class="p-1 min-h-[50px] border border-slate-200 rounded-lg bg-slate-50"></div>
+              <div class="p-1 min-h-[50px] border border-slate-200 rounded-lg bg-slate-50"></div>
               
               <!-- Jan 1 (Holiday / empty) -->
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg flex flex-col justify-between text-brand-accent">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg flex flex-col justify-between text-brand-accent">
                 <span class="font-bold">1</span>
                 <span class="text-[9px] text-slate-500">신정</span>
               </div>
@@ -602,7 +602,7 @@
                 </div>
               </div>
               <!-- Jan 3 -->
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">3</span>
               </div>
 
@@ -611,20 +611,20 @@
               <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">4</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">5</span>
               </div>
               <!-- Jan 6 -->
               <div onclick="openDoctorChatbot('2026-01-06')" class="p-1 min-h-[55px] border border-brand-primary/30 hover:border-brand-primary rounded-lg flex flex-col justify-between cursor-pointer bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors">
                 <span class="font-bold text-white text-left">6</span>
-                <span class="bg-brand-primary/20 text-blue-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">본관 오후</span>
+                <span class="bg-emerald-50 text-emerald-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">본관 오후</span>
               </div>
               <!-- Jan 7 -->
               <div onclick="openDoctorChatbot('2026-01-07')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-white text-left">7</span>
-                <span class="bg-teal-500/20 text-teal-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
+                <span class="bg-teal-50 text-teal-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">8</span>
               </div>
               <!-- Jan 9 -->
@@ -635,7 +635,7 @@
                   <span class="bg-amber-500/20 text-brand-teal font-semibold rounded-sm px-1 py-0.5">어린이 오후</span>
                 </div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">10</span>
               </div>
 
@@ -644,20 +644,20 @@
               <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">11</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">12</span>
               </div>
               <!-- Jan 13 -->
               <div onclick="openDoctorChatbot('2026-01-13')" class="p-1 min-h-[55px] border border-brand-primary/30 hover:border-brand-primary rounded-lg flex flex-col justify-between cursor-pointer bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors">
                 <span class="font-bold text-white text-left">13</span>
-                <span class="bg-brand-primary/20 text-blue-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">본관 오후</span>
+                <span class="bg-emerald-50 text-emerald-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">본관 오후</span>
               </div>
               <!-- Jan 14 -->
               <div onclick="openDoctorChatbot('2026-01-14')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-white text-left">14</span>
-                <span class="bg-teal-500/20 text-teal-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
+                <span class="bg-teal-50 text-teal-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">15</span>
               </div>
               <!-- Jan 16 -->
@@ -668,7 +668,7 @@
                   <span class="bg-amber-500/20 text-brand-teal font-semibold rounded-sm px-1 py-0.5">어린이 오후</span>
                 </div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">17</span>
               </div>
 
@@ -677,20 +677,20 @@
               <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">18</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">19</span>
               </div>
               <!-- Jan 20 -->
               <div onclick="openDoctorChatbot('2026-01-20')" class="p-1 min-h-[55px] border border-brand-primary/30 hover:border-brand-primary rounded-lg flex flex-col justify-between cursor-pointer bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors">
                 <span class="font-bold text-white text-left">20</span>
-                <span class="bg-brand-primary/20 text-blue-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">본관 오후</span>
+                <span class="bg-emerald-50 text-emerald-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">본관 오후</span>
               </div>
               <!-- Jan 21 -->
               <div onclick="openDoctorChatbot('2026-01-21')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-white text-left">21</span>
-                <span class="bg-teal-500/20 text-teal-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
+                <span class="bg-teal-50 text-teal-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">22</span>
               </div>
               <!-- Jan 23 -->
@@ -701,7 +701,7 @@
                   <span class="bg-amber-500/20 text-brand-teal font-semibold rounded-sm px-1 py-0.5">어린이 오후</span>
                 </div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">24</span>
               </div>
 
@@ -710,18 +710,18 @@
               <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">25</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">26</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">27</span>
               </div>
               <!-- Jan 28 -->
               <div onclick="openDoctorChatbot('2026-01-28')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-white text-left">28</span>
-                <span class="bg-teal-500/20 text-teal-400 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
+                <span class="bg-teal-50 text-teal-800 font-bold rounded-sm px-1 py-0.5 text-[8px]">암센터 오전</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">29</span>
               </div>
               <!-- Jan 30 -->
@@ -732,7 +732,7 @@
                   <span class="bg-amber-500/20 text-brand-teal font-semibold rounded-sm px-1 py-0.5">어린이 오후</span>
                 </div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-800/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[55px] border border-slate-200 rounded-lg text-slate-400 flex flex-col justify-start">
                 <span class="text-left">31</span>
               </div>
             </div>
@@ -741,7 +741,7 @@
 
         <!-- Right Side: Doctor Large Image Portrait (4 Columns, Ajou style) -->
         <div class="lg:col-span-4 flex flex-col items-center justify-center relative z-10 h-full">
-          <div class="rounded-3xl border border-slate-800 overflow-hidden w-full max-w-[280px] lg:max-w-full aspect-[3/4] bg-slate-900 relative group shadow-2xl">
+          <div class="rounded-3xl border border-slate-200 overflow-hidden w-full max-w-[280px] lg:max-w-full aspect-[3/4] bg-slate-900 relative group shadow-2xl">
             <img src="doctor_park_heewon.png" alt="Dr. Park Hee Won" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-transparent opacity-90"></div>
             
@@ -760,12 +760,12 @@
 
   <!-- Interactive Campus Map & Floor Guide (5 Buildings Center, Searchable Room Tables) -->
   <section class="max-w-7xl mx-auto px-8 py-20" id="map-section">
-    <div class="border-b border-slate-800 pb-6 mb-12 flex justify-between items-end">
+    <div class="border-b border-slate-200 pb-6 mb-12 flex justify-between items-end">
       <div>
         <span class="text-xs text-brand-teal font-semibold uppercase tracking-wider">Campus Floor Guide</span>
         <h2 class="text-3xl font-bold text-white mt-1">병원 5대 센터 및 층별 안내도</h2>
       </div>
-      <p class="text-slate-400 text-xs max-w-md hidden md:block">
+      <p class="text-slate-500 text-xs max-w-md hidden md:block">
         본관, 암센터, 어린이병원, 장례식장, 공공센터 등 5대 중심 건물을 한눈에 보여주고, 방 이름을 숫자로 배정하여 수정과 관리가 매우 직관적입니다.
       </p>
     </div>
@@ -775,12 +775,12 @@
       
       <!-- Interactive Campus View Map (Left 7 Cols) -->
       <div class="col-span-12 lg:col-span-7 space-y-6">
-        <div class="bg-brand-dark border border-slate-800 rounded-3xl p-4 relative overflow-hidden shadow-xl" id="campus-interactive-view">
+        <div class="bg-white border border-slate-200 shadow-md rounded-3xl p-4 relative overflow-hidden shadow-xl" id="campus-interactive-view">
           <h4 class="text-white font-bold text-sm mb-3 px-2 flex items-center gap-2">
             <i class="fa-solid fa-building-circle-arrow-right text-brand-orange"></i> 캠퍼스 전경 (건물을 클릭하면 층별안내도가 바뀝니다)
           </h4>
           
-          <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-slate-700 bg-slate-900" id="panoramic-container">
+          <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 border border-slate-200" id="panoramic-container">
             <img src="hospital_panoramic.png" alt="Hospital Panoramic Layout" class="w-full h-full object-cover opacity-80" id="campus-image">
             
             <!-- Panoramic Hotspots (Relative positioned markers on 5 buildings) -->
@@ -790,29 +790,29 @@
             </button>
 
             <!-- 암센터 (Left-ish) -->
-            <button onclick="switchBuilding('cancer-ctr')" id="pin-cancer" class="absolute top-[28%] left-[28%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-700 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('cancer-ctr')" id="pin-cancer" class="absolute top-[28%] left-[28%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-shield-virus"></i> 암센터
             </button>
 
             <!-- 어린이병원 (Right-ish) -->
-            <button onclick="switchBuilding('children-hosp')" id="pin-children" class="absolute top-[48%] left-[72%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-700 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('children-hosp')" id="pin-children" class="absolute top-[48%] left-[72%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-child-reaching"></i> 어린이병원
             </button>
 
             <!-- 장례식장 (Bottom-Right-ish) -->
-            <button onclick="switchBuilding('funeral-hall')" id="pin-funeral" class="absolute top-[75%] left-[80%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-700 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('funeral-hall')" id="pin-funeral" class="absolute top-[75%] left-[80%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-hospital"></i> 장례식장
             </button>
 
             <!-- 공공센터 (Bottom-Left-ish) -->
-            <button onclick="switchBuilding('public-ctr')" id="pin-public" class="absolute top-[68%] left-[22%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-700 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('public-ctr')" id="pin-public" class="absolute top-[68%] left-[22%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-handshake-angle"></i> 공공센터
             </button>
           </div>
         </div>
 
         <!-- 2D Floor plan map preview (Swapped dynamically) -->
-        <div class="bg-brand-dark border border-slate-800 rounded-3xl p-5 shadow-xl relative">
+        <div class="bg-white border border-slate-200 shadow-md rounded-3xl p-5 shadow-xl relative">
           <div class="flex justify-between items-center mb-4">
             <h4 class="text-white font-bold text-sm flex items-center gap-2">
               <i class="fa-solid fa-map text-brand-orange"></i> <span id="current-floor-title">본관 1층 평면 배치도</span>
@@ -824,7 +824,7 @@
             </div>
           </div>
 
-          <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-slate-700 bg-slate-900" id="floor-blueprint-container">
+          <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 border border-slate-200" id="floor-blueprint-container">
             <img src="floor_plan_1f.png" alt="1F Floor Plan Blueprint" class="w-full h-full object-cover opacity-90" id="floor-blueprint-image">
             
             <!-- Floating Number Pins on the blueprint -->
@@ -836,7 +836,7 @@
       </div>
 
       <!-- Detail Room / Department Table List (Right 5 Cols, easy to update/edit) -->
-      <div class="col-span-12 lg:col-span-5 bg-brand-dark border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col max-h-[640px] lg:max-h-[820px]">
+      <div class="col-span-12 lg:col-span-5 bg-white border border-slate-200 shadow-md rounded-3xl p-6 shadow-xl flex flex-col max-h-[640px] lg:max-h-[820px]">
         <div class="mb-4">
           <h4 class="text-white font-extrabold text-base flex items-center gap-2">
             <i class="fa-solid fa-list-ol text-brand-orange"></i> <span id="room-list-building-name">본관 1층 실방 배치표</span>
@@ -846,14 +846,14 @@
 
         <!-- Room Search Input -->
         <div class="relative mb-4">
-          <input type="text" id="room-search-input" onkeyup="filterRooms()" placeholder="진료실, 대기실, 화장실 등 검색..." class="w-full bg-slate-900 border border-slate-700 focus:border-brand-orange focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500">
-          <i class="fa-solid fa-magnifying-glass absolute right-4 top-3 text-slate-500 text-sm"></i>
+          <input type="text" id="room-search-input" onkeyup="filterRooms()" placeholder="진료실, 대기실, 화장실 등 검색..." class="w-full bg-slate-900 border border-slate-200 focus:border-brand-orange focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500">
+          <i class="fa-solid fa-magnifying-glass absolute right-4 top-3 text-slate-400 text-sm"></i>
         </div>
 
         <!-- Searchable Table -->
-        <div class="flex-grow overflow-y-auto custom-scrollbar border border-slate-800 rounded-xl bg-slate-900/50">
-          <table class="w-full text-xs text-left text-slate-300">
-            <thead class="text-[10px] text-slate-400 uppercase bg-slate-800/80 sticky top-0">
+        <div class="flex-grow overflow-y-auto custom-scrollbar border border-slate-200 rounded-xl bg-slate-50">
+          <table class="w-full text-xs text-left text-slate-700">
+            <thead class="text-[10px] text-slate-500 uppercase bg-slate-100 sticky top-0">
               <tr>
                 <th scope="col" class="px-4 py-3 text-center w-16">배치번호</th>
                 <th scope="col" class="px-4 py-3">진료과 및 시설명</th>
@@ -872,7 +872,7 @@
 
   <!-- Hospital News Section (KNUH/Anam Style) -->
   <section class="max-w-7xl mx-auto px-8 py-20 border-t border-slate-850" id="news-section">
-    <div class="border-b border-slate-800 pb-6 mb-12 flex justify-between items-end">
+    <div class="border-b border-slate-200 pb-6 mb-12 flex justify-between items-end">
       <div>
         <span class="text-xs text-brand-teal font-semibold uppercase tracking-wider">KNUH News</span>
         <h2 class="text-3xl font-bold text-white mt-1">병원 최신 소식 및 언론보도</h2>
@@ -886,66 +886,66 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <!-- Card 1 -->
-      <div class="glass-card rounded-2xl border border-white/5 overflow-hidden group hover:border-brand-orange/30 shadow-lg flex flex-col justify-between">
-        <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 border-b border-slate-850">
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden group hover:border-brand-orange/50 hover:shadow-xl transition-all shadow-sm flex flex-col justify-between">
+        <div class="relative overflow-hidden aspect-[16/10] bg-slate-50 border-b border-slate-200">
           <img src="news_ambassador.png" alt="Ambassador Appointment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <span class="absolute top-4 left-4 bg-brand-orange text-white font-medium text-[10px] font-bold px-2 py-1 rounded-md">보도자료</span>
         </div>
         <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
           <div class="space-y-2">
-            <span class="text-[10px] text-slate-500 font-semibold">2026-05-18</span>
+            <span class="text-[10px] text-slate-400 font-semibold">2026-05-18</span>
             <h4 class="text-white font-bold text-sm leading-snug group-hover:text-brand-teal transition-colors">
               고려대의료원, 안현모·홍인규 홍보대사 위촉... 건강전도사 역할 톡톡, 대중 소통 강화
             </h4>
-            <p class="text-slate-400 text-xs line-clamp-3">
+            <p class="text-slate-500 text-xs line-clamp-3">
               강원대학교병원이 고려대의료원과의 연계 체계를 공고히 다지며, 방송인 안현모 씨와 코미디언 홍인규 씨를 홍보대사로 신규 위촉하였습니다. 미래 헬스케어 비전을 향한 동행을 선포합니다.
             </p>
           </div>
-          <a href="#" class="text-[11px] text-slate-300 font-bold hover:underline flex items-center gap-1 pt-4">
+          <a href="#" class="text-[11px] text-slate-700 font-semibold hover:text-brand-orange transition-colors flex items-center gap-1 pt-4">
             자세히 보기 <i class="fa-solid fa-angle-right"></i>
           </a>
         </div>
       </div>
 
       <!-- Card 2 -->
-      <div class="glass-card rounded-2xl border border-white/5 overflow-hidden group hover:border-brand-orange/30 shadow-lg flex flex-col justify-between">
-        <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 border-b border-slate-850">
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden group hover:border-brand-orange/50 hover:shadow-xl transition-all shadow-sm flex flex-col justify-between">
+        <div class="relative overflow-hidden aspect-[16/10] bg-slate-50 border-b border-slate-200">
           <img src="news_donation.png" alt="Golf Donation Event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <span class="absolute top-4 left-4 bg-brand-orange text-white font-medium text-[10px] font-bold px-2 py-1 rounded-md">발전기금</span>
         </div>
         <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
           <div class="space-y-2">
-            <span class="text-[10px] text-slate-500 font-semibold">2026-05-02</span>
+            <span class="text-[10px] text-slate-400 font-semibold">2026-05-02</span>
             <h4 class="text-white font-bold text-sm leading-snug group-hover:text-brand-teal transition-colors">
               프로골퍼 박성현, 팬카페 회원들과 '남다른 동행' 10주년... 누적 기부 5천만 원 달성
             </h4>
-            <p class="text-slate-400 text-xs line-clamp-3">
+            <p class="text-slate-500 text-xs line-clamp-3">
               프로골퍼 박성현 씨와 팬카페 '남달라' 회원들이 강원대학교병원 발전후원회에 취약계층 소아 환자 치료를 위한 기부금 5,000만 원을 쾌척하였습니다. 이 동행은 10년 동안 이어져 오고 있습니다.
             </p>
           </div>
-          <a href="#" class="text-[11px] text-slate-300 font-bold hover:underline flex items-center gap-1 pt-4">
+          <a href="#" class="text-[11px] text-slate-700 font-semibold hover:text-brand-orange transition-colors flex items-center gap-1 pt-4">
             자세히 보기 <i class="fa-solid fa-angle-right"></i>
           </a>
         </div>
       </div>
 
       <!-- Card 3 -->
-      <div class="glass-card rounded-2xl border border-white/5 overflow-hidden group hover:border-brand-orange/30 shadow-lg flex flex-col justify-between">
-        <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 border-b border-slate-850">
+      <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden group hover:border-brand-orange/50 hover:shadow-xl transition-all shadow-sm flex flex-col justify-between">
+        <div class="relative overflow-hidden aspect-[16/10] bg-slate-50 border-b border-slate-200">
           <img src="news_ax_innovation.png" alt="AX Tech Innovation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
           <span class="absolute top-4 left-4 bg-brand-orange text-white font-medium text-[10px] font-bold px-2 py-1 rounded-md">학술/의학</span>
         </div>
         <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
           <div class="space-y-2">
-            <span class="text-[10px] text-slate-500 font-semibold">2026-04-20</span>
+            <span class="text-[10px] text-slate-400 font-semibold">2026-04-20</span>
             <h4 class="text-white font-bold text-sm leading-snug group-hover:text-brand-teal transition-colors">
               고려대학교의료원 & 강원대병원 연구 거버넌스 AX(AI Transformation) 혁신 본격화
             </h4>
-            <p class="text-slate-400 text-xs line-clamp-3">
+            <p class="text-slate-500 text-xs line-clamp-3">
               차세대 스마트 헬스케어를 구현하기 위해 인공지능 기반 환자 맞춤형 정밀 의료 연구 조직을 발족했습니다. 빅데이터 통합 연동을 통해 한층 진일보한 의학 혁신이 진행됩니다.
             </p>
           </div>
-          <a href="#" class="text-[11px] text-slate-300 font-bold hover:underline flex items-center gap-1 pt-4">
+          <a href="#" class="text-[11px] text-slate-700 font-semibold hover:text-brand-orange transition-colors flex items-center gap-1 pt-4">
             자세히 보기 <i class="fa-solid fa-angle-right"></i>
           </a>
         </div>
@@ -955,16 +955,16 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-brand-navy border-t border-slate-850 py-12 text-slate-500 text-xs">
+  <footer class="bg-brand-navy border-t border-slate-800 py-12 text-slate-500 text-xs">
     <div class="max-w-7xl mx-auto px-8 space-y-6">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-850 pb-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-800 pb-6">
         <div class="flex items-center gap-3">
           <div class="h-8 w-8 bg-slate-700 rounded-lg flex items-center justify-center text-white font-bold text-base">
             K
           </div>
           <span class="text-white font-bold text-sm">강원대학교병원</span>
         </div>
-        <div class="flex flex-wrap gap-4 justify-center text-slate-400">
+        <div class="flex flex-wrap gap-4 justify-center text-slate-600">
           <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
           <span>|</span>
           <a href="#" class="hover:text-white transition-colors">이용약관</a>
@@ -1060,7 +1060,7 @@
         <div class="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center text-white text-xs flex-shrink-0">
           <i class="fa-solid fa-robot"></i>
         </div>
-        <div class="bg-slate-800/80 rounded-2xl rounded-tl-none p-3.5 max-w-[80%] text-slate-200">
+        <div class="bg-slate-100 rounded-2xl rounded-tl-none p-3.5 max-w-[80%] text-slate-800">
           ${text}
           ${optionsHTML}
         </div>
@@ -1309,7 +1309,7 @@
       let clinicsHTML = '';
       data.clinics.forEach((clinic, idx) => {
         clinicsHTML += `
-          <div class="bg-brand-dark border border-slate-700/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
+          <div class="bg-brand-dark border border-slate-200/50 hover:border-brand-orange/50 p-4 rounded-xl transition-all">
             <span class="text-xs text-slate-400 font-bold block mb-1">Clinic 0${idx + 1}</span>
             <h5 class="text-white font-bold text-sm">${clinic}</h5>
           </div>
@@ -1328,13 +1328,13 @@
             </button>
           </div>
           
-          <div class="text-slate-300 text-sm leading-relaxed border-t border-slate-800 pt-6">
-            <h4 class="font-bold text-white mb-2 text-base">소개글</h4>
+          <div class="text-slate-700 text-sm leading-relaxed border-t border-slate-200 pt-6">
+            <h4 class="font-bold text-slate-900 font-bold mb-2 text-base">소개글</h4>
             <p>${data.intro}</p>
           </div>
 
-          <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800/80">
-            <h4 class="font-bold text-white mb-4 text-sm flex items-center gap-2">
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <h4 class="font-bold text-slate-900 font-bold mb-4 text-sm flex items-center gap-2">
               <i class="fa-solid fa-clipboard-list text-brand-orange"></i> ${data.title} 관련 전문 클리닉
             </h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -1350,24 +1350,24 @@
     const doctorTabData = {
       'cv': `
         <div class="space-y-2">
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2007 - 2009</span> <span>고려대학교 의과대학 재활의학 석사</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">1999 - 2005</span> <span>고려대학교 의과대학 학사</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2018 - 현재</span> <span>강원대학교병원 재활의학과 교수 및 기획조정실장</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2012 - 2017</span> <span>강원대학교병원 재활의학과 부교수</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2007 - 2009</span> <span>고려대학교 의과대학 재활의학 석사</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">1999 - 2005</span> <span>고려대학교 의과대학 학사</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2018 - 현재</span> <span>강원대학교병원 재활의학과 교수 및 기획조정실장</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2012 - 2017</span> <span>강원대학교병원 재활의학과 부교수</span></div>
         </div>
       `,
       'papers': `
         <div class="space-y-2">
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2025</span> <span>뇌성마비 환아의 운동 회복과 로봇 재활의 상관성 분석 (국제재활의학저널)</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2023</span> <span>추간판 탈출증 환자의 비수술적 도수 치료 효과 연구 (대한재활의학회지)</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2021</span> <span>오십견 예방을 위한 초음파 유도 하 관절막 팽창술의 유효성 (미국정형외과학회 발표)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2025</span> <span>뇌성마비 환아의 운동 회복과 로봇 재활의 상관성 분석 (국제재활의학저널)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2023</span> <span>추간판 탈출증 환자의 비수술적 도수 치료 효과 연구 (대한재활의학회지)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2021</span> <span>오십견 예방을 위한 초음파 유도 하 관절막 팽창술의 유효성 (미국정형외과학회 발표)</span></div>
         </div>
       `,
       'awards': `
         <div class="space-y-2">
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2024</span> <span>보건복지부 장관 표창 (지역사회 장애인 보건증진 공로)</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2021</span> <span>대한재활의학회 우수 연구학술상 수상</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2018</span> <span>강원대학교 의과대학 최우수 강사상 수상</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2024</span> <span>보건복지부 장관 표창 (지역사회 장애인 보건증진 공로)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2021</span> <span>대한재활의학회 우수 연구학술상 수상</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-900 font-bold w-20 flex-shrink-0">2018</span> <span>강원대학교 의과대학 최우수 강사상 수상</span></div>
         </div>
       `
     };
@@ -1383,7 +1383,7 @@
         if (btn === id) {
           item.className = "text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all";
         } else {
-          item.className = "text-slate-400 hover:text-white pb-3 px-1 transition-all";
+          item.className = "text-slate-500 hover:text-slate-900 pb-3 px-1 transition-all";
         }
       });
     }
@@ -1522,7 +1522,7 @@
         if (pin === buildingId.split('-')[0]) {
           btn.className = "absolute bg-brand-orange text-white font-medium p-2.5 rounded-full shadow-2xl shadow-brand-orange/60 border-2 border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20";
         } else {
-          btn.className = "absolute bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-700 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20";
+          btn.className = "absolute bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20";
         }
       });
 
@@ -1553,10 +1553,10 @@
 
       rooms.forEach(room => {
         tableBody.innerHTML += `
-          <tr id="room-row-${room.num}" class="border-b border-slate-800 hover:bg-slate-800/40 transition-colors cursor-pointer" onclick="highlightRoom(${room.num})">
+          <tr id="room-row-${room.num}" class="border-b border-slate-200 hover:bg-slate-100/50 transition-colors cursor-pointer" onclick="highlightRoom(${room.num})">
             <td class="px-4 py-3 text-center font-black text-brand-orange text-[11px]">${room.num}</td>
             <td class="px-4 py-3 font-bold text-white text-xs">${room.name}</td>
-            <td class="px-4 py-3 text-slate-400 font-medium">${room.desc}</td>
+            <td class="px-4 py-3 text-slate-600 font-medium">${room.desc}</td>
           </tr>
         `;
       });
