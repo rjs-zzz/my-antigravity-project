@@ -856,24 +856,13 @@
 
         <!-- Room Search Input -->
         <div class="relative mb-4">
-          <input type="text" id="room-search-input" onkeyup="filterRooms()" placeholder="진료실, 대기실, 화장실 등 검색..." class="w-full bg-slate-900 border border-slate-700 focus:border-brand-orange focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500">
+          <input type="text" id="room-search-input" onkeyup="filterFloors()" placeholder="층수, 주요 진료과, 시설명 검색..." class="w-full bg-slate-900 border border-slate-700 focus:border-brand-orange focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500">
           <i class="fa-solid fa-magnifying-glass absolute right-4 top-3 text-slate-500 text-sm"></i>
         </div>
 
-        <!-- Searchable Table -->
-        <div class="flex-grow overflow-y-auto custom-scrollbar border border-slate-800 rounded-xl bg-slate-900/50">
-          <table class="w-full text-xs text-left text-slate-300">
-            <thead class="text-[10px] text-slate-400 uppercase bg-slate-800/80 sticky top-0">
-              <tr>
-                <th scope="col" class="px-4 py-3 text-center w-16">배치번호</th>
-                <th scope="col" class="px-4 py-3">진료과 및 시설명</th>
-                <th scope="col" class="px-4 py-3">비고/세부정보</th>
-              </tr>
-            </thead>
-            <tbody id="room-table-body">
-              <!-- Swapped dynamically by JS based on building -->
-            </tbody>
-          </table>
+        <!-- Vertical Floor Stack List -->
+        <div class="flex-grow overflow-y-auto custom-scrollbar pr-1 space-y-3" id="floor-list-container">
+          <!-- Swapped dynamically by JS based on building -->
         </div>
       </div>
 
@@ -1735,12 +1724,16 @@
         pinOffsetLeft: '50%',
         themeClass: 'border-green-500/30 hover:border-green-500/60 bg-green-950/10 text-green-400',
         floors: [
-          { floor: '6F', title: '중환자실 및 병동', rooms: '종합중환자실, 외과계 입원병동' },
-          { floor: '5F', title: '심장혈관센터 및 병동', rooms: '심장혈관센터 정밀검사실, 내과계 입원병동' },
-          { floor: '4F', title: '척추/관절센터 및 병동', rooms: '디스크, 척추관 협착증 정형외과/신경외과 협진 치료실 및 입원병동' },
-          { floor: '3F', title: '수술실 및 마취과', rooms: '수술실, 마취통증의학과, 수술 대기실' },
-          { floor: '2F', title: '외래 진료실 및 영상의학과', rooms: '진료실 (내분비내과, 류마티스내과), 영상의학과 (CT/MRI)' },
-          { floor: '1F', title: '외래 수납 및 재활의학과', rooms: '원무과 수납/예약 창구, 외래약국, 재활치료실 (박희원 교수), 진료협력센터' }
+          { floor: '9F', title: 'VIP 병동 및 하늘정원', rooms: '특실 병동 (901-905호), 스카이 가든 쉼터, 병원 역사전시관' },
+          { floor: '8F', title: '내외과계 일반병동 (8병동)', rooms: '일반 입원실 (801-816호), 서브 간호스테이션, 배선실' },
+          { floor: '7F', title: '간호간병통합서비스 병동 (7병동)', rooms: '통합간호 스테이션, 재활 보조 기구실, 공동 샤워실/탕비실' },
+          { floor: '6F', title: '종합중환자실 및 혈액투석실', rooms: '중환자집중치료구역(ICU), 혈액투석센터, 격리병실' },
+          { floor: '5F', title: '심장혈관센터 및 심장내과 병동', rooms: '심장초음파실, 심혈관조영술실, 심장내과 외래, 5병동 입원실' },
+          { floor: '4F', title: '척추관절센터 및 4병동', rooms: '디스크·척추관협착증 정형외과/신경외과 협진 치료실 및 입원병동' },
+          { floor: '3F', title: '중앙수술실 및 마취과', rooms: '수술실 (1-8호), 마취통증의학과 외래, 청정 무균수술실, 회복실' },
+          { floor: '2F', title: '외래 진료실 및 영상의학과', rooms: '내분비내과, 류마티스내과, 소화기내과 외래, 영상의학과 (CT/MRI/X-ray)' },
+          { floor: '1F', title: '외래 원무수납 및 재활의학과', rooms: '원무과 수납/예약 창구, 외래약국, 재활치료실 (박희원 교수), 진료협력센터, 응급의료센터' },
+          { floor: 'B1F', title: '지하 편의시설 및 주차장', rooms: '중앙식당(직원/보호자), 의료기기 매점, 지하 주차장, 중앙 물류센터' }
         ],
         pins: [
           { num: 1, top: '22%', left: '15%' },
@@ -1765,11 +1758,16 @@
         pinOffsetLeft: '28%',
         themeClass: 'border-red-500/30 hover:border-red-500/60 bg-red-950/10 text-red-400',
         floors: [
-          { floor: '5F', title: '암학술센터 및 항암병동', rooms: '교수연구실, 다학제암학술센터, 항암 전용 병동' },
-          { floor: '4F', title: '무균병동 및 입원실', rooms: '무균치료병실, 암환자 일반 입원병동 (401-408호)' },
-          { floor: '3F', title: '방사선 암치료센터', rooms: '방사선 치료센터, 토모테라피(Tomotherapy)실' },
-          { floor: '2F', title: '항암주사치료 및 협진실', rooms: '항암주사 집중치료실(낮병동), 다학제 협진실, 전문 상담실' },
-          { floor: '1F', title: '암 원무수납 및 예방센터', rooms: '암환자 전용 신속 접수 및 수납창구, 암예방진료센터, 암정보관' }
+          { floor: '9F', title: '암연구소 및 임상시험센터', rooms: '정밀의학연구소, 임상시험 접수실, 암센터 대강당' },
+          { floor: '8F', title: '호스피스 완화의료병동', rooms: '완화의료 입원실, 임종실, 유족 대기 및 심리상담실' },
+          { floor: '7F', title: '암환자 전용 일반입원병동 (7병동)', rooms: '항암환자 전용 일반병동 (701-715호), 전용 휴게실' },
+          { floor: '6F', title: '무균병동 및 조혈모세포이식실', rooms: '조혈모세포이식구역, 초무균실(Clean Room), 면역저하환자 관리실' },
+          { floor: '5F', title: '암학술센터 및 항암병동 (5병동)', rooms: '교수연구실, 다학제암학술센터, 항암 전용 병동' },
+          { floor: '4F', title: '위암/대장암 센터 및 폐암 클리닉', rooms: '위암외래, 대장암외래, 폐암 다학제진료실, 혈액종양내과' },
+          { floor: '3F', title: '방사선 암치료센터', rooms: '방사선 치료센터, 토모테라피(Tomotherapy)실, 선형가속기 치료구역' },
+          { floor: '2F', title: '항암주사치료 및 유방/갑상선암 클리닉', rooms: '항암주사 집중치료실(낮병동), 다학제 협진실, 전문 상담실' },
+          { floor: '1F', title: '암 원무수납 및 예방센터', rooms: '암환자 전용 신속 접수 및 수납창구, 암예방진료센터, 암정보관, 1층 편의점' },
+          { floor: 'B1F', title: '방사선동위원소 치료 및 주차장', rooms: '동위원소 전용 치료실, 격리 회복실, 지하 주차장, 기계설비실' }
         ],
         pins: [
           { num: 1, top: '30%', left: '30%' },
@@ -1786,10 +1784,13 @@
         pinOffsetLeft: '72%',
         themeClass: 'border-blue-500/30 hover:border-blue-500/60 bg-blue-950/10 text-blue-400',
         floors: [
-          { floor: '4F', title: '소아병동 및 NICU', rooms: '소아 일반 입원병동, 신생아 중환자실(NICU)' },
-          { floor: '3F', title: '소아 통합치료실', rooms: '소아 발달장애 통합치료실, 소아 언어치료실' },
-          { floor: '2F', title: '어린이 재활치료실', rooms: '어린이 운동치료실, 소아 작업치료실' },
-          { floor: '1F', title: '소아청소년 진료실', rooms: '소아청소년과 외래, 모유수유실, 어린이 놀이대기실' }
+          { floor: '5F', title: '소아 수술실 및 소아중환자실', rooms: '소아 수술구역 (1-2호), 소아 집중치료실(PICU), 의료진 대기실' },
+          { floor: '4F', title: '소아 일반병동 및 NICU', rooms: '소아 일반 입원병동 (401-412호), 신생아 중환자실(NICU)' },
+          { floor: '3F', title: '소아 안과/이비인후과 클리닉', rooms: '소아안검진실, 소아청력검사실, 소아이비인후과 외래' },
+          { floor: '2F', title: '소아 재활치료 및 통합치료실', rooms: '소아 발달장애 통합치료실, 소아 언어/작업/운동 치료실, 놀이치료센터' },
+          { floor: '1F', title: '소아청소년과 외래 및 약국', rooms: '소아청소년과 외래 진료실 (1-4호), 모유수유실, 어린이 놀이대기실, 전용 수납창구' },
+          { floor: 'B1F', title: '어린이 재활 낮병동 및 물리치료실', rooms: '소아 재활 낮병동, 소아 물리치료센터, 감각통합치료실' },
+          { floor: 'B2F', title: '지하주차장 및 중앙기계실', rooms: '어린이병원 전용 지하주차공간, 공조설비실, 소방안전센터' }
         ],
         pins: [
           { num: 1, top: '25%', left: '20%' },
@@ -1824,9 +1825,10 @@
         pinOffsetLeft: '22%',
         themeClass: 'border-pink-500/30 hover:border-pink-500/60 bg-pink-950/10 text-pink-400',
         floors: [
-          { floor: '3F', title: '사업지원팀 및 대회의실', rooms: '공공의료사업지원팀 사무국, 세미나 대강당' },
-          { floor: '2F', title: '주민건강교실 및 검진실', rooms: '지역주민 건강관리교실, 만성질환교육실, 건강검진 접수실' },
-          { floor: '1F', title: '건강진단센터 및 상담실', rooms: '종합건강검진진단센터, 취약계층 사회복지상담실' }
+          { floor: '3F', title: '사업지원팀 및 대회의실', rooms: '공공의료사업지원팀 사무국, 세미나 대강당, 원격 화상자문 회의실' },
+          { floor: '2F', title: '주민건강교실 및 검진실', rooms: '지역주민 건강관리교실, 만성질환교육실, 보건의료 상담센터, 건강검진실' },
+          { floor: '1F', title: '건강진단센터 및 사회복지상담실', rooms: '종합건강검진진단센터, 취약계층 사회복지상담실, 공공의료 지원창구' },
+          { floor: 'B1F', title: '공공의료 장비고 및 문서실', rooms: '이동식 무료진료 장비보관소, 의료물품 창구, 보관문서실' }
         ],
         pins: [
           { num: 1, top: '20%', left: '20%' },
