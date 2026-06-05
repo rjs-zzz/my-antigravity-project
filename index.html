@@ -775,6 +775,24 @@
           <div class="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-slate-700 bg-slate-900" id="panoramic-container">
             <img src="hospital_panoramic.png" alt="Hospital Panoramic Layout" class="w-full h-full object-cover opacity-80" id="campus-image">
             
+            <!-- SVG Interactive Overlays for buildings (Hover color + click select) -->
+            <svg class="absolute inset-0 w-full h-full z-10 pointer-events-auto" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+              <!-- 분홍 (공공의료지원센터 / public-ctr) -->
+              <polygon points="100,690 440,650 440,780 100,900" fill="transparent" stroke="transparent" stroke-width="3" class="transition-all duration-300 cursor-pointer hover:fill-pink-500/25 hover:stroke-pink-500" onmouseover="showMapTooltip(event, '공공의료지원센터 (Public Center)')" onmousemove="moveMapTooltip(event)" onmouseout="hideMapTooltip()" onclick="switchBuilding('public-ctr')"></polygon>
+              
+              <!-- 빨강 (암노인센터 / cancer-ctr) -->
+              <polygon points="130,370 440,340 440,610 130,630" fill="transparent" stroke="transparent" stroke-width="3" class="transition-all duration-300 cursor-pointer hover:fill-red-500/25 hover:stroke-red-500" onmouseover="showMapTooltip(event, '암노인센터 (Cancer Center)')" onmousemove="moveMapTooltip(event)" onmouseout="hideMapTooltip()" onclick="switchBuilding('cancer-ctr')"></polygon>
+              
+              <!-- 녹색 (본관 / main-bldg) -->
+              <polygon points="320,260 720,190 800,580 470,630" fill="transparent" stroke="transparent" stroke-width="3" class="transition-all duration-300 cursor-pointer hover:fill-green-500/25 hover:stroke-green-500" onmouseover="showMapTooltip(event, '본관 (Main Building)')" onmousemove="moveMapTooltip(event)" onmouseout="hideMapTooltip()" onclick="switchBuilding('main-bldg')"></polygon>
+              
+              <!-- 파란색 (어린이병원 / children-hosp) -->
+              <polygon points="730,220 960,210 960,390 730,400" fill="transparent" stroke="transparent" stroke-width="3" class="transition-all duration-300 cursor-pointer hover:fill-blue-500/25 hover:stroke-blue-500" onmouseover="showMapTooltip(event, '어린이병원 (Children\'s Hospital)')" onmousemove="moveMapTooltip(event)" onmouseout="hideMapTooltip()" onclick="switchBuilding('children-hosp')"></polygon>
+            </svg>
+
+            <!-- Custom Map Tooltip -->
+            <div id="map-tooltip" class="absolute pointer-events-none bg-slate-950/95 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg border border-slate-700 hidden z-30 transition-opacity shadow-2xl"></div>
+
             <!-- Panoramic Hotspots (Relative positioned markers on 5 buildings) -->
             <!-- 본관 (Center-ish) -->
             <button onclick="switchBuilding('main-bldg')" id="pin-main" class="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 bg-brand-orange text-white font-medium p-2.5 rounded-full shadow-2xl shadow-brand-orange/60 border-2 border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
@@ -793,7 +811,7 @@
 
             <!-- 장례식장 (Bottom-Right-ish) -->
             <button onclick="switchBuilding('funeral-hall')" id="pin-funeral" class="absolute top-[75%] left-[80%] -translate-x-1/2 -translate-y-1/2 bg-slate-850 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-700 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
-              <i class="fa-solid fa-hospital"></i> 장례식장
+              <i class="fa-solid fa-church"></i> 장례식장
             </button>
 
             <!-- 공공센터 (Bottom-Left-ish) -->
@@ -831,9 +849,9 @@
       <div class="col-span-12 lg:col-span-5 bg-brand-dark border border-slate-800 rounded-3xl p-6 shadow-xl flex flex-col max-h-[640px] lg:max-h-[820px]">
         <div class="mb-4">
           <h4 class="text-white font-extrabold text-base flex items-center gap-2">
-            <i class="fa-solid fa-list-ol text-brand-orange"></i> <span id="room-list-building-name">본관 1층 실방 배치표</span>
+            <i class="fa-solid fa-layer-group text-brand-orange"></i> <span id="room-list-building-name">본관 층별 위치 안내</span>
           </h4>
-          <p class="text-[11px] text-slate-400 mt-1">도면에 매칭된 번호와 진료실 이름 매칭 리스트입니다.</p>
+          <p class="text-[11px] text-slate-400 mt-1">건물의 층별 상세 구성 정보입니다. 1층(1F)을 선택하시면 좌측 하단 평면도에 시설 위치가 매칭됩니다.</p>
         </div>
 
         <!-- Room Search Input -->
@@ -1715,19 +1733,14 @@
         blueprintImage: 'floor_plan_1f.png',
         pinOffsetTop: '40%',
         pinOffsetLeft: '50%',
-        rooms: [
-          { num: 1, name: '영상의학과', desc: '일반/흉부 촬영, 골밀도검사, CT 촬영 지원' },
-          { num: 2, name: '재활치료실', desc: '물리치료, 작업치료, 도수 및 운동치료실 연계' },
-          { num: 3, name: '외래약국', desc: '외래 환자 원내 약 조제 및 처방 상담' },
-          { num: 4, name: '심장혈관센터', desc: '심장 초음파, 심근경색, 협심증 전문 진료 및 검사' },
-          { num: 5, name: '척추센터', desc: '디스크, 척추관 협착증 정형외과/신경외과 협진' },
-          { num: 6, name: '관절센터', desc: '퇴행성 관절염, 인공관절, 스포츠 손상 상담' },
-          { num: 7, name: '원무과 (예약/수납)', desc: '현장 수납, 번호표 접수, 제증명 서류 발급 창구' },
-          { num: 8, name: '폐센터/심장혈관흉부외과', desc: '호흡기내과 및 흉부 외과적 수술 전문 클리닉' },
-          { num: 9, name: '노인의료센터', desc: '노년 만성 질환 종합 케어 서비스 및 주치의 지정' },
-          { num: 10, name: '재활의학과', desc: '박희원 교수 외 4명 상설 진료실 및 초음파 치료실' },
-          { num: 11, name: '내과종합실', desc: '내분비대사/류마티스/종합내과 통합 진료실' },
-          { num: 12, name: '당뇨병교육실', desc: '인슐린 투여법 교육 및 영양식이 습관 집중 교육' }
+        themeClass: 'border-green-500/30 hover:border-green-500/60 bg-green-950/10 text-green-400',
+        floors: [
+          { floor: '6F', title: '중환자실 및 병동', rooms: '종합중환자실, 외과계 입원병동' },
+          { floor: '5F', title: '심장혈관센터 및 병동', rooms: '심장혈관센터 정밀검사실, 내과계 입원병동' },
+          { floor: '4F', title: '척추/관절센터 및 병동', rooms: '디스크, 척추관 협착증 정형외과/신경외과 협진 치료실 및 입원병동' },
+          { floor: '3F', title: '수술실 및 마취과', rooms: '수술실, 마취통증의학과, 수술 대기실' },
+          { floor: '2F', title: '외래 진료실 및 영상의학과', rooms: '진료실 (내분비내과, 류마티스내과), 영상의학과 (CT/MRI)' },
+          { floor: '1F', title: '외래 수납 및 재활의학과', rooms: '원무과 수납/예약 창구, 외래약국, 재활치료실 (박희원 교수), 진료협력센터' }
         ],
         pins: [
           { num: 1, top: '22%', left: '15%' },
@@ -1745,16 +1758,18 @@
         ]
       },
       'cancer-ctr': {
-        name: '암센터 (Cancer Center)',
-        blueprintTitle: '암센터 1층 접수 및 특수 검사실',
+        name: '암노인센터 (Cancer Center)',
+        blueprintTitle: '암노인센터 1층 접수 및 특수 검사실',
         blueprintImage: 'floor_plan_1f.png',
         pinOffsetTop: '28%',
         pinOffsetLeft: '28%',
-        rooms: [
-          { num: 1, name: '암센터 원무수납', desc: '암환자 전용 신속 접수 및 수납 창구' },
-          { num: 2, name: '항암주사치료실', desc: '낮병동 형태의 항암제 집중 투여실' },
-          { num: 3, name: '방사선치료실 (토모테라피)', desc: '최신 선형 가속기 탑재 방사선 치료 센터' },
-          { num: 4, name: '다학제 협진실', desc: '외과/내과/방사선과 교수의 종합 설계 면담' }
+        themeClass: 'border-red-500/30 hover:border-red-500/60 bg-red-950/10 text-red-400',
+        floors: [
+          { floor: '5F', title: '암학술센터 및 항암병동', rooms: '교수연구실, 다학제암학술센터, 항암 전용 병동' },
+          { floor: '4F', title: '무균병동 및 입원실', rooms: '무균치료병실, 암환자 일반 입원병동 (401-408호)' },
+          { floor: '3F', title: '방사선 암치료센터', rooms: '방사선 치료센터, 토모테라피(Tomotherapy)실' },
+          { floor: '2F', title: '항암주사치료 및 협진실', rooms: '항암주사 집중치료실(낮병동), 다학제 협진실, 전문 상담실' },
+          { floor: '1F', title: '암 원무수납 및 예방센터', rooms: '암환자 전용 신속 접수 및 수납창구, 암예방진료센터, 암정보관' }
         ],
         pins: [
           { num: 1, top: '30%', left: '30%' },
@@ -1769,11 +1784,12 @@
         blueprintImage: 'floor_plan_1f.png',
         pinOffsetTop: '48%',
         pinOffsetLeft: '72%',
-        rooms: [
-          { num: 1, name: '소아청소년과 외래', desc: '영유아 영양, 급성 고열, 성장 클리닉 상설' },
-          { num: 2, name: '어린이 재활치료실', desc: '소아 뇌성마비 및 운동 기능 전문 재활 치료' },
-          { num: 3, name: '놀이대기실', desc: '환아 친화적 환경의 장난감 놀이터' },
-          { num: 4, name: '모유수유실', desc: '프라이버시가 보호되는 기저귀 교환 및 수유실' }
+        themeClass: 'border-blue-500/30 hover:border-blue-500/60 bg-blue-950/10 text-blue-400',
+        floors: [
+          { floor: '4F', title: '소아병동 및 NICU', rooms: '소아 일반 입원병동, 신생아 중환자실(NICU)' },
+          { floor: '3F', title: '소아 통합치료실', rooms: '소아 발달장애 통합치료실, 소아 언어치료실' },
+          { floor: '2F', title: '어린이 재활치료실', rooms: '어린이 운동치료실, 소아 작업치료실' },
+          { floor: '1F', title: '소아청소년 진료실', rooms: '소아청소년과 외래, 모유수유실, 어린이 놀이대기실' }
         ],
         pins: [
           { num: 1, top: '25%', left: '20%' },
@@ -1788,11 +1804,10 @@
         blueprintImage: 'floor_plan_1f.png',
         pinOffsetTop: '75%',
         pinOffsetLeft: '80%',
-        rooms: [
-          { num: 1, name: '장례식장 상담실', desc: '24시간 상례 절차 상담 및 비용 정산실' },
-          { num: 2, name: '특실 빈소 (1호실)', desc: '가장 넓은 평수의 대형 유가족 휴게실 완비 빈소' },
-          { num: 3, name: '일반 빈소 (2-5호실)', desc: '정갈한 제단과 손님맞이용 좌식 방 구성' },
-          { num: 4, name: '유족휴게실 및 식당', desc: '식기류 및 상주용 수면 휴게 용품 보관 창고' }
+        themeClass: 'border-slate-500/30 hover:border-slate-500/60 bg-slate-950/10 text-slate-400',
+        floors: [
+          { floor: '1F', title: '장례식장 사무국 및 빈소', rooms: '24시간 상례 절차 상담 및 비용 정산실, 특실 빈소 (1호실)' },
+          { floor: 'B1F', title: '일반 빈소 및 식당', rooms: '일반 빈소(2-5호실), 조문객 식당, 유족휴게실' }
         ],
         pins: [
           { num: 1, top: '15%', left: '15%' },
@@ -1802,16 +1817,16 @@
         ]
       },
       'public-ctr': {
-        name: '공공센터 (Public Center)',
-        blueprintTitle: '공공의료센터 1층 검진 및 행정 사무국',
+        name: '공공의료지원센터 (Public Center)',
+        blueprintTitle: '공공의료지원센터 1층 검진 및 행정 사무국',
         blueprintImage: 'floor_plan_1f.png',
         pinOffsetTop: '68%',
         pinOffsetLeft: '22%',
-        rooms: [
-          { num: 1, name: '공공의료사업팀', desc: '농어촌 무료 진료 차량 출동 배차 및 연계 사업' },
-          { num: 2, name: '사회복지 상담실', desc: '취약계층 진료비 감면 및 바우처 지원 상담' },
-          { num: 3, name: '만성질환관리센터', desc: '고혈압, 당뇨 지역 주민 자가 관리 교실 운영' },
-          { num: 4, name: '세미나 대강당', desc: '의학 전문 지식 전수 세미나 및 공공 보건 교육' }
+        themeClass: 'border-pink-500/30 hover:border-pink-500/60 bg-pink-950/10 text-pink-400',
+        floors: [
+          { floor: '3F', title: '사업지원팀 및 대회의실', rooms: '공공의료사업지원팀 사무국, 세미나 대강당' },
+          { floor: '2F', title: '주민건강교실 및 검진실', rooms: '지역주민 건강관리교실, 만성질환교육실, 건강검진 접수실' },
+          { floor: '1F', title: '건강진단센터 및 상담실', rooms: '종합건강검진진단센터, 취약계층 사회복지상담실' }
         ],
         pins: [
           { num: 1, top: '20%', left: '20%' },
@@ -1823,7 +1838,33 @@
     };
 
     let activeBuilding = 'main-bldg';
-    let currentRooms = [];
+    let currentFloors = [];
+
+    // Map Hover Tooltip Functions
+    function showMapTooltip(e, name) {
+      const tooltip = document.getElementById('map-tooltip');
+      if (!tooltip) return;
+      tooltip.innerText = name;
+      tooltip.classList.remove('hidden');
+      moveMapTooltip(e);
+    }
+    
+    function moveMapTooltip(e) {
+      const tooltip = document.getElementById('map-tooltip');
+      if (!tooltip) return;
+      const container = document.getElementById('panoramic-container');
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left + 15;
+      const y = e.clientY - rect.top + 15;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    }
+    
+    function hideMapTooltip() {
+      const tooltip = document.getElementById('map-tooltip');
+      if (!tooltip) return;
+      tooltip.classList.add('hidden');
+    }
 
     function switchBuilding(buildingId) {
       activeBuilding = buildingId;
@@ -1831,7 +1872,7 @@
       
       // Update Titles
       document.getElementById('current-floor-title').innerText = bldg.blueprintTitle;
-      document.getElementById('room-list-building-name').innerText = bldg.name + " 1층 실방 배치표";
+      document.getElementById('room-list-building-name').innerText = bldg.name + " 층별 위치 안내";
       
       // Reset Pin buttons styling
       const pins = ['main', 'cancer', 'children', 'funeral', 'public'];
@@ -1849,61 +1890,50 @@
       blueprintPinsContainer.innerHTML = '';
       bldg.pins.forEach(pin => {
         blueprintPinsContainer.innerHTML += `
-          <div onclick="highlightRoom(${pin.num})" class="absolute bg-brand-orange hover:bg-brand-accent text-white font-bold w-6 h-6 rounded-full flex items-center justify-center font-bold text-[10px] cursor-pointer shadow-lg border border-white -translate-x-1/2 -translate-y-1/2 hover:scale-125 transition-transform" style="top: ${pin.top}; left: ${pin.left};">
+          <div class="absolute bg-brand-orange text-white font-bold w-6 h-6 rounded-full flex items-center justify-center font-bold text-[10px] shadow-lg border border-white -translate-x-1/2 -translate-y-1/2" style="top: ${pin.top}; left: ${pin.left};">
             ${pin.num}
           </div>
         `;
       });
 
-      // Load Room Table Details
-      currentRooms = bldg.rooms;
-      renderRoomsTable(currentRooms);
+      // Load Floors List details
+      currentFloors = bldg.floors;
+      renderFloorsList(currentFloors, bldg.themeClass);
     }
 
-    function renderRoomsTable(rooms) {
-      const tableBody = document.getElementById('room-table-body');
-      tableBody.innerHTML = '';
+    function renderFloorsList(floors, themeClass) {
+      const container = document.getElementById('floor-list-container');
+      container.innerHTML = '';
       
-      if (rooms.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="3" class="text-center py-8 text-slate-500">일치하는 실방이 없습니다.</td></tr>`;
+      if (floors.length === 0) {
+        container.innerHTML = `<p class="text-center py-8 text-slate-500 text-xs">일치하는 층별 정보가 없습니다.</p>`;
         return;
       }
 
-      rooms.forEach(room => {
-        tableBody.innerHTML += `
-          <tr id="room-row-${room.num}" class="border-b border-slate-800 hover:bg-slate-800/40 transition-colors cursor-pointer" onclick="highlightRoom(${room.num})">
-            <td class="px-4 py-3 text-center font-black text-brand-orange text-[11px]">${room.num}</td>
-            <td class="px-4 py-3 font-bold text-white text-xs">${room.name}</td>
-            <td class="px-4 py-3 text-slate-400 font-medium">${room.desc}</td>
-          </tr>
+      floors.forEach(f => {
+        container.innerHTML += `
+          <div class="border rounded-2xl p-4 transition-all duration-300 ${themeClass} hover:scale-[1.01] hover:shadow-md cursor-pointer">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-black tracking-wide">${f.floor}</span>
+              <span class="text-xs font-bold text-white">${f.title}</span>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-2 leading-relaxed font-medium">${f.rooms}</p>
+          </div>
         `;
       });
     }
 
-    function filterRooms() {
+    function filterFloors() {
       const query = document.getElementById('room-search-input').value.toLowerCase().trim();
+      const bldg = campusBuildings[activeBuilding];
       if (!query) {
-        renderRoomsTable(currentRooms);
+        renderFloorsList(bldg.floors, bldg.themeClass);
         return;
       }
-      const filtered = currentRooms.filter(room => {
-        return room.name.toLowerCase().includes(query) || room.desc.toLowerCase().includes(query);
+      const filtered = bldg.floors.filter(f => {
+        return f.floor.toLowerCase().includes(query) || f.title.toLowerCase().includes(query) || f.rooms.toLowerCase().includes(query);
       });
-      renderRoomsTable(filtered);
-    }
-
-    function highlightRoom(num) {
-      // Highlight the corresponding row in table
-      const rows = document.querySelectorAll('#room-table-body tr');
-      rows.forEach(row => {
-        row.classList.remove('bg-brand-orange/15', 'border-l-4', 'border-brand-orange');
-      });
-
-      const activeRow = document.getElementById(`room-row-${num}`);
-      if (activeRow) {
-        activeRow.classList.add('bg-brand-orange/15', 'border-l-4', 'border-brand-orange');
-        activeRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
+      renderFloorsList(filtered, bldg.themeClass);
     }
 
     // Initialize Default States
