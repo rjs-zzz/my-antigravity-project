@@ -66,10 +66,11 @@
       scrollbar-width: none;  /* Firefox */
     }
     .active-tab {
-      background-color: #0054A6;
+      background: linear-gradient(135deg, #0054A6 0%, #0A429B 100%) !important;
       color: #FFFFFF !important;
       font-weight: 700;
       border-left: 4px solid #3B82F6;
+      box-shadow: 0 4px 12px rgba(0, 84, 166, 0.25);
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -412,48 +413,50 @@
     <div class="grid grid-cols-12 gap-8">
       
       <!-- Left side: Department Lists (Korea University Anam style) -->
-      <div class="col-span-12 md:col-span-4 lg:col-span-3 border-r border-slate-200 pr-4">
-        <h4 class="text-slate-800 font-bold text-sm mb-4 px-3 tracking-wide">진료과 카테고리</h4>
-        <div class="space-y-1 max-h-[600px] overflow-y-auto custom-scrollbar" id="dept-tabs-container">
+      <div class="col-span-12 md:col-span-4 lg:col-span-3 bg-slate-50/80 border border-slate-200/80 rounded-2xl p-4 shadow-sm max-h-[680px] flex flex-col">
+        <h4 class="text-slate-800 font-bold text-sm mb-4 px-1 tracking-wide flex items-center gap-1.5">
+          <i class="fa-solid fa-list-ul text-brand-orange"></i> 진료과 카테고리
+        </h4>
+        <div class="space-y-1.5 overflow-y-auto custom-scrollbar pr-1" id="dept-tabs-container">
           <!-- Department Tabs -->
-          <button onclick="selectDepartment('family-med')" id="tab-family-med" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center active-tab">
+          <button onclick="selectDepartment('family-med')" id="tab-family-med" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm active-tab">
             가정의학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('rheumatology')" id="tab-rheumatology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('rheumatology')" id="tab-rheumatology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             류마티스내과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('urology')" id="tab-urology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('urology')" id="tab-urology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             비뇨의학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('hpb-surgery')" id="tab-hpb-surgery" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('hpb-surgery')" id="tab-hpb-surgery" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             간담췌외과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('colorectal-surgery')" id="tab-colorectal-surgery" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('colorectal-surgery')" id="tab-colorectal-surgery" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             대장항문외과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('infectious-diseases')" id="tab-infectious-diseases" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('infectious-diseases')" id="tab-infectious-diseases" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             감염내과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('endocrinology')" id="tab-endocrinology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('endocrinology')" id="tab-endocrinology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             내분비내과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('anesthesiology')" id="tab-anesthesiology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('anesthesiology')" id="tab-anesthesiology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             마취통증의학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('radiation-oncology')" id="tab-radiation-oncology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('radiation-oncology')" id="tab-radiation-oncology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             방사선종양학과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('obstetrics-gynecology')" id="tab-obstetrics-gynecology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('obstetrics-gynecology')" id="tab-obstetrics-gynecology" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             산부인과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
-          <button onclick="selectDepartment('plastic-surgery')" id="tab-plastic-surgery" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all flex justify-between items-center">
+          <button onclick="selectDepartment('plastic-surgery')" id="tab-plastic-surgery" class="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 bg-white/80 border border-slate-100 hover:bg-brand-orange/10 hover:text-brand-orange hover:border-brand-orange/20 transition-all flex justify-between items-center shadow-sm">
             성형외과 <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
         </div>
       </div>
 
       <!-- Right side: Content display (Clean introduction & Clinics cards) -->
-      <div class="col-span-12 md:col-span-8 lg:col-span-9 bg-brand-dark/50 border border-slate-200 rounded-2xl p-8" id="department-details-pane">
+      <div class="col-span-12 md:col-span-8 lg:col-span-9 bg-gradient-to-br from-blue-50/60 via-white/80 to-white border border-blue-100 rounded-3xl p-8 shadow-xl shadow-blue-950/[0.02]" id="department-details-pane">
         <!-- Content will be swapped dynamically by JS. Default is Family Medicine. -->
         <div class="space-y-6">
           <div class="flex justify-between items-start">
@@ -466,11 +469,15 @@
             </button>
           </div>
           
-          <div class="text-slate-700 text-base leading-relaxed border-t border-slate-200 pt-6">
-            <h4 class="font-bold text-slate-800 mb-2 text-lg">소개글</h4>
-            <p class="leading-relaxed text-[15px]">
-              가정의학과는 특정 연령이나 장기, 질병에 국한되지 않고 개인과 가족의 건강을 총체적이고 지속적으로 관리하는 진료과입니다. 일상에서 흔히 겪는 가벼운 증상부터 성인병 및 만성 질환 관리, 질병의 예방, 예방접종, 건강증진 상담 등을 폭넓게 담당하며, 환자의 고유한 신체·심리적 조화를 함께 돌보고 있습니다.
-            </p>
+          <div id="dept-intro-container">
+            <div class="animate-fade-in bg-gradient-to-br from-brand-orange/5 via-brand-teal/[0.02] to-white p-6 rounded-2xl border border-blue-100">
+              <h4 class="font-bold text-slate-800 mb-2 text-lg flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-info text-brand-orange"></i> 소개글
+              </h4>
+              <p class="leading-relaxed text-[15px] text-slate-700">
+                가정의학과는 특정 연령이나 장기, 질병에 국한되지 않고 개인과 가족의 건강을 총체적이고 지속적으로 관리하는 진료과입니다. 일상에서 흔히 겪는 가벼운 증상부터 성인병 및 만성 질환 관리, 질병의 예방, 예방접종, 건강증진 상담 등을 폭넓게 담당하며, 환자의 고유한 신체·심리적 조화를 함께 돌보고 있습니다.
+              </p>
+            </div>
           </div>
 
           <div class="bg-white/50 p-6 rounded-xl border border-slate-200/80">
@@ -1496,9 +1503,13 @@
             </button>
           </div>
           
-          <div id="dept-intro-container" class="text-slate-700 text-base leading-relaxed border-t border-slate-200 pt-6">
-            <h4 class="font-bold text-slate-800 mb-2 text-lg">${data.title} 소개글</h4>
-            <p class="leading-relaxed text-[15px]">${data.intro}</p>
+          <div id="dept-intro-container">
+            <div class="animate-fade-in bg-gradient-to-br from-brand-orange/5 via-brand-teal/[0.02] to-white p-6 rounded-2xl border border-blue-100">
+              <h4 class="font-bold text-slate-800 mb-2 text-lg flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-info text-brand-orange"></i> ${data.title} 소개글
+              </h4>
+              <p class="leading-relaxed text-[15px] text-slate-700">${data.intro}</p>
+            </div>
           </div>
 
           <div class="bg-white/50 p-6 rounded-xl border border-slate-200/80">
@@ -1624,7 +1635,7 @@
           const clinicObj = data.clinics.find(c => c.name === clinicName);
           if (clinicObj) {
             introContainer.innerHTML = `
-              <div class="animate-fade-in bg-white/60 p-5 rounded-xl border border-slate-200/80 hover:border-slate-200/80 transition-colors">
+              <div class="animate-fade-in bg-gradient-to-br from-brand-orange/5 via-brand-teal/[0.02] to-white p-6 rounded-2xl border border-blue-100 transition-colors shadow-sm">
                 <div class="flex items-center gap-2 mb-3">
                   <span class="px-2 py-0.5 rounded text-xs bg-brand-orange/10 text-brand-orange font-bold border border-brand-orange/20">전문클리닉 소개</span>
                   <h4 class="font-bold text-slate-800 text-lg">${clinicName}</h4>
@@ -1661,8 +1672,12 @@
       const introContainer = document.getElementById('dept-intro-container');
       if (introContainer) {
         introContainer.innerHTML = `
-          <h4 class="font-bold text-slate-800 mb-2 text-lg">${data.title} 소개글</h4>
-          <p class="leading-relaxed text-[15px]">${data.intro}</p>
+          <div class="animate-fade-in bg-gradient-to-br from-brand-orange/5 via-brand-teal/[0.02] to-white p-6 rounded-2xl border border-blue-100">
+            <h4 class="font-bold text-slate-800 mb-2 text-lg flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-info text-brand-orange"></i> ${data.title} 소개글
+            </h4>
+            <p class="leading-relaxed text-[15px] text-slate-700">${data.intro}</p>
+          </div>
         `;
       }
     }
