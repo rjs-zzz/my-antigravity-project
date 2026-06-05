@@ -87,6 +87,7 @@
 
     /* Hero section interactive reveal */
     @media (hover: hover) {
+      #hero-title-block,
       #hero-search-box,
       #hero-booking-grid {
         opacity: 0;
@@ -95,19 +96,28 @@
         transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      #hero-booking-grid {
+      #hero-search-box {
         transition-delay: 0.1s;
+      }
+      #hero-booking-grid {
+        transition-delay: 0.2s;
+      }
+      #hero-section:hover #hero-title-block {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
       #hero-section:hover #hero-search-box {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+        transition-delay: 0.1s;
       }
       #hero-section:hover #hero-booking-grid {
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
-        transition-delay: 0.1s;
+        transition-delay: 0.2s;
       }
     }
   </style>
@@ -293,7 +303,7 @@
 
     <!-- Banner Content -->
     <div class="max-w-7xl mx-auto px-8 w-full z-10 flex-grow flex flex-col justify-center gap-8 mt-12">
-      <div class="max-w-3xl space-y-4">
+      <div id="hero-title-block" class="max-w-3xl space-y-4">
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight font-sans">
           강원의료의 <br class="hidden md:block">
           <span class="text-brand-orange">질과 품격</span>을 높이는 병원
