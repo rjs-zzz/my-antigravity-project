@@ -1165,16 +1165,26 @@
         data.doctors.forEach(doc => {
           const scheduleCells = ['mon', 'tue', 'wed', 'thu', 'fri'].map(day => {
             const val = doc.schedule[day];
-            if (val === '-') return `<td class="px-2 py-3 text-center text-slate-600 font-medium">-</td>`;
-            let badgeClass = 'text-slate-400 bg-slate-800';
+            let morningHTML = `<span class="text-[9px] text-slate-700 font-medium">-</span>`;
+            let afternoonHTML = `<span class="text-[9px] text-slate-700 font-medium">-</span>`;
+            
             if (val === '오전/오후') {
-              badgeClass = 'bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20';
+              morningHTML = `<span class="px-1.5 py-0.5 rounded text-[9px] bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">오전</span>`;
+              afternoonHTML = `<span class="px-1.5 py-0.5 rounded text-[9px] bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20">오후</span>`;
             } else if (val === '오전') {
-              badgeClass = 'bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20';
+              morningHTML = `<span class="px-1.5 py-0.5 rounded text-[9px] bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20">오전</span>`;
             } else if (val === '오후') {
-              badgeClass = 'bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20';
+              afternoonHTML = `<span class="px-1.5 py-0.5 rounded text-[9px] bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20">오후</span>`;
             }
-            return `<td class="px-2 py-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] ${badgeClass}">${val}</span></td>`;
+            
+            return `
+              <td class="px-2 py-2 text-center">
+                <div class="flex flex-col gap-1 items-center justify-center">
+                  ${morningHTML}
+                  ${afternoonHTML}
+                </div>
+              </td>
+            `;
           }).join('');
 
           doctorRows += `
