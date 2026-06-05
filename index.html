@@ -284,11 +284,11 @@
 
       <!-- "무엇이 궁금하신가요?" Search Box -->
       <div class="max-w-2xl bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-slate-200 shadow-2xl">
-        <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2">
+        <h3 class="text-slate-800 text-sm font-semibold mb-3 flex items-center gap-2">
           <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
         </h3>
         <div class="flex gap-2">
-          <input type="text" placeholder="진료과명, 의료진명, 질환명을 입력하세요..." class="w-full bg-white/80 border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-white px-4 py-3 rounded-xl text-sm focus:outline-none transition-all placeholder-slate-500">
+          <input type="text" placeholder="진료과명, 의료진명, 질환명을 입력하세요..." class="w-full bg-white/80 border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-4 py-3 rounded-xl text-sm focus:outline-none transition-all placeholder-slate-500">
           <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-6 py-3 rounded-xl text-sm transition-all flex items-center gap-1 shadow-lg shadow-brand-orange/20">
             검색
           </button>
@@ -560,7 +560,7 @@
           <!-- Calendar-style schedule table (No symbol representation, full-text based) -->
           <div class="border-t border-slate-200 pt-8">
             <div class="flex justify-between items-center mb-4">
-              <h4 class="font-bold text-white text-sm flex items-center gap-2">
+              <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                 <i class="fa-solid fa-calendar-days text-brand-orange"></i> 2026년 1월 진료일정표
               </h4>
               <span class="text-[10px] text-slate-600"><i class="fa-solid fa-circle-info mr-1"></i>일정을 클릭하면 챗봇 예약 단계로 바로 연결됩니다.</span>
@@ -801,22 +801,22 @@
             </button>
 
             <!-- 암센터 (Left-ish) -->
-            <button onclick="switchBuilding('cancer-ctr')" onmouseover="switchBuilding('cancer-ctr')" id="pin-cancer" class="absolute top-[28%] left-[28%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('cancer-ctr')" onmouseover="switchBuilding('cancer-ctr')" id="pin-cancer" class="absolute top-[28%] left-[28%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange text-slate-800 hover:text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-shield-virus"></i> 암센터
             </button>
 
             <!-- 어린이병원 (Right-ish) -->
-            <button onclick="switchBuilding('children-hosp')" onmouseover="switchBuilding('children-hosp')" id="pin-children" class="absolute top-[48%] left-[72%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('children-hosp')" onmouseover="switchBuilding('children-hosp')" id="pin-children" class="absolute top-[48%] left-[72%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange text-slate-800 hover:text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-child-reaching"></i> 어린이병원
             </button>
 
             <!-- 장례식장 (Bottom-Right-ish) -->
-            <button onclick="switchBuilding('funeral-hall')" onmouseover="switchBuilding('funeral-hall')" id="pin-funeral" class="absolute top-[75%] left-[80%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('funeral-hall')" onmouseover="switchBuilding('funeral-hall')" id="pin-funeral" class="absolute top-[75%] left-[80%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange text-slate-800 hover:text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-church"></i> 장례식장
             </button>
 
             <!-- 공공센터 (Bottom-Left-ish) -->
-            <button onclick="switchBuilding('public-ctr')" onmouseover="switchBuilding('public-ctr')" id="pin-public" class="absolute top-[68%] left-[22%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
+            <button onclick="switchBuilding('public-ctr')" onmouseover="switchBuilding('public-ctr')" id="pin-public" class="absolute top-[68%] left-[22%] -translate-x-1/2 -translate-y-1/2 bg-slate-100 hover:bg-brand-orange text-slate-800 hover:text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20">
               <i class="fa-solid fa-handshake-angle"></i> 공공센터
             </button>
           </div>
@@ -857,7 +857,7 @@
 
         <!-- Room Search Input -->
         <div class="relative mb-4">
-          <input type="text" id="room-search-input" onkeyup="filterFloors()" placeholder="층수, 주요 진료과, 시설명 검색..." class="w-full bg-white border border-slate-200 focus:border-brand-orange focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500">
+          <input type="text" id="room-search-input" onkeyup="filterFloors()" placeholder="층수, 주요 진료과, 시설명 검색..." class="w-full bg-white border border-slate-200 focus:border-brand-orange focus:outline-none rounded-xl px-4 py-2.5 text-xs text-slate-800 placeholder-slate-500">
           <i class="fa-solid fa-magnifying-glass absolute right-4 top-3 text-slate-500 text-sm"></i>
         </div>
 
@@ -1418,7 +1418,7 @@
         doctorsHTML = `
           <div class="border-t border-slate-200 pt-6 mt-6">
             <div class="flex justify-between items-center mb-4">
-              <h4 id="dept-doctors-table-title" class="font-bold text-white text-sm flex items-center gap-2">
+              <h4 id="dept-doctors-table-title" class="font-bold text-slate-800 text-sm flex items-center gap-2">
                 <i class="fa-solid fa-user-doctor text-brand-orange"></i> 소속 의료진 및 진료 일정
               </h4>
               <button onclick="resetClinicFilter('${id}')" id="filter-reset-btn" class="hidden text-slate-600 hover:text-slate-900 text-[10px] border border-slate-200 hover:border-slate-500 rounded px-2.5 py-1 transition-colors flex items-center gap-1">
@@ -1453,7 +1453,7 @@
           <div class="flex justify-between items-start">
             <div>
               <span class="text-xs text-brand-teal font-semibold uppercase">${data.english}</span>
-              <h3 class="text-2xl font-bold text-white mt-1">${data.title}</h3>
+              <h3 class="text-2xl font-bold text-slate-800 mt-1">${data.title}</h3>
             </div>
             <button onclick="openChatbotForDept('${data.title}')" class="bg-brand-orange/15 hover:bg-brand-orange text-brand-orange hover:text-slate-900 font-bold text-xs font-semibold px-4 py-2.5 rounded-lg border border-brand-primary/30 transition-all flex items-center gap-1.5">
               <i class="fa-solid fa-robot"></i> 과별 챗봇예약
@@ -1684,16 +1684,16 @@
       `,
       'papers': `
         <div class="space-y-2">
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2025</span> <span>뇌성마비 환아의 운동 회복과 로봇 재활의 상관성 분석 (국제재활의학저널)</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2023</span> <span>추간판 탈출증 환자의 비수술적 도수 치료 효과 연구 (대한재활의학회지)</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2021</span> <span>오십견 예방을 위한 초음파 유도 하 관절막 팽창술의 유효성 (미국정형외과학회 발표)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-800 w-20 flex-shrink-0">2025</span> <span>뇌성마비 환아의 운동 회복과 로봇 재활의 상관성 분석 (국제재활의학저널)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-800 w-20 flex-shrink-0">2023</span> <span>추간판 탈출증 환자의 비수술적 도수 치료 효과 연구 (대한재활의학회지)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-800 w-20 flex-shrink-0">2021</span> <span>오십견 예방을 위한 초음파 유도 하 관절막 팽창술의 유효성 (미국정형외과학회 발표)</span></div>
         </div>
       `,
       'awards': `
         <div class="space-y-2">
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2024</span> <span>보건복지부 장관 표창 (지역사회 장애인 보건증진 공로)</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2021</span> <span>대한재활의학회 우수 연구학술상 수상</span></div>
-          <div class="flex gap-4"><span class="font-bold text-white w-20 flex-shrink-0">2018</span> <span>강원대학교 의과대학 최우수 강사상 수상</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-800 w-20 flex-shrink-0">2024</span> <span>보건복지부 장관 표창 (지역사회 장애인 보건증진 공로)</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-800 w-20 flex-shrink-0">2021</span> <span>대한재활의학회 우수 연구학술상 수상</span></div>
+          <div class="flex gap-4"><span class="font-bold text-slate-800 w-20 flex-shrink-0">2018</span> <span>강원대학교 의과대학 최우수 강사상 수상</span></div>
         </div>
       `
     };
@@ -1884,7 +1884,7 @@
         if (pin === buildingId.split('-')[0]) {
           btn.className = "absolute bg-brand-orange text-white font-medium p-2.5 rounded-full shadow-2xl shadow-brand-orange/60 border-2 border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20";
         } else {
-          btn.className = "absolute bg-slate-100 hover:bg-brand-orange/90 text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20";
+          btn.className = "absolute bg-slate-100 hover:bg-brand-orange text-slate-800 hover:text-white p-2.5 rounded-full shadow-lg border-2 border-slate-200 hover:border-white flex items-center gap-1.5 font-bold text-xs hover:scale-110 active:scale-95 transition-all z-20";
         }
       });
 
@@ -1918,7 +1918,7 @@
           <div class="border rounded-2xl p-4 transition-all duration-300 ${themeClass} hover:scale-[1.01] hover:shadow-md cursor-pointer">
             <div class="flex justify-between items-center">
               <span class="text-sm font-black tracking-wide">${f.floor}</span>
-              <span class="text-xs font-bold text-white">${f.title}</span>
+              <span class="text-xs font-bold text-slate-800">${f.title}</span>
             </div>
             <p class="text-[11px] text-slate-600 mt-2 leading-relaxed font-medium">${f.rooms}</p>
           </div>
