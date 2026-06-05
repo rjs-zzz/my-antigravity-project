@@ -529,7 +529,7 @@
               <h4 class="font-bold text-white text-sm flex items-center gap-2">
                 <i class="fa-solid fa-calendar-days text-brand-orange"></i> 2026년 1월 진료일정표
               </h4>
-              <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-info mr-1"></i>일정을 클릭하면 챗봇 예약 단계로 바로 진동합니다.</span>
+              <span class="text-[10px] text-slate-400"><i class="fa-solid fa-circle-info mr-1"></i>일정을 클릭하면 챗봇 예약 단계로 바로 연결됩니다.</span>
             </div>
             
             <div class="grid grid-cols-7 gap-1.5 text-center text-xs">
@@ -955,7 +955,9 @@
   </footer>
 
 
-  <!-- Web App Logic Script -->
+  <!-- Note: Chatbot is opened in a new tab to bypass cookie blocks -->
+
+    <!-- Web App Logic Script -->
   <script>
     // Header background transparency adjustment on scroll
     window.addEventListener('scroll', () => {
@@ -992,90 +994,142 @@
     megamenu.addEventListener('mouseleave', closeMegamenu);
 
 
-    // Chatbot Booking System Controls - Redirected to exona AI Chatbot URL
-    function toggleChatbot() {
+    // Chatbot Booking System Controls - Slide-in Iframe Drawer
+    const chatbotDrawer = document.getElementById('booking-chatbot-iframe-widget');
+    const chatbotIframe = document.getElementById('chatbot-iframe');
+
+    // Chatbot Booking System Controls - Open in New Tab
+    function openChatbotDrawer() {
       window.open('https://va.exona.ai/b0528b37f27e4dc3aa8a79ce1630f404', '_blank');
     }
-    
+
+    function toggleChatbot() {
+      openChatbotDrawer();
+    }
+
     function openChatbotFlow(flow) {
-      window.open('https://va.exona.ai/b0528b37f27e4dc3aa8a79ce1630f404', '_blank');
+      openChatbotDrawer();
     }
 
     function openDoctorChatbot(date) {
-      window.open('https://va.exona.ai/b0528b37f27e4dc3aa8a79ce1630f404', '_blank');
+      openChatbotDrawer();
     }
 
     function openChatbotForDept(dept) {
-      window.open('https://va.exona.ai/b0528b37f27e4dc3aa8a79ce1630f404', '_blank');
+      openChatbotDrawer();
     }
     
-    // Department Tabs Switching Data (Korea University Anam Style)
+    // Department Tabs Switching Data (Korea University Anam Style with Doctor Schedules)
     const departmentsData = {
       'family-med': {
         title: '가정의학과',
         english: 'Family Medicine',
         intro: '가정의학과는 특정 연령이나 장기, 질병에 국한되지 않고 개인과 가족의 건강을 총체적이고 지속적으로 관리하는 진료과입니다. 일상에서 흔히 겪는 가벼운 증상부터 성인병 및 만성 질환 관리, 질병의 예방, 예방접종, 건강증진 상담 등을 폭넓게 담당하며, 환자의 고유한 신체·심리적 조화를 함께 돌보고 있습니다.',
-        clinics: ['금연클리닉', '노인병클리닉', '비만클리닉', '여행자 클리닉', '주치의클리닉']
+        clinics: ['금연클리닉', '노인병클리닉', '비만클리닉', '여행자 클리닉', '주치의클리닉'],
+        doctors: [
+          { name: '김민수', title: '교수', specialty: '만성질환, 비만, 건강증진, 대사증후군', schedule: { mon: '오전/오후', tue: '오전', wed: '-', thu: '오후', fri: '오전' } },
+          { name: '이지은', title: '교수', specialty: '금연치료, 노인의학, 예방접종, 평생건강관리', schedule: { mon: '-', tue: '오후', wed: '오전/오후', thu: '오전', fri: '오후' } }
+        ]
       },
       'rheumatology': {
         title: '류마티스내과',
         english: 'Rheumatology',
         intro: '류마티스내과는 면역 체계의 이상으로 인해 자신의 몸을 공격하여 만성 염증과 통증을 유발하는 결합 조직 질환 및 류마티스 관절염 등을 정밀하게 진단하고 치료하는 부서입니다. 조기 진단을 바탕으로 관절의 변형을 막고 환자의 삶의 질을 극대화하는 치료를 시행합니다.',
-        clinics: ['루푸스 클리닉', '류마티스관절염 클리닉', '류마티스질환 클리닉', '희귀질환 클리닉']
+        clinics: ['루푸스 클리닉', '류마티스관절염 클리닉', '류마티스질환 클리닉', '희귀질환 클리닉'],
+        doctors: [
+          { name: '박상훈', title: '교수', specialty: '류마티스관절염, 루푸스, 통풍, 강직성척추염', schedule: { mon: '오전', tue: '오후', wed: '오전', thu: '-', fri: '오전/오후' } },
+          { name: '최지아', title: '교수', specialty: '골관절염, 척추관절염, 결합조직질환, 베체트병', schedule: { mon: '오후', tue: '-', wed: '오후', thu: '오전/오후', fri: '오전' } }
+        ]
       },
       'urology': {
         title: '비뇨의학과',
         english: 'Urology',
         intro: '비뇨의학과는 소변을 생성하고 배출하는 비뇨기계(신장, 요관, 방광, 요도)와 남성 생식기계에 발생하는 질환을 전문적으로 다룹니다. 내과적 약물 치료와 첨단 미세 외과 수술 기법을 동시에 적용하여 우수한 예후를 보장합니다.',
-        clinics: ['남성갱년기 클리닉', '비뇨의학과 건강검진 클리닉', '요로결석 클리닉', '요실금 클리닉']
+        clinics: ['남성갱년기 클리닉', '비뇨의학과 건강검진 클리닉', '요로결석 클리닉', '요실금 클리닉'],
+        doctors: [
+          { name: '정우진', title: '교수', specialty: '전립선비대증, 요로결석, 남성의학, 소아비뇨', schedule: { mon: '오전/오후', tue: '-', wed: '오전', thu: '오후', fri: '-' } },
+          { name: '한승민', title: '교수', specialty: '비뇨기계 악성종양, 배뇨장애, 요실금, 전립선염', schedule: { mon: '-', tue: '오전/오후', wed: '-', thu: '오전', fri: '오전/오후' } }
+        ]
       },
       'hpb-surgery': {
         title: '간담췌외과',
         english: 'Hepato-Biliary-Pancreatic Surgery',
         intro: '간, 담낭, 담도 및 췌장에 발생하는 각종 양성 및 악성 질환을 다루며, 로봇 수술 및 복강경을 활용한 정밀한 암 절제술을 전문 분야로 하고 있습니다. 소화기내과와 유기적인 협진을 통해 치료 성공률을 높입니다.',
-        clinics: ['간암 클리닉', '간이식 클리닉', '복강경 클리닉']
+        clinics: ['간암 클리닉', '간이식 클리닉', '복강경 클리닉'],
+        doctors: [
+          { name: '서주한', title: '교수', specialty: '간암, 담도암, 췌장암, 담낭암 외과적 암 수술', schedule: { mon: '오후', tue: '-', wed: '오전/오후', thu: '-', fri: '오전' } },
+          { name: '임채원', title: '교수', specialty: '담석증, 췌장양성질환, 로봇/복강경 최소침습수술', schedule: { mon: '-', tue: '오전', wed: '-', thu: '오전/오후', fri: '오후' } }
+        ]
       },
       'colorectal-surgery': {
         title: '대장항문외과',
         english: 'Colorectal Surgery',
         intro: '대장, 직장 및 항문에 생기는 암 질환과 치핵, 치루 등의 항문 질환을 외과적으로 치료합니다. 괄약근 보존 정밀 수술 및 환자의 빠른 일상 복귀를 위한 최소침습 복강경 수술을 중점적으로 실시하고 있습니다.',
-        clinics: ['기능성장질환클리닉', '로봇복강경수술클리닉', '복강경클리닉', '복막전이암클리닉', '성인탈장클리닉', '염증성장질환클리닉', '재발성결직장암클리닉', '직장항문질환클리닉', '항문질환 클리닉', '후복막종양클리닉']
+        clinics: ['기능성장질환클리닉', '로봇복강경수술클리닉', '복강경클리닉', '복막전이암클리닉', '성인탈장클리닉', '염증성장질환클리닉', '재발성결직장암클리닉', '직장항문질환클리닉', '항문질환 클리닉', '후복막종양클리닉'],
+        doctors: [
+          { name: '강태호', title: '교수', specialty: '대장암, 직장암, 후복막종양, 로봇/복강경 수술', schedule: { mon: '오전', tue: '오후', wed: '-', thu: '오전/오후', fri: '오전' } },
+          { name: '윤서연', title: '교수', specialty: '치핵, 치루, 항문주위농양, 변실금, 대장기능장애', schedule: { mon: '오후', tue: '-', wed: '오전/오후', thu: '-', fri: '오후' } }
+        ]
       },
       'infectious-diseases': {
         title: '감염내과',
         english: 'Infectious Diseases',
         intro: '감염내과는 미생물(세균, 바이러스, 진균)에 감염되어 발생하는 급성 질환과 열병을 신속히 규명하고 전신 부작용을 통제하는 과입니다. 불명열 진단과 다제내성균 억제를 위한 최적의 항생제 처방을 연구합니다.',
-        clinics: ['림프절 클리닉', '열병클리닉']
+        clinics: ['림프절 클리닉', '열병클리닉'],
+        doctors: [
+          { name: '홍성진', title: '교수', specialty: '원인불명열, 신종감염병, 성인예방접종, HIV/AIDS', schedule: { mon: '오전', tue: '-', wed: '오후', thu: '오전/오후', fri: '-' } },
+          { name: '신유리', title: '교수', specialty: '다제내성균 감염증, 패혈증, 중환자감염, 요로감염', schedule: { mon: '-', tue: '오전/오후', wed: '-', thu: '-', fri: '오전/오후' } }
+        ]
       },
       'endocrinology': {
         title: '내분비내과',
         english: 'Endocrinology',
         intro: '내분비내과는 호르몬을 분비하는 뇌하수체, 갑상선, 췌장, 부신 등 내분비 기관의 기능 이상과 대사 질환(당뇨병, 이상지질혈증, 골다공증)을 정밀하게 치료하여 전신의 대사 균형을 유지합니다.',
-        clinics: ['갑상선 클리닉', '당뇨병 클리닉', '내분비질환 클리닉']
+        clinics: ['갑상선 클리닉', '당뇨병 클리닉', '내분비질환 클리닉'],
+        doctors: [
+          { name: '조윤재', title: '교수', specialty: '당뇨병, 이상지질혈증, 비만, 뇌하수체 질환', schedule: { mon: '오전/오후', tue: '-', wed: '오전', thu: '-', fri: '오전' } },
+          { name: '송민정', title: '교수', specialty: '갑상선결절/암, 골다공증, 부갑상선, 골대사질환', schedule: { mon: '-', tue: '오전/오후', wed: '-', thu: '오전/오후', fri: '-' } }
+        ]
       },
       'anesthesiology': {
         title: '마취통증의학과',
         english: 'Anesthesiology',
         intro: '마취통증의학과는 수술 환자의 안전한 마취 및 활력징후 관리는 물론, 급성 및 만성 통증을 호소하는 비수술 환자들을 위해 비침습적 신경 차단술과 신경 차단 통증 약물 치료를 체계적으로 담당합니다.',
-        clinics: ['통증클리닉']
+        clinics: ['통증클리닉'],
+        doctors: [
+          { name: '백현우', title: '교수', specialty: '만성통증, 척추통증, 신경병증성 통증, 대상포진후 신경통', schedule: { mon: '오전', tue: '오후', wed: '-', thu: '오전/오후', fri: '-' } },
+          { name: '장아름', title: '교수', specialty: '초음파 유도하 통증 차단술, 오십견, 디스크, 관절통증', schedule: { mon: '-', tue: '-', wed: '오전/오후', thu: '-', fri: '오전/오후' } }
+        ]
       },
       'radiation-oncology': {
         title: '방사선종양학과',
         english: 'Radiation Oncology',
         intro: '방사선종양학과는 방사선을 이용하여 악성 종양을 파괴하고, 정상 조직의 손상은 최소화하는 최첨단 암 치료 요법을 실시합니다. 다학제 진료 시스템을 바탕으로 맞춤형 치료 설계를 주도합니다.',
-        clinics: ['Tomotherapy Center', '방사선수술 클리닉']
+        clinics: ['Tomotherapy Center', '방사선수술 클리닉'],
+        doctors: [
+          { name: '고대원', title: '교수', specialty: '두경부암, 뇌종양, 입체조형방사선치료, 정밀방사선수술', schedule: { mon: '오전/오후', tue: '-', wed: '오후', thu: '오전', fri: '-' } },
+          { name: '배은경', title: '교수', specialty: '유방암, 부인암, 폐암, 토모테라피(Tomotherapy)', schedule: { mon: '-', tue: '오전/오후', wed: '-', thu: '-', fri: '오전/오후' } }
+        ]
       },
       'obstetrics-gynecology': {
         title: '산부인과',
         english: 'Obstetrics & Gynecology',
         intro: '산부인과는 여성의 일생에 걸친 건강 파트너로서 고위험 임신 관리 및 출산을 다루는 산과 영역과, 자궁근종, 부인암 및 생식기 종양을 예방하고 치료하는 부인과 영역을 포괄적으로 아우릅니다.',
-        clinics: ['고위험임신클리닉', '골반경수술 클리닉']
+        clinics: ['고위험임신클리닉', '골반경수술 클리닉'],
+        doctors: [
+          { name: '황도원', title: '교수', specialty: '고위험임신, 산전정밀초음파, 정밀기형진단, 태아치료', schedule: { mon: '오전', tue: '-', wed: '오전/오후', thu: '-', fri: '오전' } },
+          { name: '김혜수', title: '교수', specialty: '자궁근종, 난소종양, 부인암, 자궁경부암, 부인과 복강경', schedule: { mon: '-', tue: '오전/오후', wed: '-', thu: '오전/오후', fri: '-' } }
+        ]
       },
       'plastic-surgery': {
         title: '성형외과',
         english: 'Plastic Surgery',
         intro: '성형외과는 선천적 기형이나 사고로 인한 신체 조직 결손의 복원(재건성형)과 미용 수술적 조정을 조화롭게 시행하여, 신체 외형적 기능 회복과 동시에 정서적 안녕을 돕는 의학 부서입니다.',
-        clinics: ['고위험임신클리닉', '골반경수술 클리닉']
+        clinics: ['고위험임신클리닉', '골반경수술 클리닉'],
+        doctors: [
+          { name: '민경민', title: '교수', specialty: '유방재건, 안면외상 및 골절, 화상/흉터 재건, 재건성형', schedule: { mon: '오후', tue: '-', wed: '오전/오후', thu: '-', fri: '오전' } },
+          { name: '손유진', title: '교수', specialty: '눈/코 성형, 안면거상, 미용 성형외과, 흉터 레이저 치료', schedule: { mon: '-', tue: '오전/오후', wed: '-', thu: '오전/오후', fri: '-' } }
+        ]
       }
     };
 
@@ -1104,6 +1158,67 @@
         `;
       });
 
+      // Build doctors schedule table
+      let doctorsHTML = '';
+      if (data.doctors && data.doctors.length > 0) {
+        let doctorRows = '';
+        data.doctors.forEach(doc => {
+          const scheduleCells = ['mon', 'tue', 'wed', 'thu', 'fri'].map(day => {
+            const val = doc.schedule[day];
+            if (val === '-') return `<td class="px-2 py-3 text-center text-slate-600 font-medium">-</td>`;
+            let badgeClass = 'text-slate-400 bg-slate-800';
+            if (val === '오전/오후') {
+              badgeClass = 'bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20';
+            } else if (val === '오전') {
+              badgeClass = 'bg-blue-500/10 text-blue-400 font-semibold border border-blue-500/20';
+            } else if (val === '오후') {
+              badgeClass = 'bg-amber-500/10 text-amber-400 font-semibold border border-amber-500/20';
+            }
+            return `<td class="px-2 py-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] ${badgeClass}">${val}</span></td>`;
+          }).join('');
+
+          doctorRows += `
+            <tr class="border-b border-slate-800 hover:bg-slate-850/40 transition-colors">
+              <td class="px-4 py-3 font-bold text-white text-xs">${doc.name} ${doc.title}</td>
+              <td class="px-4 py-3 text-slate-300 font-medium">${doc.specialty}</td>
+              ${scheduleCells}
+              <td class="px-4 py-3 text-center">
+                <button onclick="openChatbotForDept('${data.title}')" class="bg-brand-orange hover:bg-brand-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 mx-auto shadow-md">
+                  <i class="fa-solid fa-comments"></i> 예약
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        doctorsHTML = `
+          <div class="border-t border-slate-800 pt-6 mt-6">
+            <h4 class="font-bold text-white mb-4 text-sm flex items-center gap-2">
+              <i class="fa-solid fa-user-doctor text-brand-orange"></i> 소속 의료진 및 진료 일정
+            </h4>
+            <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/40">
+              <table class="w-full text-xs text-left text-slate-300 min-w-[600px]">
+                <thead class="text-[10px] text-slate-400 uppercase bg-slate-800/80">
+                  <tr>
+                    <th scope="col" class="px-4 py-3 w-28">교수명</th>
+                    <th scope="col" class="px-4 py-3">진료분야</th>
+                    <th scope="col" class="px-2 py-3 text-center w-16">월</th>
+                    <th scope="col" class="px-2 py-3 text-center w-16">화</th>
+                    <th scope="col" class="px-2 py-3 text-center w-16">수</th>
+                    <th scope="col" class="px-2 py-3 text-center w-16">목</th>
+                    <th scope="col" class="px-2 py-3 text-center w-16">금</th>
+                    <th scope="col" class="px-4 py-3 text-center w-20">예약</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${doctorRows}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }
+
       detailsPane.innerHTML = `
         <div class="space-y-6 animate-fade-in">
           <div class="flex justify-between items-start">
@@ -1129,6 +1244,8 @@
               ${clinicsHTML}
             </div>
           </div>
+
+          ${doctorsHTML}
         </div>
       `;
     }
