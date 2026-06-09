@@ -88,22 +88,27 @@
     }
 
     /* Hero section interactive reveal */
+    #hero-title-block,
+    #hero-search-box,
+    #hero-booking-grid,
+    #hero-title-block-mobile,
+    #hero-search-box-mobile,
+    #hero-booking-grid-mobile {
+      opacity: 0;
+      transform: translateY(1rem);
+      pointer-events: none;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #hero-search-box,
+    #hero-search-box-mobile {
+      transition-delay: 0.1s;
+    }
+    #hero-booking-grid,
+    #hero-booking-grid-mobile {
+      transition-delay: 0.2s;
+    }
     @media (hover: hover) {
-      #hero-title-block,
-      #hero-search-box,
-      #hero-booking-grid {
-        opacity: 0;
-        transform: translateY(1rem);
-        pointer-events: none;
-        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      #hero-search-box {
-        transition-delay: 0.1s;
-      }
-      #hero-booking-grid {
-        transition-delay: 0.2s;
-      }
       #hero-section:hover #hero-title-block {
         opacity: 1;
         transform: translateY(0);
@@ -122,6 +127,47 @@
         transition-delay: 0.2s;
       }
     }
+    #hero-section.revealed #hero-title-block-mobile {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #hero-section.revealed #hero-search-box-mobile {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      transition-delay: 0.1s;
+    }
+    #hero-section.revealed #hero-booking-grid-mobile {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      transition-delay: 0.2s;
+    }
+    /* Hero background slider transition & text shadow */
+    .hero-slide {
+      transition: opacity 2000ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hero-text-shadow {
+      text-shadow: 0 4px 16px rgba(15, 23, 42, 0.95), 0 2px 4px rgba(15, 23, 42, 0.75);
+    }
+    /* Support section tabs & panel styling */
+    .support-tab-btn {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .active-support-tab {
+      background-color: #0054A6 !important;
+      color: #FFFFFF !important;
+      border-color: #0054A6 !important;
+      box-shadow: 0 4px 14px rgba(0, 84, 166, 0.35) !important;
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body class="overflow-x-hidden min-h-screen">
@@ -133,6 +179,9 @@
       <div class="flex items-center gap-4">
         <span><i class="fa-solid fa-phone mr-1"></i> 대표전화 033-258-2000</span>
         <span><i class="fa-solid fa-clock mr-1"></i> 응급실 24시간 운영 (033-258-2293)</span>
+        <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-3 py-1 rounded-lg text-[10px] transition-all shadow-md flex items-center gap-1.5 ml-2" onclick="toggleChatbot()">
+          <i class="fa-solid fa-comments text-[9px]"></i> 챗봇 예약하기
+        </button>
       </div>
       <div class="flex items-center gap-4">
         <a href="#" class="hover:text-brand-orange transition-colors">로그인</a>
@@ -148,49 +197,55 @@
     </div>
 
     <!-- Main Navigation Bar -->
-    <nav class="bg-white/90 backdrop-blur-md border-b border-slate-200 py-4 px-8 flex justify-between items-center relative">
-      <div class="flex items-center gap-3">
-        <div class="h-10 w-10 bg-brand-orange rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-orange/20">
-          K
-        </div>
-        <div>
-          <span class="text-xl font-bold tracking-tight text-slate-800 font-outfit">KNUH</span>
-          <span class="text-xs text-slate-600 block -mt-1 font-medium">강원대학교병원</span>
-        </div>
-      </div>
+    <nav class="bg-white/90 backdrop-blur-md border-b border-slate-200 py-4 px-4 xl:px-8 flex justify-between items-center relative">
+      <a href="#" class="flex items-center gap-3 cursor-pointer flex-shrink-0">
+        <img src="hospital_logo.png" alt="강원대학교병원" class="h-[34px] lg:h-[36px] xl:h-[40px] w-auto object-contain">
+      </a>
 
       <!-- Desktop Menus -->
-      <div class="hidden lg:flex items-center gap-3 text-sm font-extrabold" id="nav-menu-links">
+      <div class="hidden lg:flex items-center lg:gap-2 xl:gap-4 2xl:gap-6 text-[14px] xl:text-[15px] 2xl:text-base font-extrabold flex-shrink-0" id="nav-menu-links">
         <div class="relative group py-1">
-          <a href="#departments-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">진료안내 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#departments-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">진료안내 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
         <div class="relative group py-1">
-          <a href="#news-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">병원소개 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#news-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">병원소개 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
         <div class="relative group py-1">
-          <a href="#map-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">병원안내 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#map-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">병원안내 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
         <div class="relative group py-1">
-          <a href="#doctors-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">의료진소개 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#doctors-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">의료진소개 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
         <div class="relative group py-1">
-          <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">공공의료 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">공공의료 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
         <div class="relative group py-1">
-          <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">발전후원회 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#support-section" onclick="switchSupportTab('intro')" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">발전후원회 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
         <div class="relative group py-1">
-          <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm">고객참여 <i class="fa-solid fa-chevron-down text-[10px] opacity-80"></i></a>
+          <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white lg:px-2.5 xl:px-4 py-2.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">고객참여 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
         </div>
       </div>
 
-      <div class="flex items-center gap-4">
-        <button class="text-slate-700 hover:text-brand-orange transition-colors" onclick="toggleChatbot()">
-          <i class="fa-solid fa-magnifying-glass text-lg"></i>
-        </button>
-        <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-5 py-2 rounded-xl text-xs font-bold transition-all shadow-lg shadow-brand-orange/25 flex items-center gap-2" onclick="toggleChatbot()">
-          <i class="fa-solid fa-comments"></i> 챗봇 예약하기
-        </button>
+      <div class="flex items-center gap-4 flex-shrink-0">
+        <div class="flex items-center gap-2 border border-slate-200 bg-slate-50/80 rounded-xl px-2.5 lg:px-3 py-1.5 focus-within:border-brand-orange focus-within:bg-white transition-all shadow-sm">
+          <input type="text" id="menu-search-input" placeholder="검색어 입력 (메뉴명 등)" onkeydown="if(event.key === 'Enter') performMenuSearch()" class="bg-transparent text-slate-800 text-xs focus:outline-none w-20 lg:w-28 xl:w-32 placeholder-slate-400 font-medium">
+          <button onclick="performMenuSearch()" class="text-slate-500 hover:text-brand-orange transition-colors">
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+          </button>
+        </div>
+        <span class="text-slate-200">|</span>
+        <div class="flex items-center gap-2">
+          <a href="https://blog.naver.com/knuhprt" target="_blank" class="w-7 h-9 rounded-lg bg-[#03C75A] hover:bg-[#02a84c] flex items-center justify-center text-white transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md" title="강원대학교병원 네이버 블로그">
+            <i class="fa-solid fa-blog text-xs"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UCeHlWcD6OPFLi7Jw2Pop_0Q" target="_blank" class="w-7 h-9 rounded-lg bg-[#FF0000] hover:bg-[#cc0000] flex items-center justify-center text-white transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md" title="강원대학교병원 공식 유튜브">
+            <i class="fa-brands fa-youtube text-[13px]"></i>
+          </a>
+          <a href="https://www.instagram.com/knuh_insta" target="_blank" class="w-7 h-9 rounded-lg bg-gradient-to-tr from-[#f9ce3f] from-10% via-[#e1306c] via-50% to-[#833ab4] hover:brightness-110 flex items-center justify-center text-white transition-all shadow-sm hover:-translate-y-0.5 hover:shadow-md" title="강원대학교병원 공식 인스타그램">
+            <i class="fa-brands fa-instagram text-sm"></i>
+          </a>
+        </div>
       </div>
 
       <!-- Megamenu Dropdown Container (SNUH Bundang Style) -->
@@ -267,11 +322,11 @@
                 <i class="fa-solid fa-hand-holding-heart text-brand-orange"></i> 발전후원회
               </h4>
               <ul class="space-y-2.5 text-slate-600">
-                <li><a href="#" class="hover:text-brand-orange transition-colors">후원회 소개</a></li>
-                <li><a href="#" class="hover:text-brand-orange transition-colors">참여하기</a></li>
-                <li><a href="#" class="hover:text-brand-orange transition-colors">후원자 예우</a></li>
-                <li><a href="#" class="hover:text-brand-orange transition-colors">기부 현황</a></li>
-                <li><a href="#" class="hover:text-brand-orange transition-colors">공익 기여 보고</a></li>
+                <li><a href="#support-section" onclick="switchSupportTab('intro')" class="hover:text-brand-orange transition-colors">후원회 소개</a></li>
+                <li><a href="#support-section" onclick="switchSupportTab('guide')" class="hover:text-brand-orange transition-colors">참여하기</a></li>
+                <li><a href="#support-section" onclick="switchSupportTab('treatment')" class="hover:text-brand-orange transition-colors">후원자 예우</a></li>
+                <li><a href="#support-section" onclick="switchSupportTab('board')" class="hover:text-brand-orange transition-colors">기부 현황</a></li>
+                <li><a href="#support-section" onclick="switchSupportTab('guide')" class="hover:text-brand-orange transition-colors">공익 기여 보고</a></li>
               </ul>
             </div>
 
@@ -295,22 +350,26 @@
 
   <!-- Hero Main Banner (KU Anam Style Layout) -->
   <section id="hero-section" class="relative min-h-[90vh] flex flex-col justify-between pt-24 pb-12 overflow-hidden">
-    <!-- Banner Background Image -->
+    <!-- Banner Background Image Slider -->
     <div class="absolute inset-0 z-0">
-      <img src="hospital_main_banner.png" alt="Hospital Banner" class="w-full h-full object-cover">
-      <!-- Dark Overlays & Gradients -->
-      <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-transparent to-brand-navy/50"></div>
+      <div id="hero-slider" class="relative w-full h-full">
+        <img src="hospital_main_banner.png" alt="Hospital Main Banner" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-100">
+        <img src="bg_mascot.jpg" alt="Mascot Event" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+        <img src="bg_surgery.jpg" alt="Robotic Surgery" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+        <img src="bg_night_view.jpg" alt="Hospital Night View" class="hero-slide absolute inset-0 w-full h-full object-cover opacity-0">
+      </div>
+      <!-- Soft Overlay (Subtle tint to keep photos bright and fully visible) -->
+      <div class="absolute inset-0 bg-black/15 pointer-events-none"></div>
     </div>
 
-    <!-- Banner Content -->
-    <div class="max-w-7xl mx-auto px-8 w-full z-10 flex-grow flex flex-col justify-center gap-8 mt-12">
+    <!-- Desktop Banner Content -->
+    <div id="hero-content-desktop" class="hidden lg:flex max-w-7xl mx-auto px-8 w-full z-10 flex-grow flex-col justify-center gap-8 mt-12">
       <div id="hero-title-block" class="max-w-3xl space-y-4">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight font-sans">
-          강원의료의 <br class="hidden md:block">
-          <span class="text-brand-orange">질과 품격</span>을 높이는 병원
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight font-sans" style="filter: drop-shadow(0 4px 8px rgba(15, 23, 42, 0.95)) drop-shadow(0 2px 4px rgba(15, 23, 42, 0.75));">
+          <span class="bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text text-transparent font-black">강원의료</span>의 <br class="hidden md:block">
+          <span class="bg-gradient-to-r from-amber-300 to-brand-orange bg-clip-text text-transparent font-black">질과 품격</span>을 높이는 병원
         </h1>
-        <div class="py-5 border-l-4 border-brand-orange pl-6 bg-brand-navy/35 max-w-2xl my-2 rounded-r-lg">
+        <div class="py-7 border-l-4 border-brand-orange pl-6 bg-brand-navy/35 max-w-2xl my-4 rounded-r-lg">
           <div class="text-white text-xl md:text-2xl font-black tracking-[0.05em] uppercase mb-1.5" style="font-family: 'Montserrat', sans-serif;">
             FRONTLINE MEDICINE
           </div>
@@ -321,12 +380,12 @@
       </div>
 
       <!-- "무엇이 궁금하신가요?" Search Box -->
-      <div id="hero-search-box" class="max-w-2xl bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-slate-200 shadow-2xl">
+      <div id="hero-search-box" class="max-w-2xl bg-white p-6 rounded-2xl border-2 border-brand-orange/20 shadow-2xl shadow-brand-navy/20">
         <h3 class="text-slate-800 text-sm font-semibold mb-3 flex items-center gap-2">
           <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
         </h3>
         <div class="flex gap-2">
-          <input type="text" placeholder="진료과명, 의료진명, 질환명을 입력하세요..." class="w-full bg-white/80 border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-4 py-3 rounded-xl text-sm focus:outline-none transition-all placeholder-slate-500">
+          <input type="text" placeholder="검색어 입력 (진료과명, 의료진명, 질환명)" class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-4 py-3 rounded-xl text-sm focus:outline-none transition-all placeholder-slate-400">
           <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-6 py-3 rounded-xl text-sm transition-all flex items-center gap-1 shadow-lg shadow-brand-orange/20">
             검색
           </button>
@@ -342,8 +401,45 @@
       </div>
     </div>
 
-    <!-- Quick Booking Grid (Bottom of Hero Banner, KU Anam Style) -->
-    <div id="hero-booking-grid" class="max-w-7xl mx-auto px-8 w-full z-10 mt-12">
+    <!-- Mobile Banner Content -->
+    <div id="hero-content-mobile" class="flex lg:hidden max-w-7xl mx-auto px-4 w-full z-10 flex-grow flex-col justify-start gap-4 mt-6">
+      <div id="hero-title-block-mobile" class="space-y-2 text-left">
+        <h1 class="text-2xl md:text-3xl font-black text-white leading-tight font-sans" style="filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.95));">
+          <span class="bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text text-transparent font-black">강원의료</span>의 <br>
+          <span class="bg-gradient-to-r from-amber-300 to-brand-orange bg-clip-text text-transparent font-black">질과 품격</span>을 높이는 병원
+        </h1>
+        <div class="py-3.5 border-l-4 border-brand-orange pl-4 bg-brand-navy/35 rounded-r-lg inline-block text-left w-full max-w-[280px]">
+          <div class="text-white text-sm font-black tracking-wider uppercase" style="font-family: 'Montserrat', sans-serif;">
+            FRONTLINE MEDICINE
+          </div>
+          <div class="text-brand-teal text-[9px] font-bold tracking-wider" style="font-family: 'Montserrat', sans-serif;">
+            BEST CARE &bull; HAPPY KANGWON &bull; PERFECT
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile "무엇이 궁금하신가요?" Search Box -->
+      <div id="hero-search-box-mobile" class="bg-white p-4 rounded-2xl border-2 border-brand-orange/20 shadow-xl shadow-brand-navy/15 w-full max-w-md">
+        <h3 class="text-slate-800 text-xs font-semibold mb-2 flex items-center gap-1.5">
+          <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
+        </h3>
+        <div class="flex flex-col gap-2">
+          <input type="text" placeholder="검색어 입력 (진료과, 의료진, 질환)" class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-3.5 py-2.5 rounded-xl text-xs focus:outline-none transition-all placeholder-slate-400">
+          <button class="w-full bg-brand-orange hover:bg-brand-accent text-white font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-1 shadow-md shadow-brand-orange/10">
+            검색
+          </button>
+        </div>
+        <!-- Hashtags -->
+        <div class="flex flex-wrap gap-1.5 mt-3 text-[10px]">
+          <button onclick="toggleChatbot()" class="bg-slate-100 hover:bg-brand-orange/20 text-slate-600 px-2 py-1 rounded-md border border-slate-200/60 transition-all">#초진예약</button>
+          <a href="#map-section" class="bg-slate-100 hover:bg-brand-orange/20 text-slate-600 px-2 py-1 rounded-md border border-slate-200/60 transition-all">#오시는길</a>
+          <button onclick="toggleChatbot()" class="bg-slate-100 hover:bg-brand-orange/20 text-slate-600 px-2 py-1 rounded-md border border-slate-200/60 transition-all">#응급진료안내</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Quick Booking Grid (Bottom of Hero Banner, KU Anam Style) -->
+    <div id="hero-booking-grid" class="hidden lg:block max-w-7xl mx-auto px-8 w-full z-10 mt-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- 첫방문 간편예약 -->
         <button onclick="openChatbotFlow('first-visit')" class="glass-card text-left p-6 rounded-2xl border border-slate-200 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-xl flex justify-between items-center">
@@ -390,6 +486,67 @@
           </div>
           <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 text-indigo-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-file-medical"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Quick Booking Grid (2x2 Grid) -->
+    <div id="hero-booking-grid-mobile" class="lg:hidden max-w-7xl mx-auto px-4 w-full z-10 mt-4 pb-4">
+      <div class="grid grid-cols-2 gap-2.5">
+        <!-- 첫방문 간편예약 -->
+        <button onclick="openChatbotFlow('first-visit')" class="glass-card text-left p-4 rounded-2xl border border-slate-200 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-md flex flex-col justify-between min-h-[100px]">
+          <div class="space-y-0.5">
+            <span class="text-[8px] text-brand-teal font-semibold tracking-wider uppercase block">Quick Booking</span>
+            <h4 class="text-slate-800 font-extrabold text-xs leading-tight">첫방문 간편예약</h4>
+          </div>
+          <div class="flex justify-between items-center w-full mt-3">
+            <span class="text-slate-500 text-[9px] leading-tight">빠른 접수</span>
+            <div class="h-7 w-7 rounded-lg bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xs">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+          </div>
+        </button>
+
+        <!-- 진료협력센터 예약 -->
+        <button onclick="openChatbotFlow('cooperation')" class="glass-card text-left p-4 rounded-2xl border border-slate-200 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-md flex flex-col justify-between min-h-[100px]">
+          <div class="space-y-0.5">
+            <span class="text-[8px] text-brand-teal font-semibold tracking-wider uppercase block">Medical Coop</span>
+            <h4 class="text-slate-800 font-extrabold text-xs leading-tight">진료협력 예약</h4>
+          </div>
+          <div class="flex justify-between items-center w-full mt-3">
+            <span class="text-slate-500 text-[9px] leading-tight">협력 연동</span>
+            <div class="h-7 w-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+          </div>
+        </button>
+
+        <!-- 챗봇 예약 -->
+        <button onclick="openChatbotFlow('chatbot')" class="glass-card text-left p-4 rounded-2xl border border-slate-200 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-md flex flex-col justify-between min-h-[100px]">
+          <div class="space-y-0.5">
+            <span class="text-[8px] text-brand-teal font-semibold tracking-wider uppercase block">AI Automated</span>
+            <h4 class="text-slate-800 font-extrabold text-xs leading-tight">챗봇 예약</h4>
+          </div>
+          <div class="flex justify-between items-center w-full mt-3">
+            <span class="text-slate-500 text-[9px] leading-tight">신속 접수</span>
+            <div class="h-7 w-7 rounded-lg bg-brand-orange/10 text-brand-orange flex items-center justify-center text-xs animate-bounce">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+          </div>
+        </button>
+
+        <!-- 건강검진 예약 -->
+        <button onclick="openChatbotFlow('checkup')" class="glass-card text-left p-4 rounded-2xl border border-slate-200 relative overflow-hidden group hover:border-brand-orange/50 transition-all shadow-md flex flex-col justify-between min-h-[100px]">
+          <div class="space-y-0.5">
+            <span class="text-[8px] text-brand-teal font-semibold tracking-wider uppercase block">Health Screen</span>
+            <h4 class="text-slate-800 font-extrabold text-xs leading-tight">건강검진 예약</h4>
+          </div>
+          <div class="flex justify-between items-center w-full mt-3">
+            <span class="text-slate-500 text-[9px] leading-tight">원격 접수</span>
+            <div class="h-7 w-7 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-file-medical"></i>
+            </div>
           </div>
         </button>
       </div>
@@ -623,156 +780,153 @@
 
               <!-- Month dates (January 2026 starts on Thursday) -->
               <!-- Empty placeholders for Wed Dec 31 -->
-              <div class="p-1 min-h-[50px] border border-slate-200/50 rounded-lg bg-white/10"></div>
-              <div class="p-1 min-h-[50px] border border-slate-200/50 rounded-lg bg-white/10"></div>
-              <div class="p-1 min-h-[50px] border border-slate-200/50 rounded-lg bg-white/10"></div>
-              <div class="p-1 min-h-[50px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
               
               <!-- Jan 1 (Holiday / empty) -->
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg flex flex-col justify-between text-brand-accent">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg flex flex-col justify-between text-brand-accent">
                 <span class="font-bold">1</span>
                 <span class="text-xs text-slate-500">신정</span>
               </div>
               <!-- Jan 2 -->
-              <div onclick="openDoctorChatbot('2026-01-02')" class="p-1 min-h-[55px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">2</span>
-                <div class="flex flex-col gap-0.5 text-[10px] tracking-tight">
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오전</span>
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오후</span>
-                </div>
+              <div onclick="openDoctorChatbot('2026-01-02')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">2</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
               </div>
               <!-- Jan 3 -->
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">3</span>
               </div>
 
               <!-- Week 2 -->
               <!-- Jan 4 (Sun) -->
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">4</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">5</span>
               </div>
               <!-- Jan 6 -->
-              <div onclick="openDoctorChatbot('2026-01-06')" class="p-1 min-h-[55px] border border-brand-primary/30 hover:border-brand-primary rounded-lg flex flex-col justify-between cursor-pointer bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">6</span>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">본관 오후</span>
+              <div onclick="openDoctorChatbot('2026-01-06')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">6</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관<br>오후</span>
               </div>
               <!-- Jan 7 -->
-              <div onclick="openDoctorChatbot('2026-01-07')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">7</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">암센터 오전</span>
+              <div onclick="openDoctorChatbot('2026-01-07')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">7</span>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">8</span>
               </div>
               <!-- Jan 9 -->
-              <div onclick="openDoctorChatbot('2026-01-09')" class="p-1 min-h-[55px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">9</span>
-                <div class="flex flex-col gap-0.5 text-[10px]">
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오전</span>
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오후</span>
-                </div>
+              <div onclick="openDoctorChatbot('2026-01-09')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">9</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">10</span>
               </div>
 
               <!-- Week 3 -->
               <!-- Jan 11 (Sun) -->
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">11</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">12</span>
               </div>
               <!-- Jan 13 -->
-              <div onclick="openDoctorChatbot('2026-01-13')" class="p-1 min-h-[55px] border border-brand-primary/30 hover:border-brand-primary rounded-lg flex flex-col justify-between cursor-pointer bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">13</span>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">본관 오후</span>
+              <div onclick="openDoctorChatbot('2026-01-13')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">13</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관<br>오후</span>
               </div>
               <!-- Jan 14 -->
-              <div onclick="openDoctorChatbot('2026-01-14')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">14</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">암센터 오전</span>
+              <div onclick="openDoctorChatbot('2026-01-14')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">14</span>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">15</span>
               </div>
               <!-- Jan 16 -->
-              <div onclick="openDoctorChatbot('2026-01-16')" class="p-1 min-h-[55px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">16</span>
-                <div class="flex flex-col gap-0.5 text-[10px]">
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오전</span>
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오후</span>
-                </div>
+              <div onclick="openDoctorChatbot('2026-01-16')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">16</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">17</span>
               </div>
 
               <!-- Week 4 -->
               <!-- Jan 18 (Sun) -->
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">18</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">19</span>
               </div>
               <!-- Jan 20 -->
-              <div onclick="openDoctorChatbot('2026-01-20')" class="p-1 min-h-[55px] border border-brand-primary/30 hover:border-brand-primary rounded-lg flex flex-col justify-between cursor-pointer bg-brand-primary/5 hover:bg-brand-primary/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">20</span>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">본관 오후</span>
+              <div onclick="openDoctorChatbot('2026-01-20')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">20</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관<br>오후</span>
               </div>
               <!-- Jan 21 -->
-              <div onclick="openDoctorChatbot('2026-01-21')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">21</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">암센터 오전</span>
+              <div onclick="openDoctorChatbot('2026-01-21')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">21</span>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">22</span>
               </div>
               <!-- Jan 23 -->
-              <div onclick="openDoctorChatbot('2026-01-23')" class="p-1 min-h-[55px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">23</span>
-                <div class="flex flex-col gap-0.5 text-[10px]">
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오전</span>
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오후</span>
-                </div>
+              <div onclick="openDoctorChatbot('2026-01-23')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">23</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">24</span>
               </div>
 
               <!-- Week 5 -->
               <!-- Jan 25 (Sun) -->
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
                 <span class="text-left">25</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">26</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">27</span>
               </div>
               <!-- Jan 28 -->
-              <div onclick="openDoctorChatbot('2026-01-28')" class="p-1 min-h-[55px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">28</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1.5 py-0.5 text-[10px]">암센터 오전</span>
+              <div onclick="openDoctorChatbot('2026-01-28')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">28</span>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">29</span>
               </div>
               <!-- Jan 30 -->
-              <div onclick="openDoctorChatbot('2026-01-30')" class="p-1 min-h-[55px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left">30</span>
-                <div class="flex flex-col gap-0.5 text-[10px]">
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오전</span>
-                  <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5">어린이 오후</span>
-                </div>
+              <div onclick="openDoctorChatbot('2026-01-30')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">30</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
               </div>
-              <div class="p-1 min-h-[55px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">31</span>
               </div>
             </div>
@@ -999,15 +1153,649 @@
     </div>
   </section>
 
+  <!-- Development Fund Association Section (발전후원회) -->
+  <section id="support-section" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-8 space-y-10">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-6">
+        <div>
+          <span class="text-xs font-bold text-brand-teal uppercase tracking-widest block mb-2">Development Fund</span>
+          <h2 class="text-3xl font-black text-slate-800 tracking-tight">발전후원회</h2>
+        </div>
+        
+        <!-- Local Sub-Navigation Tabs (SNUBH Style) -->
+        <div class="flex flex-wrap gap-2 text-sm font-bold">
+          <button onclick="switchSupportTab('intro')" id="tab-btn-intro" class="support-tab-btn active-support-tab px-5 py-2.5 rounded-xl transition-all border border-slate-200 shadow-sm bg-white text-slate-800 hover:border-brand-orange/30">
+            후원회 소개
+          </button>
+          <button onclick="switchSupportTab('guide')" id="tab-btn-guide" class="support-tab-btn px-5 py-2.5 rounded-xl transition-all border border-slate-200 shadow-sm bg-white text-slate-800 hover:border-brand-orange/30">
+            후원안내
+          </button>
+          <button onclick="switchSupportTab('treatment')" id="tab-btn-treatment" class="support-tab-btn px-5 py-2.5 rounded-xl transition-all border border-slate-200 shadow-sm bg-white text-slate-800 hover:border-brand-orange/30">
+            후원회원 예우
+          </button>
+          <button onclick="switchSupportTab('board')" id="tab-btn-board" class="support-tab-btn px-5 py-2.5 rounded-xl transition-all border border-slate-200 shadow-sm bg-white text-slate-800 hover:border-brand-orange/30">
+            후원의 뜰 (명예의 전당)
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content Panels -->
+      <div id="support-tab-contents">
+        
+        <!-- Panel 1: 후원회 소개 (Intro) -->
+        <div id="support-panel-intro" class="support-panel space-y-8 animate-fadeIn">
+          <!-- Main Visual Banner -->
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] border border-slate-200">
+            <img src="donor_wall.png" alt="People who open the future" class="w-full h-full object-cover">
+            <!-- Semi-transparent overlay with title text -->
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/60 via-brand-navy/20 to-transparent flex flex-col justify-start p-12">
+              <div class="max-w-md text-white space-y-4">
+                <span class="bg-brand-teal text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md tracking-wider inline-block">Welcoming Donors</span>
+                <h3 class="text-3xl font-black leading-tight tracking-tight">발전후원회에 오신 것을<br>환영합니다.</h3>
+                <p class="text-sm font-medium text-slate-200 leading-relaxed">
+                  보내주신 고귀한 사랑과 후원은 의료 연구 혁신, 인재 양성, 그리고 따뜻한 공공의료 실천을 통해 건강한 내일로 보답하겠습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Dashboard Cards Box -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Left Info: Account & Message (4 Cols) -->
+            <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200 shadow-xl p-8 flex flex-col justify-between space-y-6">
+              <div class="space-y-4">
+                <h4 class="text-slate-800 font-extrabold text-xl leading-tight">
+                  보내주신 후원은<br>
+                  <span class="text-brand-orange">건강한 삶</span>으로<br>
+                  돌려드리겠습니다.
+                </h4>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">
+                  강원대학교병원의 발전후원금은 의료의 질적 성장과 공공의료 확충을 위해 투명하게 집행됩니다.
+                </p>
+              </div>
+              <div class="bg-blue-50/70 border border-blue-100/50 rounded-2xl p-5 space-y-2">
+                <span class="text-[10px] text-brand-teal font-extrabold uppercase tracking-wider block">후원 계좌 안내</span>
+                <div class="text-slate-800 font-bold text-sm">수협은행 (강원대학교병원)</div>
+                <div class="text-brand-orange font-black text-base tracking-wide">000 - 000 - 000000</div>
+              </div>
+            </div>
+            
+            <!-- Middle buttons panel (4 Cols) -->
+            <div class="lg:col-span-4 grid grid-cols-2 gap-4">
+              <!-- Donation Guide Button -->
+              <button onclick="switchSupportTab('guide')" class="bg-gradient-to-br from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-3xl p-5 shadow-xl flex flex-col justify-between text-left transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 group">
+                <div class="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-extrabold text-sm">후원안내</h4>
+                  <p class="text-white/80 text-[10px] font-medium leading-tight">후원 분야 및 기부 절차에 대해 상세히 안내합니다.</p>
+                </div>
+              </button>
+              
+              <!-- Online Donation Button -->
+              <button onclick="openDonationModal()" class="bg-gradient-to-br from-brand-orange to-brand-accent text-white rounded-3xl p-5 shadow-xl flex flex-col justify-between text-left transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 group">
+                <div class="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-heart-circle-plus"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-extrabold text-sm">온라인 기부</h4>
+                  <p class="text-white/80 text-[10px] font-medium leading-tight">온라인을 통해 간편하게 발전기금을 후원할 수 있습니다.</p>
+                </div>
+              </button>
+              
+              <!-- Inquiry Card (Col 1, Row 2) -->
+              <div class="bg-slate-900 text-white rounded-3xl p-5 shadow-xl flex flex-col justify-between text-left space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="h-10 w-10 rounded-xl bg-slate-800 text-amber-400 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-phone-volume"></i>
+                  </div>
+                  <div>
+                    <h5 class="text-slate-400 font-bold text-[9px] uppercase tracking-wider">Inquiry</h5>
+                    <h4 class="font-bold text-sm text-white">후원회 사무국</h4>
+                  </div>
+                </div>
+                <div class="space-y-1 text-[11px] text-slate-300 font-medium">
+                  <div><span class="text-slate-500 mr-2">전화:</span><span class="font-bold text-slate-200">033-258-7000</span></div>
+                  <div><span class="text-slate-500 mr-2">팩스:</span><span class="font-bold text-slate-200">033-258-4008</span></div>
+                  <div class="truncate"><span class="text-slate-500 mr-2">이메일:</span><span class="font-bold text-slate-200">support@knuh.or.kr</span></div>
+                </div>
+              </div>
+
+              <!-- Activities/Moments Button (Col 2, Row 2) -->
+              <button onclick="openActivitiesModal()" class="bg-gradient-to-br from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-3xl p-5 shadow-xl flex flex-col justify-between text-left transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 group">
+                <div class="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-images"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-extrabold text-sm">후원회 이모저모</h4>
+                  <p class="text-white/80 text-[10px] font-medium leading-tight">후원 기부 행사 및 감사 이벤트 현장을 소개합니다.</p>
+                </div>
+              </button>
+            </div>
+            
+            <!-- Right News Box: Donation Ceremony (4 Cols) -->
+            <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200 shadow-xl p-8 flex flex-col justify-between">
+              <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-4">
+                <h4 class="text-slate-800 font-extrabold text-[15px] flex items-center gap-1.5">
+                  <i class="fa-solid fa-trophy text-amber-500"></i> 기부금 전달식 소식
+                </h4>
+                <a href="javascript:void(0)" onclick="switchSupportTab('board')" class="text-slate-400 hover:text-brand-orange text-xs font-bold transition-colors">더보기 <i class="fa-solid fa-chevron-right text-[9px]"></i></a>
+              </div>
+              <ul class="space-y-3 text-xs font-medium text-slate-700 flex-grow">
+                <li class="flex justify-between items-start gap-4 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer">
+                  <span class="line-clamp-1 flex-grow">남우동 후원인 발전후원금 1억원 후원</span>
+                  <span class="text-slate-400 font-semibold shrink-0">2026.05.20</span>
+                </li>
+                <li class="flex justify-between items-start gap-4 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer">
+                  <span class="line-clamp-1 flex-grow">박홍주 후원인 발전후원금 1억원 후원</span>
+                  <span class="text-slate-400 font-semibold shrink-0">2026.04.12</span>
+                </li>
+                <li class="flex justify-between items-start gap-4 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer">
+                  <span class="line-clamp-1 flex-grow">조희숙 후원인 발전후원금 1억원 후원</span>
+                  <span class="text-slate-400 font-semibold shrink-0">2026.03.11</span>
+                </li>
+                <li class="flex justify-between items-start gap-4 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer">
+                  <span class="line-clamp-1 flex-grow">마재우 후원인 발전후원금 1억원 후원</span>
+                  <span class="text-slate-400 font-semibold shrink-0">2026.02.10</span>
+                </li>
+                <li class="flex justify-between items-start gap-4 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer">
+                  <span class="line-clamp-1 flex-grow">박희원 후원인 발전후원금 1억원 후원</span>
+                  <span class="text-slate-400 font-semibold shrink-0">2026.01.15</span>
+                </li>
+                <li class="flex justify-between items-start gap-4 hover:bg-slate-50 p-1.5 rounded-lg transition-colors cursor-pointer">
+                  <span class="line-clamp-1 flex-grow">조영미 후원인 발전후원금 1억원 후원</span>
+                  <span class="text-slate-400 font-semibold shrink-0">2026.01.05</span>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+        
+        <!-- Panel 2: 후원안내 (Guide) -->
+        <div id="support-panel-guide" class="support-panel hidden space-y-8 animate-fadeIn">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1: 후원분야 -->
+            <div class="bg-white rounded-3xl border border-slate-200 p-8 space-y-6 shadow-md">
+              <h4 class="text-slate-800 font-extrabold text-lg flex items-center gap-2 border-b border-slate-100 pb-4">
+                <div class="h-8 w-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-hospital"></i>
+                </div>
+                후원 분야
+              </h4>
+              <ul class="space-y-4 text-sm font-semibold text-slate-600">
+                <li class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                  <div>
+                    <h5 class="text-slate-800 text-sm font-bold">임상의학 연구 지원</h5>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">난치병 정밀 치료 및 혁신 신약/수술 연구 지원</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                  <div>
+                    <h5 class="text-slate-800 text-sm font-bold">우수 의료 인재 양성</h5>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">최첨단 의학 연수 교육 및 청년 의료진 육성 기금</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                  <div>
+                    <h5 class="text-slate-800 text-sm font-bold">취약계층 의료비 구제</h5>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">경제적 어려움으로 수술을 포기하는 환자 의료비 지원</p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                  <div>
+                    <h5 class="text-slate-800 text-sm font-bold">원내 환경 및 장비 개선</h5>
+                    <p class="text-xs text-slate-500 font-medium mt-0.5">최첨단 정밀 장비 도입 및 환자 중심 공간 확충</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            
+            <!-- Card 2: 후원방법 및 절차 -->
+            <div class="bg-white rounded-3xl border border-slate-200 p-8 space-y-6 shadow-md">
+              <h4 class="text-slate-800 font-extrabold text-lg flex items-center gap-2 border-b border-slate-100 pb-4">
+                <div class="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                후원 절차 및 방법
+              </h4>
+              <div class="relative pl-6 border-l border-slate-200 space-y-6 text-sm font-semibold text-slate-600">
+                <div class="relative">
+                  <div class="absolute -left-[30px] top-0 h-4 w-4 rounded-full bg-emerald-500 border border-white"></div>
+                  <h5 class="text-slate-800 font-bold text-sm">Step 1: 후원 약정서 제출</h5>
+                  <p class="text-xs text-slate-500 font-medium mt-0.5">온라인 기부하기 폼 또는 방문/팩스를 통해 약정서를 제출합니다.</p>
+                </div>
+                <div class="relative">
+                  <div class="absolute -left-[30px] top-0 h-4 w-4 rounded-full bg-emerald-500 border border-white"></div>
+                  <h5 class="text-slate-800 font-bold text-sm">Step 2: 기부금 송금</h5>
+                  <p class="text-xs text-slate-500 font-medium mt-0.5">후원 전용 계좌로 약정금액을 입금 또는 자동이체 등록합니다.</p>
+                </div>
+                <div class="relative">
+                  <div class="absolute -left-[30px] top-0 h-4 w-4 rounded-full bg-emerald-500 border border-white"></div>
+                  <h5 class="text-slate-800 font-bold text-sm">Step 3: 영수증 발급 및 예우</h5>
+                  <p class="text-xs text-slate-500 font-medium mt-0.5">기부금 영수증을 즉시 발급하며 후원 회원 등급에 따른 예우가 제공됩니다.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 3: 기부 혜택 -->
+            <div class="bg-white rounded-3xl border border-slate-200 p-8 space-y-6 shadow-md">
+              <h4 class="text-slate-800 font-extrabold text-lg flex items-center gap-2 border-b border-slate-100 pb-4">
+                <div class="h-8 w-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
+                  <i class="fa-solid fa-coins"></i>
+                </div>
+                기부금 세제 혜택
+              </h4>
+              <div class="space-y-4">
+                <div class="bg-amber-50/50 border border-amber-100 p-4 rounded-2xl text-xs leading-relaxed text-slate-600 font-medium">
+                  강원대학교병원은 국립대학병원으로 기부금 영수증 발급이 가능하며 법정기부금 단체(소득세법 제34조) 혜택을 받습니다.
+                </div>
+                <ul class="space-y-3 text-xs font-semibold text-slate-600">
+                  <li class="flex justify-between">
+                    <span class="text-slate-700 font-bold">개인 기부자 (소득세)</span>
+                    <span class="text-brand-orange text-right">기부금의 15%~30% 세액공제</span>
+                  </li>
+                  <li class="flex justify-between border-t border-slate-100 pt-3">
+                    <span class="text-slate-700 font-bold">법인 기부자 (법인세)</span>
+                    <span class="text-brand-orange text-right">소득 금액의 50% 한도 손비 인정</span>
+                  </li>
+                </ul>
+                <div class="pt-2 text-center">
+                  <button onclick="openDonationModal()" class="w-full bg-brand-orange hover:bg-brand-accent text-white font-bold text-xs py-3.5 rounded-xl transition-all shadow-md">
+                    지금 온라인 기부 시작하기
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <!-- Panel 3: 후원회원 예우 -->
+        <div id="support-panel-treatment" class="support-panel hidden space-y-8 animate-fadeIn">
+          <div class="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl">
+            <div class="p-8 border-b border-slate-200 bg-slate-50/50">
+              <h4 class="text-slate-800 font-extrabold text-lg">기부회원 예우 기준 및 혜택 안내</h4>
+              <p class="text-xs text-slate-500 font-medium mt-1">강원대학교병원을 밝혀주시는 소중한 회원분들께 정성을 다해 예우해드립니다.</p>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr class="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold text-xs uppercase">
+                    <th class="py-4 px-6">예우 등급</th>
+                    <th class="py-4 px-6">누적 기부 금액 기준</th>
+                    <th class="py-4 px-6">주요 예우 혜택 내용</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 font-medium text-slate-700">
+                  <tr class="hover:bg-slate-50/50">
+                    <td class="py-4 px-6 font-bold text-slate-800">
+                      <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md text-[11px] font-bold">일반 회원</span>
+                    </td>
+                    <td class="py-4 px-6">100만 원 이상 ~ 1,000만 원 미만</td>
+                    <td class="py-4 px-6 text-xs text-slate-600 leading-relaxed">
+                      기부금 영수증 즉시 발급, 연말 감사 카드 및 병원 소식지 정기 배송
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50">
+                    <td class="py-4 px-6 font-bold text-slate-800">
+                      <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded-md text-[11px] font-bold">브론즈 회원</span>
+                    </td>
+                    <td class="py-4 px-6">1,000만 원 이상 ~ 5,000만 원 미만</td>
+                    <td class="py-4 px-6 text-xs text-slate-600 leading-relaxed">
+                      외래 및 입원 접수 창구 안내 대행, 병원 명예의 전당(네임플레이트) 동판 등재
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50">
+                    <td class="py-4 px-6 font-bold text-slate-800">
+                      <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-md text-[11px] font-bold">실버 회원</span>
+                    </td>
+                    <td class="py-4 px-6">5,000만 원 이상 ~ 1억 원 미만</td>
+                    <td class="py-4 px-6 text-xs text-slate-600 leading-relaxed">
+                      종합건강검진 본인 및 가족 20% 우대 혜택 제공, 병원 주차 무료 이용권
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50">
+                    <td class="py-4 px-6 font-bold text-slate-800">
+                      <span class="bg-amber-50 text-amber-600 px-2 py-0.5 rounded-md text-[11px] font-bold">골드 회원 (1억 이상)</span>
+                    </td>
+                    <td class="py-4 px-6">1억 원 이상 ~ 5억 원 미만</td>
+                    <td class="py-4 px-6 text-xs text-slate-600 leading-relaxed">
+                      VIP 종합건강검진 연 1회 무료 제공 (본인 및 직계가족), 전용 병원안내 의전 서비스, 병원장 정례 만찬 초대
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50">
+                    <td class="py-4 px-6 font-bold text-slate-800">
+                      <span class="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-md text-[11px] font-bold">아너스 클럽 (5억 이상)</span>
+                    </td>
+                    <td class="py-4 px-6">5억 원 이상</td>
+                    <td class="py-4 px-6 text-xs text-slate-600 leading-relaxed font-bold text-brand-orange">
+                      아너스 기념패 증정, VIP 특실 병실 우선 배정 및 전액 감면, 전용 진료 보좌(컨시어지) 24시간 의전
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Panel 4: 후원의 뜰 -->
+        <div id="support-panel-board" class="support-panel hidden space-y-8 animate-fadeIn">
+          
+          <!-- Search Header -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-8 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="space-y-1">
+              <h4 class="text-slate-800 font-extrabold text-lg">기부자 명예의 전당</h4>
+              <p class="text-xs text-slate-500 font-medium">강원대학교병원의 역사를 지켜온 고마운 분들의 이름을 기록합니다.</p>
+            </div>
+            
+            <!-- Real-time Search Box -->
+            <div class="flex gap-2 max-w-sm w-full">
+              <input type="text" id="donor-search-input" onkeyup="searchDonors()" placeholder="기부자 성명 또는 법인명을 입력하세요..." class="w-full bg-slate-50 border border-slate-200 focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-4 py-2.5 rounded-xl text-xs focus:outline-none placeholder-slate-400 font-semibold">
+              <button onclick="searchDonors()" class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all shrink-0">
+                검색
+              </button>
+            </div>
+          </div>
+          
+          <!-- Donor Wall Grid -->
+          <div id="donor-cards-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 font-semibold text-slate-700">
+            <!-- Donor Card 1 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="진양기계">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">㈜진양기계</h5>
+              <p class="text-[10px] text-slate-400 mt-1">기업기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">100,000,000 원</div>
+            </div>
+            <!-- Donor Card 2 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="김순려">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">김순려</h5>
+              <p class="text-[10px] text-slate-400 mt-1">개인기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">100,000,000 원</div>
+            </div>
+            <!-- Donor Card 3 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="박광훈">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">박광훈</h5>
+              <p class="text-[10px] text-slate-400 mt-1">개인기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">50,000,000 원</div>
+            </div>
+            <!-- Donor Card 4 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="이녹스">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">㈜이녹스</h5>
+              <p class="text-[10px] text-slate-400 mt-1">기업기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">100,000,000 원</div>
+            </div>
+            <!-- Donor Card 5 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="이선우">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">이선우</h5>
+              <p class="text-[10px] text-slate-400 mt-1">원내직원</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">20,000,000 원</div>
+            </div>
+            <!-- Donor Card 6 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="춘천상공회의소 Great Partners">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">춘천상공회의소</h5>
+              <p class="text-[10px] text-slate-400 mt-1">단체기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">30,000,000 원</div>
+            </div>
+            <!-- Donor Card 7 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="정우진">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">정우진 교수</h5>
+              <p class="text-[10px] text-slate-400 mt-1">원내직원</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">15,000,000 원</div>
+            </div>
+            <!-- Donor Card 8 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="강원농협">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">강원농협본부</h5>
+              <p class="text-[10px] text-slate-400 mt-1">단체기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">50,000,000 원</div>
+            </div>
+            <!-- Donor Card 9 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="한사랑">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">한사랑</h5>
+              <p class="text-[10px] text-slate-400 mt-1">개인기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">10,000,000 원</div>
+            </div>
+            <!-- Donor Card 10 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="태백상사">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">㈜태백상사</h5>
+              <p class="text-[10px] text-slate-400 mt-1">기업기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">25,000,000 원</div>
+            </div>
+            <!-- Donor Card 11 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="백용식">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">백용식</h5>
+              <p class="text-[10px] text-slate-400 mt-1">개인기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">10,000,000 원</div>
+            </div>
+            <!-- Donor Card 12 -->
+            <div class="donor-card bg-white border border-slate-200 rounded-2xl p-5 text-center hover:border-amber-400 hover:shadow-lg transition-all" data-name="최진아">
+              <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5"><i class="fa-solid fa-star"></i></div>
+              <h5 class="text-sm font-black text-slate-800">최진아</h5>
+              <p class="text-[10px] text-slate-400 mt-1">개인기부</p>
+              <div class="text-[11px] text-brand-orange font-bold mt-2">10,000,000 원</div>
+            </div>
+          </div>
+          <!-- Empty State -->
+          <div id="donor-empty-state" class="hidden bg-white border border-slate-200 rounded-3xl p-12 text-center text-slate-500 font-semibold">
+            <i class="fa-solid fa-face-sad-tear text-4xl text-slate-300 mb-3 block animate-bounce"></i>
+            일치하는 기부자 이름이 없습니다.
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Online Donation Modal -->
+  <div id="donation-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-brand-navy/60 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 opacity-0 transition-all duration-300 flex flex-col" id="donation-modal-content">
+      <!-- Modal Header -->
+      <div class="bg-brand-navy p-6 text-white flex justify-between items-center border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-heart text-brand-orange text-xl animate-pulse"></i>
+          <div>
+            <h4 class="font-extrabold text-lg">온라인 기부 약정 신청</h4>
+            <p class="text-slate-400 text-[10px] font-medium mt-0.5">강원의료의 미래를 함께 만들어 주셔서 고맙습니다.</p>
+          </div>
+        </div>
+        <button onclick="closeDonationModal()" class="text-slate-400 hover:text-white transition-colors text-xl p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <!-- Modal Form -->
+      <form onsubmit="submitDonationForm(event)" class="p-8 space-y-5 flex-grow overflow-y-auto max-h-[70vh]">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <!-- Left: Inputs (7 Cols) -->
+          <div class="md:col-span-7 space-y-4">
+            <!-- Donor Type -->
+            <div class="space-y-1.5">
+              <label class="text-slate-800 font-bold text-xs">기부 구분</label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="border border-slate-200 rounded-xl p-2.5 flex items-center justify-center gap-1.5 cursor-pointer text-xs font-bold hover:bg-slate-50 transition-all select-none">
+                  <input type="radio" name="donor-type" value="개인" checked class="accent-brand-orange"> 개인
+                </label>
+                <label class="border border-slate-200 rounded-xl p-2.5 flex items-center justify-center gap-1.5 cursor-pointer text-xs font-bold hover:bg-slate-50 transition-all select-none">
+                  <input type="radio" name="donor-type" value="기업" class="accent-brand-orange"> 기업/법인
+                </label>
+                <label class="border border-slate-200 rounded-xl p-2.5 flex items-center justify-center gap-1.5 cursor-pointer text-xs font-bold hover:bg-slate-50 transition-all select-none">
+                  <input type="radio" name="donor-type" value="단체" class="accent-brand-orange"> 단체
+                </label>
+              </div>
+            </div>
+            <!-- Donor Info -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="donor-name" class="text-slate-800 font-bold text-xs">성명 또는 법인명 *</label>
+                <input type="text" id="donor-name" required placeholder="성명(명칭) 입력" class="w-full bg-slate-50 border border-slate-200 text-slate-800 px-3 py-2.5 rounded-xl text-xs focus:outline-none focus:border-brand-orange font-semibold">
+              </div>
+              <div class="space-y-1.5">
+                <label for="donor-phone" class="text-slate-800 font-bold text-xs">연락처 *</label>
+                <input type="tel" id="donor-phone" required placeholder="휴대폰 번호 입력" class="w-full bg-slate-50 border border-slate-200 text-slate-800 px-3 py-2.5 rounded-xl text-xs focus:outline-none focus:border-brand-orange font-semibold">
+              </div>
+            </div>
+            <!-- Donation Amount & Purpose -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="donation-amount" class="text-slate-800 font-bold text-xs">약정 금액 (원) *</label>
+                <input type="number" id="donation-amount" required placeholder="기부 금액 입력" class="w-full bg-slate-50 border border-slate-200 text-slate-800 px-3 py-2.5 rounded-xl text-xs focus:outline-none focus:border-brand-orange font-semibold">
+              </div>
+              <div class="space-y-1.5">
+                <label for="donation-purpose" class="text-slate-800 font-bold text-xs">후원 목적분야 *</label>
+                <select id="donation-purpose" class="w-full bg-slate-50 border border-slate-200 text-slate-800 px-3 py-2.5 rounded-xl text-xs focus:outline-none focus:border-brand-orange font-semibold">
+                  <option value="의학 연구 기금">의학 연구 기금</option>
+                  <option value="인재 양성 장학">인재 양성 장학</option>
+                  <option value="소외계층 진료비">소외계층 진료비</option>
+                  <option value="원내 환경/장비 개선">원내 환경/장비 개선</option>
+                </select>
+              </div>
+            </div>
+            <!-- Terms -->
+            <div class="space-y-2 pt-1">
+              <label class="flex items-start gap-2 cursor-pointer select-none text-[10px] font-semibold text-slate-500">
+                <input type="checkbox" required class="accent-brand-orange mt-0.5">
+                <span>(필수) 개인정보 수집 및 이용 동의에 동의합니다. 기부금 영수증 발급과 예우 관리를 위해 사용됩니다.</span>
+              </label>
+            </div>
+          </div>
+          <!-- Right: QR Code (5 Cols) -->
+          <div class="md:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center text-center space-y-3">
+            <div class="bg-white p-3 rounded-2xl border border-slate-100 shadow-md">
+              <img src="donation_qr.png" alt="Donation QR Code" class="w-28 h-28 object-contain">
+            </div>
+            <div>
+              <h5 class="text-slate-800 font-bold text-xs">간편 모바일 기부</h5>
+              <p class="text-slate-500 text-[10px] leading-relaxed mt-1 font-semibold">
+                스마트폰 카메라로 QR 코드를 스캔하시면 모바일 기부 약정 페이지로 즉시 연결됩니다.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Submit Buttons -->
+        <div class="flex gap-3 pt-4 border-t border-slate-100">
+          <button type="button" onclick="closeDonationModal()" class="w-1/2 border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold py-3.5 rounded-2xl text-xs transition-all">
+            취소
+          </button>
+          <button type="submit" class="w-1/2 bg-brand-orange hover:bg-brand-accent text-white font-bold py-3.5 rounded-2xl text-xs transition-all shadow-lg shadow-brand-orange/20">
+            기부 신청 완료
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive Activities Gallery Modal (후원회 이모저모) -->
+  <div id="activities-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-brand-navy/60 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform scale-95 opacity-0 transition-all duration-300 flex flex-col" id="activities-modal-content">
+      <!-- Modal Header -->
+      <div class="bg-brand-navy p-6 text-white flex justify-between items-center border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-images text-emerald-400 text-xl animate-pulse"></i>
+          <div>
+            <h4 class="font-extrabold text-lg">발전후원회 이모저모</h4>
+            <p class="text-slate-400 text-[10px] font-medium mt-0.5">강원대학교병원의 감동 가득한 기부 및 전달 현장을 공유합니다.</p>
+          </div>
+        </div>
+        <button onclick="closeActivitiesModal()" class="text-slate-400 hover:text-white transition-colors text-xl p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <!-- Modal Content -->
+      <div class="p-8 space-y-6 overflow-y-auto max-h-[70vh]">
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-semibold">
+          
+          <!-- Activity 1 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-[16/10] bg-slate-200 relative">
+              <img src="news_real_1.jpg" alt="발전후원금 명예의 전당 제막식" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4 space-y-2">
+              <span class="text-[9px] text-brand-teal font-extrabold uppercase tracking-wider block">제막 행사</span>
+              <h5 class="text-slate-800 font-bold text-xs leading-snug">발전후원회 '명예의 전당' 제막식 거행</h5>
+              <p class="text-slate-500 text-[10px] leading-relaxed font-medium">
+                고액 기부 회원분들의 뜻을 기리기 위해 본관 로비에 마련된 기부자 벽화 월 제막 행사를 성황리에 개최하였습니다.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Activity 2 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-[16/10] bg-slate-200 relative">
+              <img src="bg_mascot.jpg" alt="소아청소년과 병동 사랑의 물품 전달식" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4 space-y-2">
+              <span class="text-[9px] text-emerald-500 font-extrabold uppercase tracking-wider block">물품 전달</span>
+              <h5 class="text-slate-800 font-bold text-xs leading-snug">소아청소년과 병동 사랑의 장난감 선물 전달</h5>
+              <p class="text-slate-500 text-[10px] leading-relaxed font-medium">
+                어린이날을 맞아 장기 입원 중인 소아 환우들을 위해 기부 재원으로 구매한 레고 등 장난감 세트와 선물 전달식을 진행하였습니다.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Activity 3 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-[16/10] bg-slate-200 relative">
+              <img src="news_real_2.jpg" alt="발전기금 감사의 밤 행사" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4 space-y-2">
+              <span class="text-[9px] text-amber-500 font-extrabold uppercase tracking-wider block">감사회</span>
+              <h5 class="text-slate-800 font-bold text-xs leading-snug">2025 발전기금 후원자 '감사의 밤' 성료</h5>
+              <p class="text-slate-500 text-[10px] leading-relaxed font-medium">
+                한 해 동안 아낌없는 성원을 보내주신 기부회원 100여 분을 초청하여 의학 연구 성과를 보고하고 감사 만찬을 함께 나누었습니다.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Activity 4 -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-[16/10] bg-slate-200 relative">
+              <img src="bg_surgery.jpg" alt="연구 지원 연구원 장학금 수여" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4 space-y-2">
+              <span class="text-[9px] text-indigo-500 font-extrabold uppercase tracking-wider block">학술 장학</span>
+              <h5 class="text-slate-800 font-bold text-xs leading-snug">기부 재원 기반 청년의학 연구장학생 선발</h5>
+              <p class="text-slate-500 text-[10px] leading-relaxed font-medium">
+                발전기금 연구 학술 파트 지원사업으로 원내 젊은 우수 전공의 및 임상 강사들을 선발하여 의학 연구 특별 장학금을 전달했습니다.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="bg-slate-50 p-4 border-t border-slate-200 text-center">
+        <button onclick="closeActivitiesModal()" class="bg-brand-navy hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-2xl text-xs transition-all">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-brand-navy border-t border-slate-200 py-12 text-slate-500 text-xs">
     <div class="max-w-7xl mx-auto px-8 space-y-6">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-200 pb-6">
         <div class="flex items-center gap-3">
-          <div class="h-8 w-8 bg-slate-700 rounded-lg flex items-center justify-center text-white font-bold text-base">
-            K
-          </div>
-          <span class="text-slate-800 font-bold text-sm">강원대학교병원</span>
+          <img src="hospital_logo.png" alt="강원대학교병원" class="h-8 w-auto object-contain brightness-0 invert opacity-75">
         </div>
         <div class="flex flex-wrap gap-4 justify-center text-slate-600">
           <a href="#" class="hover:text-slate-900 transition-colors">개인정보처리방침</a>
@@ -1043,6 +1831,34 @@
 
     <!-- Web App Logic Script -->
   <script>
+    // Hero Section Mobile/Touch Interaction
+    (function() {
+      const heroSec = document.getElementById('hero-section');
+      if (!heroSec) return;
+
+      const isMobileViewport = () => window.innerWidth < 1024;
+
+      // Auto-reveal elements after 600ms on mobile viewports
+      if (isMobileViewport()) {
+        setTimeout(() => {
+          heroSec.classList.add('revealed');
+        }, 600);
+      }
+
+      // Add click/tap handler for toggling the reveal state on mobile
+      heroSec.addEventListener('click', (e) => {
+        if (!isMobileViewport()) return;
+
+        // Do not toggle if the user is interacting with form inputs, buttons, or links
+        const target = e.target;
+        if (target.closest('#hero-search-box-mobile') || target.closest('#hero-booking-grid-mobile') || target.closest('a') || target.closest('button') || target.closest('input')) {
+          return;
+        }
+
+        heroSec.classList.toggle('revealed');
+      });
+    })();
+
     // Header background transparency adjustment on scroll
     window.addEventListener('scroll', () => {
       const header = document.getElementById('main-header');
@@ -1101,6 +1917,68 @@
 
     function openChatbotForDept(dept) {
       openChatbotDrawer();
+    }
+
+    function performMenuSearch() {
+      const input = document.getElementById('menu-search-input');
+      if (!input) return;
+      const query = input.value.trim().toLowerCase();
+      if (!query) {
+        alert('검색어를 입력해 주세요.');
+        return;
+      }
+
+      const menuMap = [
+        {
+          keywords: ['진료', '진료과', '의료진', '임상과', '클리닉', '진료안내', '전문클리닉', '가정의학과', '소아청소년과', '안과', '재활의학과'],
+          target: '#departments-section'
+        },
+        {
+          keywords: ['소식', '뉴스', '병원소식', '병원소개', '연혁', '미션', 'knuh', '강원대학교병원', '보도자료'],
+          target: '#news-section'
+        },
+        {
+          keywords: ['위치', '오시는길', '오시는 길', '약도', '주차', '안내', '병원안내', '캠퍼스', '층별안내', '지도', '원내지도'],
+          target: '#map-section'
+        },
+        {
+          keywords: ['의사', '교수', '의료진소개', '교수소개', '박희원', '전문의'],
+          target: '#doctors-section'
+        },
+        {
+          keywords: ['후원', '기부', '후원회', '발전후원회', '기부금', '후원의뜰', '후원안내', '예우'],
+          target: '#support-section'
+        }
+      ];
+
+      let matchedTarget = null;
+      for (const item of menuMap) {
+        if (item.keywords.some(keyword => query.includes(keyword) || keyword.includes(query))) {
+          matchedTarget = item.target;
+          break;
+        }
+      }
+
+      if (matchedTarget) {
+        const element = document.querySelector(matchedTarget);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          if (matchedTarget === '#support-section') {
+            if (query.includes('안내')) {
+              switchSupportTab('guide');
+            } else if (query.includes('예우')) {
+              switchSupportTab('treatment');
+            } else if (query.includes('뜰') || query.includes('기부자')) {
+              switchSupportTab('board');
+            } else {
+              switchSupportTab('intro');
+            }
+          }
+          return;
+        }
+      }
+
+      alert(`'${query}' 메뉴를 찾을 수 없습니다. (예시: 진료과, 소식, 위치, 교수소개, 후원회 등)`);
     }
     
     // Department Tabs Switching Data (Korea University Anam Style with Doctor Schedules, Clinic Mapping & PR Copywriting)
@@ -1994,6 +2872,153 @@
 
     // Initialize Default States
     switchBuilding('main-bldg');
+
+    // Hero Background Image Slider Logic
+    (function() {
+      const slides = document.querySelectorAll('.hero-slide');
+      if (slides.length > 0) {
+        let currentSlideIndex = 0;
+        setInterval(() => {
+          slides[currentSlideIndex].classList.replace('opacity-100', 'opacity-0');
+          currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+          slides[currentSlideIndex].classList.replace('opacity-0', 'opacity-100');
+        }, 5000);
+      }
+    })();
+
+    // Support Section Tab Switcher
+    function switchSupportTab(tabId) {
+      // Hide all panels
+      const panels = document.querySelectorAll('.support-panel');
+      panels.forEach(p => p.classList.add('hidden'));
+      
+      // Deactivate all tab buttons
+      const buttons = document.querySelectorAll('.support-tab-btn');
+      buttons.forEach(b => b.classList.remove('active-support-tab'));
+      
+      // Show active panel
+      const activePanel = document.getElementById('support-panel-' + tabId);
+      if (activePanel) {
+        activePanel.classList.remove('hidden');
+      }
+      
+      // Activate active button
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.add('active-support-tab');
+      }
+    }
+    
+    // Real-time search in Garden of Donors
+    function searchDonors() {
+      const input = document.getElementById('donor-search-input');
+      const filter = input.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.donor-card');
+      let foundCount = 0;
+      
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        if (name.includes(filter)) {
+          card.classList.remove('hidden');
+          foundCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      
+      const emptyState = document.getElementById('donor-empty-state');
+      if (foundCount === 0) {
+        emptyState.classList.remove('hidden');
+      } else {
+        emptyState.classList.add('hidden');
+      }
+    }
+    
+    // Donation Modal state controls
+    function openDonationModal() {
+      const modal = document.getElementById('donation-modal');
+      const content = document.getElementById('donation-modal-content');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      }, 50);
+    }
+    
+    // Close donation modal
+    function closeDonationModal() {
+      const modal = document.getElementById('donation-modal');
+      const content = document.getElementById('donation-modal-content');
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+    
+    // Submit Donation Form & Add Donor in Real-Time
+    function submitDonationForm(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('donor-name').value;
+      const phone = document.getElementById('donor-phone').value;
+      const amountVal = parseInt(document.getElementById('donation-amount').value);
+      const amount = amountVal.toLocaleString();
+      const purpose = document.getElementById('donation-purpose').value;
+      
+      closeDonationModal();
+      
+      setTimeout(() => {
+        alert(`🙏 따뜻한 사랑에 진심으로 감사드립니다!\n\n후원인: ${name} 님\n약정 금액: ${amount} 원\n후원 분야: ${purpose}\n\n강원대학교병원 발전후원회 사무국에서 빠른 시일 내에 연락드리겠습니다.`);
+        
+        // Dynamic feedback: Add new card directly to "후원의 뜰" tab
+        const grid = document.getElementById('donor-cards-grid');
+        const newCard = document.createElement('div');
+        newCard.className = 'donor-card bg-white border border-amber-400 rounded-2xl p-5 text-center shadow-md hover:shadow-lg transition-all animate-fadeIn';
+        newCard.setAttribute('data-name', name);
+        
+        // Stars based on donation amount
+        let stars = '<i class="fa-solid fa-star"></i>';
+        if (amountVal >= 100000000) {
+          stars = '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
+        } else if (amountVal >= 50000000) {
+          stars = '<i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>';
+        }
+        
+        const type = document.querySelector('input[name="donor-type"]:checked').value;
+        
+        newCard.innerHTML = `
+          <div class="text-[10px] text-amber-500 mb-1 flex justify-center gap-0.5">${stars}</div>
+          <h5 class="text-sm font-black text-slate-800">${name}</h5>
+          <p class="text-[10px] text-slate-400 mt-1">${type}기부 (실시간)</p>
+          <div class="text-[11px] text-brand-orange font-bold mt-2">${amount} 원</div>
+        `;
+        
+        grid.insertBefore(newCard, grid.firstChild);
+        event.target.reset();
+      }, 500);
+    }
+
+    // Activities Modal state controls
+    function openActivitiesModal() {
+      const modal = document.getElementById('activities-modal');
+      const content = document.getElementById('activities-modal-content');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      }, 50);
+    }
+    
+    function closeActivitiesModal() {
+      const modal = document.getElementById('activities-modal');
+      const content = document.getElementById('activities-modal-content');
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
 
   </script>
 </body>
