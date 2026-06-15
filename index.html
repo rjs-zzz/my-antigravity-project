@@ -293,34 +293,35 @@
       color: #F87171 !important;
     }
     #doctors-section .grid-cols-7 .border-slate-200\/50 {
-      border-color: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+      background-color: rgba(15, 23, 42, 0.15) !important; /* dark transparent cell */
     }
     #doctors-section .grid-cols-7 .bg-white\/10 {
-      background-color: rgba(255, 255, 255, 0.02) !important;
+      background-color: rgba(15, 23, 42, 0.1) !important;
     }
     #doctors-section .grid-cols-7 .border-brand-orange\/30 {
-      border-color: rgba(0, 84, 166, 0.4) !important;
-      background-color: rgba(0, 84, 166, 0.15) !important;
+      border-color: rgba(0, 84, 166, 0.5) !important;
+      background-color: rgba(15, 23, 42, 0.25) !important;
     }
     #doctors-section .grid-cols-7 .border-brand-orange\/30:hover {
       border-color: #3b82f6 !important;
-      background-color: rgba(0, 84, 166, 0.25) !important;
+      background-color: rgba(15, 23, 42, 0.35) !important;
     }
     #doctors-section .grid-cols-7 .border-blue-500\/30 {
-      border-color: rgba(59, 130, 246, 0.4) !important;
-      background-color: rgba(59, 130, 246, 0.1) !important;
+      border-color: rgba(59, 130, 246, 0.5) !important;
+      background-color: rgba(15, 23, 42, 0.2) !important;
     }
     #doctors-section .grid-cols-7 .border-blue-500\/30:hover {
       border-color: #3b82f6 !important;
-      background-color: rgba(59, 130, 246, 0.2) !important;
+      background-color: rgba(15, 23, 42, 0.3) !important;
     }
     #doctors-section .grid-cols-7 .border-teal-500\/30 {
-      border-color: rgba(20, 184, 166, 0.4) !important;
-      background-color: rgba(20, 184, 166, 0.1) !important;
+      border-color: rgba(20, 184, 166, 0.5) !important;
+      background-color: rgba(15, 23, 42, 0.2) !important;
     }
     #doctors-section .grid-cols-7 .border-teal-500\/30:hover {
       border-color: #14b8a6 !important;
-      background-color: rgba(20, 184, 166, 0.2) !important;
+      background-color: rgba(15, 23, 42, 0.3) !important;
     }
     #doctors-section .grid-cols-7 span.font-bold {
       color: #FFFFFF !important;
@@ -858,7 +859,7 @@
       </div>
 
       <!-- Doctor Container Layout: Two-Column (Profile Left 50%, Image Right 50%) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative items-stretch" style="background: linear-gradient(to bottom, #51524d 0%, #5e6165 100%) !important;">
+      <div class="grid grid-cols-1 lg:grid-cols-12 border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative items-stretch" style="background: linear-gradient(to bottom, #73777a 0%, #8f9396 100%) !important;">
         
         <!-- Background Accent Glow -->
         <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -877,7 +878,7 @@
             </div>
             <h3 class="text-4xl font-extrabold text-white mt-2 whitespace-nowrap">박희원 <span class="text-xl text-slate-300 font-normal ml-2">교수</span></h3>
             <!-- Specialty Card -->
-            <div class="bg-white/5 border border-white/10 p-5 rounded-2xl shadow-sm mt-4 hover:border-blue-400/40 transition-all">
+            <div class="bg-slate-950/20 border border-white/10 p-5 rounded-2xl shadow-sm mt-4 hover:border-blue-400/40 transition-all">
               <div class="flex items-center gap-2 mb-2.5">
                 <span class="text-[16px] md:text-[18px] font-extrabold bg-blue-500/20 text-blue-300 px-3.5 py-1 rounded-lg flex items-center gap-1.5 border border-blue-500/20">
                   <i class="fa-solid fa-stethoscope"></i> 전문분야
@@ -889,7 +890,7 @@
             </div>
 
             <!-- Philosophy Card -->
-            <div class="bg-white/5 border border-white/10 p-5 rounded-2xl shadow-sm mt-3 hover:border-brand-orange/40 transition-all">
+            <div class="bg-slate-950/20 border border-white/10 p-5 rounded-2xl shadow-sm mt-3 hover:border-brand-orange/40 transition-all">
               <div class="flex items-center gap-2 mb-3">
                 <span class="text-[16px] md:text-[18px] font-extrabold bg-brand-orange/20 text-orange-300 px-3.5 py-1 rounded-lg flex items-center gap-1.5 border border-brand-orange/25">
                   <i class="fa-solid fa-heart-pulse"></i> 진료철학
@@ -917,11 +918,11 @@
             <!-- CV Tabs Menu -->
             <div class="flex border-b border-white/10 pb-3 mb-6 text-sm font-semibold overflow-x-auto whitespace-nowrap w-full justify-between">
               <button onclick="switchDoctorTab('edu')" id="tab-doc-edu" class="text-amber-300 border-b-2 border-amber-300 pb-3 px-1 transition-all flex-1 text-center">학력</button>
-              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">경력</button>
-              <button onclick="switchDoctorTab('academic')" id="tab-doc-academic" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">학회</button>
-              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">논문실적</button>
-              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">수상내역</button>
-              <button onclick="switchDoctorTab('news')" id="tab-doc-news" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">언론보도</button>
+              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-white/80 hover:text-white pb-3 px-1 transition-all flex-1 text-center">경력</button>
+              <button onclick="switchDoctorTab('academic')" id="tab-doc-academic" class="text-white/80 hover:text-white pb-3 px-1 transition-all flex-1 text-center">학회</button>
+              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-white/80 hover:text-white pb-3 px-1 transition-all flex-1 text-center">논문실적</button>
+              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-white/80 hover:text-white pb-3 px-1 transition-all flex-1 text-center">수상내역</button>
+              <button onclick="switchDoctorTab('news')" id="tab-doc-news" class="text-white/80 hover:text-white pb-3 px-1 transition-all flex-1 text-center">언론보도</button>
             </div>
             
             <!-- Scrollable CV Info Pane: Removed max-h constraint to allow natural page scroll -->
@@ -1113,7 +1114,7 @@
         <!-- Right Side: Doctor Large Image Portrait (6 Columns, Sticky Scroll & Full Cover) -->
         <div class="col-span-1 lg:col-span-6 relative min-h-[500px] lg:min-h-full h-full lg:sticky lg:top-0 lg:self-start overflow-hidden group">
           <img src="doctor_park_heewon.png" alt="Dr. Park Hee-won" class="w-full h-full object-cover object-top lg:absolute lg:inset-0 hover:scale-102 transition-transform duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#5e6165] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#8f9396] via-transparent to-transparent opacity-80 pointer-events-none"></div>
           
           <div class="absolute bottom-8 left-8 right-8 text-white text-center z-20">
             <span class="text-xs text-brand-teal font-semibold uppercase tracking-widest block mb-2">KNUH Smart Reserve</span>
@@ -2804,7 +2805,7 @@
           if (btn === id) {
             item.className = "text-amber-300 border-b-2 border-amber-300 pb-3 px-1 transition-all flex-1 text-center";
           } else {
-            item.className = "text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center";
+            item.className = "text-white/80 hover:text-white pb-3 px-1 transition-all flex-1 text-center";
           }
         }
       });
