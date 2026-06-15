@@ -234,6 +234,28 @@
       font-size: calc(18px * 1.3) !important;
       line-height: calc(26px * 1.3) !important;
     }
+    
+    /* Prevent awkward wrapping and line breaks in doctor section */
+    #doctors-section {
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+    }
+    #doctors-section button[id^="tab-doc-"] {
+      white-space: nowrap !important;
+    }
+    #doctors-section #doctor-cv-pane .flex-shrink-0 {
+      min-width: 155px !important;
+      white-space: nowrap !important;
+    }
+    #doctors-section .flex-wrap span {
+      white-space: nowrap !important;
+    }
+    @media (min-width: 640px) {
+      #doctors-section .grid-cols-7 span,
+      #doctors-section .grid-cols-7 div {
+        white-space: nowrap !important;
+      }
+    }
   </style>
 </head>
 <body class="overflow-x-hidden min-h-screen">
@@ -759,14 +781,14 @@
         <div class="col-span-1 lg:col-span-6 p-8 lg:p-12 space-y-10 z-10 bg-gradient-to-br from-blue-50/40 via-white/80 to-white border-r border-slate-200/50">
           <div>
             <div class="flex flex-wrap items-center gap-3">
-              <span class="bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-sm px-2.5 py-1 rounded-md font-semibold">재활의학과 과장</span>
+              <span class="bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-sm px-2.5 py-1 rounded-md font-semibold">전) 재활병원장</span>
               <span class="bg-slate-100 text-slate-600 text-sm px-2.5 py-1 rounded-md font-medium">기획조정실장</span>
               <span class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-600 text-sm px-2.5 py-1 rounded-md font-bold animate-pulse shadow-sm">
                 <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i>
                 2026 상반기 Best Doctor 선정
               </span>
             </div>
-            <h3 class="text-4xl font-extrabold text-slate-800 mt-2">박희원 <span class="text-xl text-slate-600 font-normal ml-2">교수</span></h3>
+            <h3 class="text-4xl font-extrabold text-slate-800 mt-2 whitespace-nowrap">박희원 <span class="text-xl text-slate-600 font-normal ml-2">교수</span></h3>
             <!-- Specialty Card -->
             <div class="bg-gradient-to-r from-blue-50/50 via-teal-50/20 to-white border border-slate-200/80 p-5 rounded-2xl shadow-sm mt-4 hover:border-brand-teal/40 transition-all">
               <div class="flex items-center gap-2 mb-2.5">
@@ -861,8 +883,8 @@
               <!-- Jan 2 -->
               <div onclick="openDoctorChatbot('2026-01-02')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">2</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
               <!-- Jan 3 -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
@@ -880,14 +902,14 @@
               <!-- Jan 6 -->
               <div onclick="openDoctorChatbot('2026-01-06')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">6</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관<br>오후</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
               </div>
               <!-- Jan 7 -->
               <div onclick="openDoctorChatbot('2026-01-07')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">7</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">8</span>
@@ -895,8 +917,8 @@
               <!-- Jan 9 -->
               <div onclick="openDoctorChatbot('2026-01-09')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">9</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">10</span>
@@ -913,14 +935,14 @@
               <!-- Jan 13 -->
               <div onclick="openDoctorChatbot('2026-01-13')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">13</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관<br>오후</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
               </div>
               <!-- Jan 14 -->
               <div onclick="openDoctorChatbot('2026-01-14')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">14</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">15</span>
@@ -928,8 +950,8 @@
               <!-- Jan 16 -->
               <div onclick="openDoctorChatbot('2026-01-16')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">16</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">17</span>
@@ -946,14 +968,14 @@
               <!-- Jan 20 -->
               <div onclick="openDoctorChatbot('2026-01-20')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">20</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관<br>오후</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
               </div>
               <!-- Jan 21 -->
               <div onclick="openDoctorChatbot('2026-01-21')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">21</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">22</span>
@@ -961,8 +983,8 @@
               <!-- Jan 23 -->
               <div onclick="openDoctorChatbot('2026-01-23')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">23</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">24</span>
@@ -982,8 +1004,8 @@
               <!-- Jan 28 -->
               <div onclick="openDoctorChatbot('2026-01-28')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">28</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터<br>오전</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백<br>공백</div>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">29</span>
@@ -991,8 +1013,8 @@
               <!-- Jan 30 -->
               <div onclick="openDoctorChatbot('2026-01-30')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">30</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이<br>오후</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">31</span>
