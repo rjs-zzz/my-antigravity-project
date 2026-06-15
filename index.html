@@ -845,7 +845,7 @@
           <div class="border-t border-slate-200 pt-8">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
               <h4 class="font-bold text-slate-800 text-base flex items-center gap-2">
-                <i class="fa-solid fa-calendar-days text-brand-orange"></i> 2026년 1월 진료일정표
+                <i class="fa-solid fa-calendar-days text-brand-orange"></i> 2026년 6월 진료일정표
               </h4>
               <div class="bg-blue-50 border border-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-medium shadow-sm">
                 <i class="fa-solid fa-circle-info text-blue-500"></i>
@@ -863,157 +863,171 @@
               <div class="text-slate-700 font-bold py-2 bg-slate-100/50 rounded-lg">금</div>
               <div class="text-slate-500 font-bold py-2 bg-slate-100/50 rounded-lg">토</div>
 
-              <!-- Month dates (January 2026 starts on Thursday) -->
-              <!-- Empty placeholders for Wed Dec 31 -->
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <!-- Month dates (June 2026 starts on Monday) -->
+              <!-- Empty placeholder for Sun May 31 -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
               
-              <!-- Jan 1 (Holiday / empty) -->
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg flex flex-col justify-between text-brand-accent">
-                <span class="font-bold">1</span>
-                <span class="text-xs text-slate-500">신정</span>
+              <!-- June 1 (Mon) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+                <span class="text-left">1</span>
               </div>
-              <!-- Jan 2 -->
-              <div onclick="openDoctorChatbot('2026-01-02')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+              <!-- June 2 (Tue) -->
+              <div onclick="openDoctorChatbot('2026-06-02')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">2</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
+              </div>
+              <!-- June 3 (Wed) -->
+              <div onclick="openDoctorChatbot('2026-06-03')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">3</span>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+              </div>
+              <!-- June 4 (Thu) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+                <span class="text-left">4</span>
+              </div>
+              <!-- June 5 (Fri) -->
+              <div onclick="openDoctorChatbot('2026-06-05')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">5</span>
                 <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
                 <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
-              <!-- Jan 3 -->
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">3</span>
+              <!-- June 6 (Sat) - 현충일 -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg flex flex-col justify-between text-brand-accent">
+                <span class="font-bold text-left text-xs text-red-500">6</span>
+                <span class="bg-red-50 text-red-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">현충일</span>
               </div>
 
               <!-- Week 2 -->
-              <!-- Jan 4 (Sun) -->
+              <!-- June 7 (Sun) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
-                <span class="text-left">4</span>
+                <span class="text-left">7</span>
               </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">5</span>
-              </div>
-              <!-- Jan 6 -->
-              <div onclick="openDoctorChatbot('2026-01-06')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">6</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
-              </div>
-              <!-- Jan 7 -->
-              <div onclick="openDoctorChatbot('2026-01-07')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">7</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
-              </div>
+              <!-- June 8 (Mon) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">8</span>
               </div>
-              <!-- Jan 9 -->
-              <div onclick="openDoctorChatbot('2026-01-09')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+              <!-- June 9 (Tue) -->
+              <div onclick="openDoctorChatbot('2026-06-09')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">9</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
+              </div>
+              <!-- June 10 (Wed) -->
+              <div onclick="openDoctorChatbot('2026-06-10')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">10</span>
+                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+              </div>
+              <!-- June 11 (Thu) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+                <span class="text-left">11</span>
+              </div>
+              <!-- June 12 (Fri) -->
+              <div onclick="openDoctorChatbot('2026-06-12')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">12</span>
                 <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
                 <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
+              <!-- June 13 (Sat) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">10</span>
+                <span class="text-left">13</span>
               </div>
 
               <!-- Week 3 -->
-              <!-- Jan 11 (Sun) -->
+              <!-- June 14 (Sun) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
-                <span class="text-left">11</span>
+                <span class="text-left">14</span>
               </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">12</span>
-              </div>
-              <!-- Jan 13 -->
-              <div onclick="openDoctorChatbot('2026-01-13')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">13</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
-                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
-              </div>
-              <!-- Jan 14 -->
-              <div onclick="openDoctorChatbot('2026-01-14')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">14</span>
-                <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
-                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
-              </div>
+              <!-- June 15 (Mon) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">15</span>
               </div>
-              <!-- Jan 16 -->
-              <div onclick="openDoctorChatbot('2026-01-16')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+              <!-- June 16 (Tue) -->
+              <div onclick="openDoctorChatbot('2026-06-16')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">16</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
-              </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">17</span>
-              </div>
-
-              <!-- Week 4 -->
-              <!-- Jan 18 (Sun) -->
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
-                <span class="text-left">18</span>
-              </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">19</span>
-              </div>
-              <!-- Jan 20 -->
-              <div onclick="openDoctorChatbot('2026-01-20')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">20</span>
                 <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
                 <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
               </div>
-              <!-- Jan 21 -->
-              <div onclick="openDoctorChatbot('2026-01-21')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">21</span>
+              <!-- June 17 (Wed) -->
+              <div onclick="openDoctorChatbot('2026-06-17')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">17</span>
                 <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
                 <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
               </div>
+              <!-- June 18 (Thu) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+                <span class="text-left">18</span>
+              </div>
+              <!-- June 19 (Fri) -->
+              <div onclick="openDoctorChatbot('2026-06-19')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">19</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
+                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
+              </div>
+              <!-- June 20 (Sat) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+                <span class="text-left">20</span>
+              </div>
+
+              <!-- Week 4 -->
+              <!-- June 21 (Sun) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
+                <span class="text-left">21</span>
+              </div>
+              <!-- June 22 (Mon) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
                 <span class="text-left">22</span>
               </div>
-              <!-- Jan 23 -->
-              <div onclick="openDoctorChatbot('2026-01-23')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+              <!-- June 23 (Tue) -->
+              <div onclick="openDoctorChatbot('2026-06-23')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
                 <span class="font-bold text-slate-800 text-left text-xs">23</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
-                <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
               </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">24</span>
-              </div>
-
-              <!-- Week 5 -->
-              <!-- Jan 25 (Sun) -->
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
-                <span class="text-left">25</span>
-              </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">26</span>
-              </div>
-              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">27</span>
-              </div>
-              <!-- Jan 28 -->
-              <div onclick="openDoctorChatbot('2026-01-28')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">28</span>
+              <!-- June 24 (Wed) -->
+              <div onclick="openDoctorChatbot('2026-06-24')" class="p-1 min-h-[80px] border border-teal-500/30 hover:border-teal-500 rounded-lg flex flex-col justify-between cursor-pointer bg-teal-500/5 hover:bg-teal-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">24</span>
                 <span class="bg-emerald-50 text-emerald-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">암센터 오전</span>
                 <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
               </div>
+              <!-- June 25 (Thu) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">29</span>
+                <span class="text-left">25</span>
               </div>
-              <!-- Jan 30 -->
-              <div onclick="openDoctorChatbot('2026-01-30')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
-                <span class="font-bold text-slate-800 text-left text-xs">30</span>
+              <!-- June 26 (Fri) -->
+              <div onclick="openDoctorChatbot('2026-06-26')" class="p-1 min-h-[80px] border border-brand-orange/30 hover:border-brand-orange rounded-lg flex flex-col justify-between cursor-pointer bg-brand-orange/5 hover:bg-brand-orange/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">26</span>
                 <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오전</span>
                 <span class="bg-amber-100 text-amber-800 font-bold rounded-sm px-1 py-0.5 block text-center leading-tight text-[9px]">어린이 오후</span>
               </div>
+              <!-- June 27 (Sat) -->
               <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
-                <span class="text-left">31</span>
+                <span class="text-left">27</span>
               </div>
+
+              <!-- Week 5 -->
+              <!-- June 28 (Sun) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-brand-accent flex flex-col justify-start">
+                <span class="text-left">28</span>
+              </div>
+              <!-- June 29 (Mon) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg text-slate-500 flex flex-col justify-start">
+                <span class="text-left">29</span>
+              </div>
+              <!-- June 30 (Tue) -->
+              <div onclick="openDoctorChatbot('2026-06-30')" class="p-1 min-h-[80px] border border-blue-500/30 hover:border-blue-500 rounded-lg flex flex-col justify-between cursor-pointer bg-blue-500/5 hover:bg-blue-500/10 transition-colors">
+                <span class="font-bold text-slate-800 text-left text-xs">30</span>
+                <div class="text-[9px] py-0.5 leading-tight select-none opacity-0 pointer-events-none">공백 공백</div>
+                <span class="bg-blue-50 text-blue-600 font-bold rounded-sm px-1 py-0.5 text-[9px] leading-tight block text-center">본관 오후</span>
+              </div>
+
+              <!-- Empty placeholders for the end of grid (to complete June 2026's 5th row) -->
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
+              <div class="p-1 min-h-[80px] border border-slate-200/50 rounded-lg bg-white/10"></div>
             </div>
           </div>
         </div>
