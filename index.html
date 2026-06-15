@@ -865,8 +865,8 @@
         <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- Left Side: Text Profile & Calendar (Full Width) -->
-        <div class="col-span-1 lg:col-span-12 p-8 lg:p-12 space-y-10 z-10 bg-transparent">
+        <!-- Left Side: Text Profile & Calendar (6 Columns) -->
+        <div class="col-span-1 lg:col-span-6 p-8 lg:p-12 space-y-10 z-10 bg-transparent">
           <div>
             <div class="flex flex-wrap items-center gap-3">
               <span class="bg-white/10 border border-white/20 text-white text-sm px-2.5 py-1 rounded-md font-semibold">전) 재활병원장</span>
@@ -876,12 +876,7 @@
                 2026 상반기 Best Doctor 선정
               </span>
             </div>
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2">
-              <h3 class="text-4xl font-extrabold text-white whitespace-nowrap">박희원 <span class="text-xl text-slate-300 font-normal ml-2">교수</span></h3>
-              <button onclick="openChatbotFlow('doctor-park')" class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-6 py-3.5 rounded-xl transition-all text-xs flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/35 max-w-xs sm:max-w-none">
-                <i class="fa-solid fa-calendar-check"></i> 박희원 교수 챗봇예약
-              </button>
-            </div>
+            <h3 class="text-4xl font-extrabold text-white mt-2 whitespace-nowrap">박희원 <span class="text-xl text-slate-300 font-normal ml-2">교수</span></h3>
             <!-- Specialty Card -->
             <div class="bg-slate-950/20 border border-white/10 p-5 rounded-2xl shadow-sm mt-4 hover:border-blue-400/40 transition-all">
               <div class="flex items-center gap-2 mb-2.5">
@@ -1116,7 +1111,18 @@
           </div>
         </div>
 
-        <!-- Photo column removed as requested by user -->
+        <!-- Right Side: Doctor Large Image Portrait (6 Columns, Sticky Scroll & Full Cover) -->
+        <div class="col-span-1 lg:col-span-6 relative min-h-[500px] lg:min-h-full h-full lg:sticky lg:top-0 lg:self-start overflow-hidden group">
+          <img src="doctor_park_heewon_transparent.png" alt="Dr. Park Hee-won" class="w-full h-full object-cover object-top lg:absolute lg:inset-0 hover:scale-102 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#8f9396] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+          
+          <div class="absolute bottom-8 left-8 right-8 text-white text-center z-20">
+            <span class="text-xs text-brand-teal font-semibold uppercase tracking-widest block mb-2">KNUH Smart Reserve</span>
+            <button onclick="openChatbotFlow('doctor-park')" class="w-full max-w-sm mx-auto bg-brand-orange hover:bg-brand-accent text-white font-bold py-3.5 rounded-xl transition-all text-xs flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/35">
+              <i class="fa-solid fa-calendar-check"></i> 박희원 교수 챗봇예약
+            </button>
+          </div>
+        </div>
 
       </div>
     </div>
