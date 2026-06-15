@@ -793,36 +793,29 @@
             <h3 class="text-4xl font-extrabold text-slate-900 mt-2 whitespace-nowrap">박희원 <span class="text-xl text-slate-500 font-normal ml-2">교수</span></h3>
             <!-- Specialty Card -->
             <div class="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm mt-4 hover:border-blue-400/40 transition-all">
-              <div class="flex items-center gap-2 mb-2.5">
-                <span class="text-[16px] md:text-[18px] font-extrabold bg-blue-50 text-blue-700 px-3.5 py-1 rounded-lg flex items-center gap-1.5 border border-blue-100">
-                  <i class="fa-solid fa-stethoscope"></i> 전문분야
-                </span>
-              </div>
-              <p class="text-slate-700 text-[14px] md:text-[15px] font-semibold leading-relaxed pl-1">
+              <p class="text-slate-800 text-[16px] md:text-[18px] font-bold leading-relaxed pl-1">
                 소아뇌성마비, 소아 운동 치료, 추간판 탈출증, 무릎 관절염, 테니스 엘보, 오십견, 석회성 건염, 기타 재활의학 전반
               </p>
             </div>
 
             <!-- Philosophy Card -->
             <div class="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm mt-3 hover:border-brand-orange/40 transition-all">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-[16px] md:text-[18px] font-extrabold bg-brand-orange/10 text-brand-orange px-3.5 py-1 rounded-lg flex items-center gap-1.5 border border-brand-orange/20">
-                  <i class="fa-solid fa-heart-pulse"></i> 진료철학
-                </span>
-              </div>
               <div class="space-y-3 pl-1">
-                <div class="italic text-brand-orange font-extrabold text-[15px] md:text-[16px] border-l-4 border-brand-orange/40 pl-3.5 leading-relaxed">
-                  "재활은 잃어버린 기능을 되찾는 일을 넘어, 한 사람이 자신의 삶으로 온전히 돌아가도록 돕는 과정이라 믿습니다."
+                <div onclick="togglePhilosophy()" class="cursor-pointer group italic text-brand-orange hover:text-brand-accent font-extrabold text-[15px] md:text-[16px] border-l-4 border-brand-orange/40 pl-3.5 pr-2 py-1 leading-relaxed flex items-center justify-between transition-colors">
+                  <span>"재활은 잃어버린 기능을 되찾는 일을 넘어, 한 사람이 자신의 삶으로 온전히 돌아가도록 돕는 과정이라 믿습니다."</span>
+                  <i id="philosophy-arrow" class="fa-solid fa-chevron-down text-brand-orange/60 group-hover:text-brand-orange transition-transform duration-300 ml-4 flex-shrink-0 text-sm"></i>
                 </div>
-                <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
-                  저에게 재활의학은 질병이나 손상 그 자체보다, 그 사람이 가정과 학교, 지역사회에서 다시 자신의 자리를 찾도록 돕는 일입니다. 특히 성장기 아이들의 재활은 단순한 치료가 아니라 한 아이의 미래와 가능성을 함께 키워가는 일이기에, 아이와 가족의 눈높이에서 멀리 바라보며 동행하는 진료를 지향합니다.
-                </p>
-                <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
-                  강원 지역의 의료 환경 속에서 환자분들이 거리와 여건에 가로막혀 적절한 재활의 기회를 놓치지 않도록 하는 것 또한 오랜 고민이었습니다. 큰 병원의 치료가 일상으로 자연스럽게 이어지고, 지역에서 끝까지 책임지는 재활을 만들어가고자 합니다.
-                </p>
-                <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
-                  진료실에서 가장 중요하게 여기는 것은 '함께 결정하는 것'입니다. 환자와 가족이 자신의 회복 과정을 이해하고 스스로 선택할 수 있도록 충분히 듣고 정직하게 설명하겠습니다. 기능의 회복과 더불어 그 사람의 삶의 질과 존엄을 지키는 재활을 늘 마음에 새기겠습니다.
-                </p>
+                <div id="philosophy-details" class="hidden space-y-3 mt-4">
+                  <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                    저에게 재활의학은 질병이나 손상 그 자체보다, 그 사람이 가정과 학교, 지역사회에서 다시 자신의 자리를 찾도록 돕는 일입니다. 특히 성장기 아이들의 재활은 단순한 치료가 아니라 한 아이의 미래와 가능성을 함께 키워가는 일이기에, 아이와 가족의 눈높이에서 멀리 바라보며 동행하는 진료를 지향합니다.
+                  </p>
+                  <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                    강원 지역의 의료 환경 속에서 환자분들이 거리와 여건에 가로막혀 적절한 재활의 기회를 놓치지 않도록 하는 것 또한 오랜 고민이었습니다. 큰 병원의 치료가 일상으로 자연스럽게 이어지고, 지역에서 끝까지 책임지는 재활을 만들어가고자 합니다.
+                  </p>
+                  <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                    진료실에서 가장 중요하게 여기는 것은 '함께 결정하는 것'입니다. 환자와 가족이 자신의 회복 과정을 이해하고 스스로 선택할 수 있도록 충분히 듣고 정직하게 설명하겠습니다. 기능의 회복과 더불어 그 사람의 삶의 질과 존엄을 지키는 재활을 늘 마음에 새기겠습니다.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -2723,6 +2716,18 @@
           }
         }
       });
+    }
+
+    function togglePhilosophy() {
+      const details = document.getElementById('philosophy-details');
+      const arrow = document.getElementById('philosophy-arrow');
+      if (details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        if (arrow) arrow.classList.add('rotate-180');
+      } else {
+        details.classList.add('hidden');
+        if (arrow) arrow.classList.remove('rotate-180');
+      }
     }
 
 
