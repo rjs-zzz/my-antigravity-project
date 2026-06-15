@@ -256,6 +256,93 @@
         white-space: nowrap !important;
       }
     }
+    
+    /* Dark theme style adaptations for doctors-section content */
+    #doctors-section #doctor-cv-pane .text-slate-800 {
+      color: #FFFFFF !important;
+    }
+    #doctors-section #doctor-cv-pane .text-slate-700 {
+      color: #E2E8F0 !important;
+    }
+    #doctors-section #doctor-cv-pane .text-slate-600 {
+      color: #CBD5E1 !important;
+    }
+    #doctors-section #doctor-cv-pane span {
+      color: #E2E8F0 !important;
+    }
+    #doctors-section #doctor-cv-pane span.font-bold {
+      color: #FFFFFF !important;
+    }
+    #doctors-section #doctor-cv-pane .bg-blue-50\/50 {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: #E2E8F0 !important;
+    }
+    #doctors-section #doctor-cv-pane .bg-blue-50\/50 strong {
+      color: #FFFFFF !important;
+    }
+    
+    #doctors-section .grid-cols-7 .bg-slate-100\/50 {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+    #doctors-section .grid-cols-7 .text-slate-700,
+    #doctors-section .grid-cols-7 .text-slate-500 {
+      color: #E2E8F0 !important;
+    }
+    #doctors-section .grid-cols-7 .text-brand-accent {
+      color: #F87171 !important;
+    }
+    #doctors-section .grid-cols-7 .border-slate-200\/50 {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    #doctors-section .grid-cols-7 .bg-white\/10 {
+      background-color: rgba(255, 255, 255, 0.02) !important;
+    }
+    #doctors-section .grid-cols-7 .border-brand-orange\/30 {
+      border-color: rgba(0, 84, 166, 0.4) !important;
+      background-color: rgba(0, 84, 166, 0.15) !important;
+    }
+    #doctors-section .grid-cols-7 .border-brand-orange\/30:hover {
+      border-color: #3b82f6 !important;
+      background-color: rgba(0, 84, 166, 0.25) !important;
+    }
+    #doctors-section .grid-cols-7 .border-blue-500\/30 {
+      border-color: rgba(59, 130, 246, 0.4) !important;
+      background-color: rgba(59, 130, 246, 0.1) !important;
+    }
+    #doctors-section .grid-cols-7 .border-blue-500\/30:hover {
+      border-color: #3b82f6 !important;
+      background-color: rgba(59, 130, 246, 0.2) !important;
+    }
+    #doctors-section .grid-cols-7 .border-teal-500\/30 {
+      border-color: rgba(20, 184, 166, 0.4) !important;
+      background-color: rgba(20, 184, 166, 0.1) !important;
+    }
+    #doctors-section .grid-cols-7 .border-teal-500\/30:hover {
+      border-color: #14b8a6 !important;
+      background-color: rgba(20, 184, 166, 0.2) !important;
+    }
+    #doctors-section .grid-cols-7 span.font-bold {
+      color: #FFFFFF !important;
+    }
+    #doctors-section .grid-cols-7 .text-slate-500 {
+      color: #94A3B8 !important;
+    }
+    #doctors-section .grid-cols-7 .bg-amber-100 {
+      background-color: rgba(245, 158, 11, 0.2) !important;
+      color: #FBBF24 !important;
+      border: 1px solid rgba(245, 158, 11, 0.3) !important;
+    }
+    #doctors-section .grid-cols-7 .bg-blue-50 {
+      background-color: rgba(59, 130, 246, 0.2) !important;
+      color: #93C5FD !important;
+      border: 1px solid rgba(59, 130, 246, 0.3) !important;
+    }
+    #doctors-section .grid-cols-7 .bg-emerald-50 {
+      background-color: rgba(16, 185, 129, 0.2) !important;
+      color: #6EE7B7 !important;
+      border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    }
   </style>
 </head>
 <body class="overflow-x-hidden min-h-screen">
@@ -771,54 +858,54 @@
       </div>
 
       <!-- Doctor Container Layout: Two-Column (Profile Left 50%, Image Right 50%) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 bg-brand-dark border border-slate-200 rounded-3xl overflow-hidden shadow-2xl relative items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative items-stretch" style="background: linear-gradient(135deg, #51524d 0%, #5e6165 50%, #6d7075 100%) !important;">
         
         <!-- Background Accent Glow -->
         <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <!-- Left Side: Text Profile & Calendar (6 Columns) -->
-        <div class="col-span-1 lg:col-span-6 p-8 lg:p-12 space-y-10 z-10 bg-gradient-to-br from-blue-50/40 via-white/80 to-white border-r border-slate-200/50">
+        <div class="col-span-1 lg:col-span-6 p-8 lg:p-12 space-y-10 z-10 bg-transparent border-r border-white/10">
           <div>
             <div class="flex flex-wrap items-center gap-3">
-              <span class="bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-sm px-2.5 py-1 rounded-md font-semibold">전) 재활병원장</span>
-              <span class="bg-slate-100 text-slate-600 text-sm px-2.5 py-1 rounded-md font-medium">기획조정실장</span>
-              <span class="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-600 text-sm px-2.5 py-1 rounded-md font-bold animate-pulse shadow-sm">
+              <span class="bg-white/10 border border-white/20 text-white text-sm px-2.5 py-1 rounded-md font-semibold">전) 재활병원장</span>
+              <span class="bg-white/5 border border-white/10 text-slate-200 text-sm px-2.5 py-1 rounded-md font-medium">기획조정실장</span>
+              <span class="inline-flex items-center gap-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-300 text-sm px-2.5 py-1 rounded-md font-bold animate-pulse shadow-sm">
                 <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i>
                 2026 상반기 Best Doctor 선정
               </span>
             </div>
-            <h3 class="text-4xl font-extrabold text-slate-800 mt-2 whitespace-nowrap">박희원 <span class="text-xl text-slate-600 font-normal ml-2">교수</span></h3>
+            <h3 class="text-4xl font-extrabold text-white mt-2 whitespace-nowrap">박희원 <span class="text-xl text-slate-300 font-normal ml-2">교수</span></h3>
             <!-- Specialty Card -->
-            <div class="bg-gradient-to-r from-blue-50/50 via-teal-50/20 to-white border border-slate-200/80 p-5 rounded-2xl shadow-sm mt-4 hover:border-brand-teal/40 transition-all">
+            <div class="bg-white/5 border border-white/10 p-5 rounded-2xl shadow-sm mt-4 hover:border-blue-400/40 transition-all">
               <div class="flex items-center gap-2 mb-2.5">
-                <span class="text-[16px] md:text-[18px] font-extrabold bg-brand-teal/10 text-brand-teal px-3.5 py-1 rounded-lg flex items-center gap-1.5">
+                <span class="text-[16px] md:text-[18px] font-extrabold bg-blue-500/20 text-blue-300 px-3.5 py-1 rounded-lg flex items-center gap-1.5 border border-blue-500/20">
                   <i class="fa-solid fa-stethoscope"></i> 전문분야
                 </span>
               </div>
-              <p class="text-slate-800 text-[14px] md:text-[15px] font-semibold leading-relaxed pl-1">
+              <p class="text-white text-[14px] md:text-[15px] font-semibold leading-relaxed pl-1">
                 소아뇌성마비, 소아 운동 치료, 추간판 탈출증, 무릎 관절염, 테니스 엘보, 오십견, 석회성 건염, 기타 재활의학 전반
               </p>
             </div>
 
             <!-- Philosophy Card -->
-            <div class="bg-gradient-to-r from-amber-50/30 via-orange-50/10 to-white border border-slate-200/80 p-5 rounded-2xl shadow-sm mt-3 hover:border-brand-orange/40 transition-all">
+            <div class="bg-white/5 border border-white/10 p-5 rounded-2xl shadow-sm mt-3 hover:border-brand-orange/40 transition-all">
               <div class="flex items-center gap-2 mb-3">
-                <span class="text-[16px] md:text-[18px] font-extrabold bg-brand-orange/10 text-brand-orange px-3.5 py-1 rounded-lg flex items-center gap-1.5">
+                <span class="text-[16px] md:text-[18px] font-extrabold bg-brand-orange/20 text-orange-300 px-3.5 py-1 rounded-lg flex items-center gap-1.5 border border-brand-orange/25">
                   <i class="fa-solid fa-heart-pulse"></i> 진료철학
                 </span>
               </div>
               <div class="space-y-3 pl-1">
-                <div class="italic text-brand-orange font-extrabold text-[15px] md:text-[16px] border-l-4 border-brand-orange pl-3.5 leading-relaxed">
+                <div class="italic text-amber-300 font-extrabold text-[15px] md:text-[16px] border-l-4 border-amber-400 pl-3.5 leading-relaxed">
                   "재활은 잃어버린 기능을 되찾는 일을 넘어, 한 사람이 자신의 삶으로 온전히 돌아가도록 돕는 과정이라 믿습니다."
                 </div>
-                <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                <p class="text-slate-200 text-[13px] md:text-[14px] leading-relaxed font-medium">
                   저에게 재활의학은 질병이나 손상 그 자체보다, 그 사람이 가정과 학교, 지역사회에서 다시 자신의 자리를 찾도록 돕는 일입니다. 특히 성장기 아이들의 재활은 단순한 치료가 아니라 한 아이의 미래와 가능성을 함께 키워가는 일이기에, 아이와 가족의 눈높이에서 멀리 바라보며 동행하는 진료를 지향합니다.
                 </p>
-                <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                <p class="text-slate-200 text-[13px] md:text-[14px] leading-relaxed font-medium">
                   강원 지역의 의료 환경 속에서 환자분들이 거리와 여건에 가로막혀 적절한 재활의 기회를 놓치지 않도록 하는 것 또한 오랜 고민이었습니다. 큰 병원의 치료가 일상으로 자연스럽게 이어지고, 지역에서 끝까지 책임지는 재활을 만들어가고자 합니다.
                 </p>
-                <p class="text-slate-700 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                <p class="text-slate-200 text-[13px] md:text-[14px] leading-relaxed font-medium">
                   진료실에서 가장 중요하게 여기는 것은 '함께 결정하는 것'입니다. 환자와 가족이 자신의 회복 과정을 이해하고 스스로 선택할 수 있도록 충분히 듣고 정직하게 설명하겠습니다. 기능의 회복과 더불어 그 사람의 삶의 질과 존엄을 지키는 재활을 늘 마음에 새기겠습니다.
                 </p>
               </div>
@@ -826,15 +913,15 @@
           </div>
 
           <!-- Tabbed Profile CV Details (Korea University Anam Style Scroll) -->
-          <div class="border-t border-slate-200 pt-6">
+          <div class="border-t border-white/10 pt-6">
             <!-- CV Tabs Menu -->
-            <div class="flex border-b border-slate-200 pb-3 mb-6 text-sm font-semibold overflow-x-auto whitespace-nowrap w-full justify-between">
-              <button onclick="switchDoctorTab('edu')" id="tab-doc-edu" class="text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all flex-1 text-center">학력</button>
-              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">경력</button>
-              <button onclick="switchDoctorTab('academic')" id="tab-doc-academic" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">학회</button>
-              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">논문실적</button>
-              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">수상내역</button>
-              <button onclick="switchDoctorTab('news')" id="tab-doc-news" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">언론보도</button>
+            <div class="flex border-b border-white/10 pb-3 mb-6 text-sm font-semibold overflow-x-auto whitespace-nowrap w-full justify-between">
+              <button onclick="switchDoctorTab('edu')" id="tab-doc-edu" class="text-amber-300 border-b-2 border-amber-300 pb-3 px-1 transition-all flex-1 text-center">학력</button>
+              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">경력</button>
+              <button onclick="switchDoctorTab('academic')" id="tab-doc-academic" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">학회</button>
+              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">논문실적</button>
+              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">수상내역</button>
+              <button onclick="switchDoctorTab('news')" id="tab-doc-news" class="text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center">언론보도</button>
             </div>
             
             <!-- Scrollable CV Info Pane: Removed max-h constraint to allow natural page scroll -->
@@ -847,13 +934,13 @@
           </div>
 
           <!-- Calendar-style schedule table (No symbol representation, full-text based) -->
-          <div class="border-t border-slate-200 pt-8">
+          <div class="border-t border-white/10 pt-8">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-5">
-              <h4 class="font-bold text-slate-800 text-base flex items-center gap-2">
-                <i class="fa-solid fa-calendar-days text-brand-orange"></i> 2026년 1월 진료일정표
+              <h4 class="font-bold text-white text-base flex items-center gap-2">
+                <i class="fa-solid fa-calendar-days text-amber-300"></i> 2026년 1월 진료일정표
               </h4>
-              <div class="bg-blue-50 border border-blue-100 text-blue-700 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-medium shadow-sm">
-                <i class="fa-solid fa-circle-info text-blue-500"></i>
+              <div class="bg-blue-500/10 border border-blue-500/20 text-blue-200 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-medium shadow-sm">
+                <i class="fa-solid fa-circle-info text-blue-300"></i>
                 일정을 클릭하면 챗봇 예약 단계로 바로 연결됩니다.
               </div>
             </div>
@@ -1026,7 +1113,7 @@
         <!-- Right Side: Doctor Large Image Portrait (6 Columns, Sticky Scroll & Full Cover) -->
         <div class="col-span-1 lg:col-span-6 relative min-h-[500px] lg:min-h-full h-full lg:sticky lg:top-0 lg:self-start overflow-hidden group">
           <img src="doctor_park_heewon.png" alt="Dr. Park Hee-won" class="w-full h-full object-cover object-top lg:absolute lg:inset-0 hover:scale-102 transition-transform duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/20 to-transparent opacity-85 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#5e6165] via-transparent to-transparent opacity-80 pointer-events-none"></div>
           
           <div class="absolute bottom-8 left-8 right-8 text-white text-center z-20">
             <span class="text-xs text-brand-teal font-semibold uppercase tracking-widest block mb-2">KNUH Smart Reserve</span>
@@ -2715,9 +2802,9 @@
         const item = document.getElementById(`tab-doc-${btn}`);
         if (item) {
           if (btn === id) {
-            item.className = "text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all flex-1 text-center";
+            item.className = "text-amber-300 border-b-2 border-amber-300 pb-3 px-1 transition-all flex-1 text-center";
           } else {
-            item.className = "text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center";
+            item.className = "text-slate-300 hover:text-white pb-3 px-1 transition-all flex-1 text-center";
           }
         }
       });
