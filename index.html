@@ -725,13 +725,13 @@
           <!-- Tabbed Profile CV Details (Korea University Anam Style Scroll) -->
           <div class="border-t border-slate-200 pt-6">
             <!-- CV Tabs Menu -->
-            <div class="flex gap-3 border-b border-slate-200 pb-3 mb-6 text-sm font-semibold overflow-x-auto whitespace-nowrap">
-              <button onclick="switchDoctorTab('edu')" id="tab-doc-edu" class="text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all">학력</button>
-              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">경력</button>
-              <button onclick="switchDoctorTab('academic')" id="tab-doc-academic" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">학회경력</button>
-              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">논문실적</button>
-              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">수상내역</button>
-              <button onclick="switchDoctorTab('news')" id="tab-doc-news" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">언론보도</button>
+            <div class="flex border-b border-slate-200 pb-3 mb-6 text-sm font-semibold overflow-x-auto whitespace-nowrap w-full justify-between">
+              <button onclick="switchDoctorTab('edu')" id="tab-doc-edu" class="text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all flex-1 text-center">학력</button>
+              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">경력</button>
+              <button onclick="switchDoctorTab('academic')" id="tab-doc-academic" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">학회</button>
+              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">논문실적</button>
+              <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">수상내역</button>
+              <button onclick="switchDoctorTab('news')" id="tab-doc-news" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center">언론보도</button>
             </div>
             
             <!-- Scrollable CV Info Pane: Removed max-h constraint to allow natural page scroll -->
@@ -2612,9 +2612,9 @@
         const item = document.getElementById(`tab-doc-${btn}`);
         if (item) {
           if (btn === id) {
-            item.className = "text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all";
+            item.className = "text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all flex-1 text-center";
           } else {
-            item.className = "text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all";
+            item.className = "text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all flex-1 text-center";
           }
         }
       });
