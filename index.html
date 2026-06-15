@@ -700,21 +700,24 @@
             <p class="text-slate-700 text-base mt-3 leading-relaxed">
               <strong>전문분야:</strong> 소아뇌성마비, 소아 운동 치료, 추간판 탈출증, 무릎 관절염, 테니스 엘보, 오십견, 석회성 건염, 기타 재활의학 전반
             </p>
+            <p class="text-slate-700 text-base mt-2 leading-relaxed">
+              <strong>진료철학:</strong> 환자의 아픔과 불편함에 깊이 공감하며, 온전한 일상으로의 건강한 복귀를 돕기 위해 늘 연구하고 정성을 다하는 따뜻한 재활 치료를 약속드립니다.
+            </p>
           </div>
 
           <!-- Tabbed Profile CV Details (Korea University Anam Style Scroll) -->
           <div class="border-t border-slate-200 pt-6">
             <!-- CV Tabs Menu -->
             <div class="flex gap-3 border-b border-slate-200 pb-3 mb-6 text-sm font-semibold overflow-x-auto whitespace-nowrap">
-              <button onclick="switchDoctorTab('cv')" id="tab-doc-cv" class="text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all">학력 및 경력</button>
-              <button onclick="switchDoctorTab('specialty')" id="tab-doc-specialty" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">전문진료 분야</button>
-              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">학회 및 연구논문</button>
+              <button onclick="switchDoctorTab('edu')" id="tab-doc-edu" class="text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all">학력</button>
+              <button onclick="switchDoctorTab('exp')" id="tab-doc-exp" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">경력</button>
+              <button onclick="switchDoctorTab('papers')" id="tab-doc-papers" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">논문 실적</button>
               <button onclick="switchDoctorTab('awards')" id="tab-doc-awards" class="text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all">수상내역</button>
             </div>
             
             <!-- Scrollable CV Info Pane: Removed max-h constraint to allow natural page scroll -->
             <div class="text-sm text-slate-700 space-y-3 leading-relaxed pr-2 min-h-[220px]" id="doctor-cv-pane">
-              <!-- Default: Academic/Career -->
+              <!-- Default: Academic (학력) -->
               <div class="space-y-2">
                 <div class="flex items-start gap-2">
                   <span class="text-brand-orange font-bold mr-1.5">•</span>
@@ -726,31 +729,11 @@
                 </div>
                 <div class="flex items-start gap-2">
                   <span class="text-brand-orange font-bold mr-1.5">•</span>
-                  <span>전북 마음사랑병원 재활의학과장</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-brand-orange font-bold mr-1.5">•</span>
                   <span>서울대학교병원 재활의학과 임상강사</span>
                 </div>
                 <div class="flex items-start gap-2">
                   <span class="text-brand-orange font-bold mr-1.5">•</span>
-                  <span>강원특별자치도재활병원장</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-brand-orange font-bold mr-1.5">•</span>
-                  <span>(현) 강원권역심뇌혈관센터 심뇌혈관재활센터장</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-brand-orange font-bold mr-1.5">•</span>
-                  <span>(현) 강원대학교병원 재활의학과장</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-brand-orange font-bold mr-1.5">•</span>
-                  <span>(현) 강원대학교병원 겸직교수</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <span class="text-brand-orange font-bold mr-1.5">•</span>
-                  <span>(현) 강원대학교병원 기획조정실장</span>
+                  <span>강원대학교병원 겸직교수</span>
                 </div>
               </div>
             </div>
@@ -2565,7 +2548,7 @@
 
     // Doctor CV Tabs Interaction
     const doctorTabData = {
-      'cv': `
+      'edu': `
         <div class="space-y-2">
           <div class="flex items-start gap-2">
             <span class="text-brand-orange font-bold mr-1.5">•</span>
@@ -2577,11 +2560,19 @@
           </div>
           <div class="flex items-start gap-2">
             <span class="text-brand-orange font-bold mr-1.5">•</span>
-            <span>전북 마음사랑병원 재활의학과장</span>
+            <span>서울대학교병원 재활의학과 임상강사</span>
           </div>
           <div class="flex items-start gap-2">
             <span class="text-brand-orange font-bold mr-1.5">•</span>
-            <span>서울대학교병원 재활의학과 임상강사</span>
+            <span>강원대학교병원 겸직교수</span>
+          </div>
+        </div>
+      `,
+      'exp': `
+        <div class="space-y-2">
+          <div class="flex items-start gap-2">
+            <span class="text-brand-orange font-bold mr-1.5">•</span>
+            <span>전북 마음사랑병원 재활의학과장</span>
           </div>
           <div class="flex items-start gap-2">
             <span class="text-brand-orange font-bold mr-1.5">•</span>
@@ -2597,20 +2588,8 @@
           </div>
           <div class="flex items-start gap-2">
             <span class="text-brand-orange font-bold mr-1.5">•</span>
-            <span>(현) 강원대학교병원 겸직교수</span>
-          </div>
-          <div class="flex items-start gap-2">
-            <span class="text-brand-orange font-bold mr-1.5">•</span>
             <span>(현) 강원대학교병원 기획조정실장</span>
           </div>
-        </div>
-      `,
-      'specialty': `
-        <div class="space-y-2.5">
-          <div><strong class="text-brand-teal">• 전공진료 (질환별):</strong> <span class="text-slate-700">소아 뇌성마비, 소아 운동 치료, 추간판 탈출증, 무릎 관절염, 테니스 엘보, 오십견, 석회성 건염, 기타 재활의학 전반, 소아사경, 소아사두증, 발달지연, 뇌졸중 재활, 편마비</span></div>
-          <div><strong class="text-brand-teal">• 전공진료 (증상별):</strong> <span class="text-slate-700">신경통, 관절통, 관절 구축, 경직 및 보행 장애</span></div>
-          <div><strong class="text-brand-teal">• 전공진료 (위치별):</strong> <span class="text-slate-700">목, 허리, 어깨, 무릎</span></div>
-          <div><strong class="text-brand-teal">• 전공진료 (술기별):</strong> <span class="text-slate-700">보툴리눔 톡신 경직 완화 주사, 초음파 유도 관절 주사 및 신경근 주사</span></div>
         </div>
       `,
       'papers': `
@@ -2634,13 +2613,15 @@
       parent.innerHTML = doctorTabData[id];
 
       // Reset menu button styles
-      const btns = ['cv', 'specialty', 'papers', 'awards'];
+      const btns = ['edu', 'exp', 'papers', 'awards'];
       btns.forEach(btn => {
         const item = document.getElementById(`tab-doc-${btn}`);
-        if (btn === id) {
-          item.className = "text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all";
-        } else {
-          item.className = "text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all";
+        if (item) {
+          if (btn === id) {
+            item.className = "text-brand-orange border-b-2 border-brand-orange pb-3 px-1 transition-all";
+          } else {
+            item.className = "text-slate-600 hover:text-slate-900 pb-3 px-1 transition-all";
+          }
         }
       });
     }
