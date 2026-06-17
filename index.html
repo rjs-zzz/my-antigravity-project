@@ -269,17 +269,17 @@
     }
     /* Nav dropdown hover - JS controlled */
     .nav-dropdown {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(8px);
-      pointer-events: none;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translateY(8px) !important;
+      pointer-events: none !important;
       transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out;
     }
     .nav-dropdown-parent.nav-open > .nav-dropdown {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-      pointer-events: auto;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
     }
     /* Dark theme style adaptations removed as requested to restore light mode */
   </style>
@@ -2081,14 +2081,46 @@
     // Ensures only the hovered menu's dropdown is visible; all others close.
     (function() {
       const parents = document.querySelectorAll('.nav-dropdown-parent');
+      
+      // Helper: hide a dropdown via inline style (bulletproof)
+      function hideDropdown(dropdownEl) {
+        dropdownEl.style.opacity = '0';
+        dropdownEl.style.visibility = 'hidden';
+        dropdownEl.style.transform = 'translateY(8px)';
+        dropdownEl.style.pointerEvents = 'none';
+      }
+      // Helper: show a dropdown via inline style
+      function showDropdown(dropdownEl) {
+        dropdownEl.style.opacity = '1';
+        dropdownEl.style.visibility = 'visible';
+        dropdownEl.style.transform = 'translateY(0)';
+        dropdownEl.style.pointerEvents = 'auto';
+      }
+
+      // On page load: force-hide all dropdowns
+      parents.forEach(parent => {
+        const dd = parent.querySelector('.nav-dropdown');
+        if (dd) hideDropdown(dd);
+      });
+
       parents.forEach(parent => {
         parent.addEventListener('mouseenter', () => {
-          // Close all other dropdowns first
-          parents.forEach(p => { if (p !== parent) p.classList.remove('nav-open'); });
+          // Close all other dropdowns
+          parents.forEach(p => {
+            if (p !== parent) {
+              p.classList.remove('nav-open');
+              const dd = p.querySelector('.nav-dropdown');
+              if (dd) hideDropdown(dd);
+            }
+          });
           parent.classList.add('nav-open');
+          const dd = parent.querySelector('.nav-dropdown');
+          if (dd) showDropdown(dd);
         });
         parent.addEventListener('mouseleave', () => {
           parent.classList.remove('nav-open');
+          const dd = parent.querySelector('.nav-dropdown');
+          if (dd) hideDropdown(dd);
         });
       });
     })();
