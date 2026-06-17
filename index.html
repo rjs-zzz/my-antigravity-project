@@ -445,22 +445,42 @@
         </div>
       </div>
 
-      <!-- "무엇이 궁금하신가요?" Search Box -->
-      <div id="hero-search-box" class="max-w-xl bg-white p-6 rounded-2xl border-2 border-brand-orange/20 shadow-2xl shadow-brand-navy/20">
-        <h3 class="text-slate-800 text-sm font-semibold mb-3 flex items-center gap-2">
-          <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
-        </h3>
-        <div class="flex gap-2 mb-3.5">
-          <input type="text" placeholder="검색어 입력 (진료과명, 의료진명, 질환명)" class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-4 py-3.5 rounded-xl text-[17px] focus:outline-none transition-all placeholder-slate-400">
-          <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-6 py-3.5 rounded-xl text-[17px] transition-all flex items-center gap-1 shadow-lg shadow-brand-orange/20">
-            검색
-          </button>
+      <!-- Search Box & Phone Box Container -->
+      <div class="flex flex-col gap-4 max-w-xl">
+        <!-- "무엇이 궁금하신가요?" Search Box -->
+        <div id="hero-search-box" class="w-full bg-white p-6 rounded-2xl border-2 border-brand-orange/20 shadow-2xl shadow-brand-navy/20">
+          <h3 class="text-slate-800 text-sm font-semibold mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
+          </h3>
+          <div class="flex gap-2">
+            <input type="text" placeholder="검색어 입력 (진료과명, 의료진명, 질환명)" class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-4 py-3.5 rounded-xl text-[17px] focus:outline-none transition-all placeholder-slate-400">
+            <button class="bg-brand-orange hover:bg-brand-accent text-white font-bold px-6 py-3.5 rounded-xl text-[17px] transition-all flex items-center gap-1 shadow-lg shadow-brand-orange/20">
+              검색
+            </button>
+          </div>
         </div>
-        <!-- Phone Numbers Row inside Card -->
-        <div class="border-t border-slate-100 pt-3.5 flex justify-between text-[13px] text-slate-600 font-medium">
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-brand-orange"></i> 대표전화: <strong class="text-slate-800 font-bold">033-258-2000</strong></span>
-          <span class="text-slate-300">|</span>
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-brand-orange"></i> 응급실 (24시간): <strong class="text-slate-800 font-bold">033-258-2293</strong></span>
+
+        <!-- Phone Numbers Box (Separate Card) -->
+        <div id="hero-phone-box" class="w-full bg-white p-5 rounded-2xl border-2 border-brand-orange/20 shadow-2xl shadow-brand-navy/20 flex items-center justify-between gap-6">
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-brand-orange/15 flex items-center justify-center text-brand-orange flex-shrink-0">
+              <i class="fa-solid fa-phone text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-500 font-semibold">대표전화</div>
+              <a href="tel:033-258-2000" class="text-xl xl:text-2xl font-black text-slate-800 hover:text-brand-orange transition-colors">033-258-2000</a>
+            </div>
+          </div>
+          <div class="h-10 w-[1px] bg-slate-200"></div>
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-xl bg-red-50 flex items-center justify-center text-red-500 flex-shrink-0">
+              <i class="fa-solid fa-clock text-2xl animate-pulse"></i>
+            </div>
+            <div>
+              <div class="text-xs text-red-500 font-semibold flex items-center gap-1">응급의료센터 <span class="bg-red-500 text-white text-[9px] px-1 py-0.5 rounded font-black">24시</span></div>
+              <a href="tel:033-258-2293" class="text-xl xl:text-2xl font-black text-red-600 hover:text-red-500 transition-colors">033-258-2293</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -487,16 +507,34 @@
         <h3 class="text-slate-800 text-xs font-semibold mb-2 flex items-center gap-1.5">
           <i class="fa-solid fa-magnifying-glass text-brand-orange"></i> 무엇이 궁금하신가요?
         </h3>
-        <div class="flex flex-col gap-2 mb-3">
+        <div class="flex flex-col gap-2">
           <input type="text" placeholder="검색어 입력 (진료과, 의료진, 질환)" class="w-full bg-slate-50 border border-slate-300 focus:bg-white focus:border-brand-orange focus:ring-1 focus:ring-brand-orange text-slate-800 px-3.5 py-3 rounded-xl text-[15px] focus:outline-none transition-all placeholder-slate-400">
           <button class="w-full bg-brand-orange hover:bg-brand-accent text-white font-bold py-3 rounded-xl text-[15px] transition-all flex items-center justify-center gap-1 shadow-md shadow-brand-orange/10">
             검색
           </button>
         </div>
-        <!-- Phone Numbers Row inside Mobile Card -->
-        <div class="border-t border-slate-100 pt-3 flex flex-col gap-1.5 text-[11px] text-slate-600 font-medium">
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-brand-orange"></i> 대표전화: <strong class="text-slate-800 font-bold">033-258-2000</strong></span>
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-clock text-brand-orange"></i> 응급실 (24시간): <strong class="text-slate-800 font-bold">033-258-2293</strong></span>
+      </div>
+
+      <!-- Mobile Phone Numbers Box (Separate Card) -->
+      <div id="hero-phone-box-mobile" class="bg-white p-4 rounded-2xl border-2 border-brand-orange/20 shadow-xl shadow-brand-navy/15 w-full max-w-md flex flex-col gap-3">
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-brand-orange/15 flex items-center justify-center text-brand-orange flex-shrink-0">
+            <i class="fa-solid fa-phone text-lg"></i>
+          </div>
+          <div>
+            <div class="text-[10px] text-slate-500 font-semibold">대표전화</div>
+            <a href="tel:033-258-2000" class="text-base md:text-lg font-black text-slate-800">033-258-2000</a>
+          </div>
+        </div>
+        <div class="h-[1px] w-full bg-slate-100"></div>
+        <div class="flex items-center gap-3">
+          <div class="h-10 w-10 rounded-lg bg-red-50 flex items-center justify-center text-red-500 flex-shrink-0">
+            <i class="fa-solid fa-clock text-lg animate-pulse"></i>
+          </div>
+          <div>
+            <div class="text-[10px] text-red-500 font-semibold flex items-center gap-1">응급의료센터 <span class="bg-red-500 text-white text-[8px] px-1 rounded font-black">24시</span></div>
+            <a href="tel:033-258-2293" class="text-base md:text-lg font-black text-red-600">033-258-2293</a>
+          </div>
         </div>
       </div>
     </div>
