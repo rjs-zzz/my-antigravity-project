@@ -267,6 +267,20 @@
     .animate-fade-in {
       animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    /* Nav dropdown hover - JS controlled */
+    .nav-dropdown {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out;
+    }
+    .nav-dropdown-parent.nav-open > .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
     /* Dark theme style adaptations removed as requested to restore light mode */
   </style>
 </head>
@@ -308,9 +322,9 @@
         <!-- Desktop Menus (Center) -->
         <div class="hidden lg:flex items-center justify-center lg:gap-1.5 xl:gap-3 2xl:gap-4.5 text-[16px] xl:text-[17px] 2xl:text-[18px] font-black flex-grow" id="nav-menu-links">
           <!-- 1. 진료안내 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#departments-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">진료안내 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#departments-section" class="block hover:text-brand-orange hover:translate-x-1 transition-all">진료과/의료진</a></li>
                 <li><a href="javascript:void(0)" onclick="toggleChatbot()" class="block hover:text-brand-orange hover:translate-x-1 transition-all">진료예약안내 (챗봇)</a></li>
@@ -322,9 +336,9 @@
           </div>
 
           <!-- 2. 병원소개 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#news-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">병원소개 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#" class="block hover:text-brand-orange hover:translate-x-1 transition-all">병원장 인사말</a></li>
                 <li><a href="#" class="block hover:text-brand-orange hover:translate-x-1 transition-all">미션 및 비전</a></li>
@@ -336,9 +350,9 @@
           </div>
 
           <!-- 3. 병원안내 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#map-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">병원안내 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#map-section" class="block hover:text-brand-orange hover:translate-x-1 transition-all">오시는 길</a></li>
                 <li><a href="#map-section" class="block hover:text-brand-orange hover:translate-x-1 transition-all">원내배치도</a></li>
@@ -350,9 +364,9 @@
           </div>
 
           <!-- 4. 의료진소개 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#doctors-section" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">의료진소개 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#doctors-section" class="block hover:text-brand-orange hover:translate-x-1 transition-all">의료진 찾기</a></li>
                 <li><a href="#doctors-section" class="block hover:text-brand-orange hover:translate-x-1 transition-all">외래 진료 일정표</a></li>
@@ -363,9 +377,9 @@
           </div>
 
           <!-- 5. 공공의료 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">공공의료 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute left-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#" class="block hover:text-brand-orange hover:translate-x-1 transition-all">공공의료본부 소개</a></li>
                 <li><a href="#" class="block hover:text-brand-orange hover:translate-x-1 transition-all">공공의료사업</a></li>
@@ -376,9 +390,9 @@
           </div>
 
           <!-- 6. 발전후원회 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#support-section" onclick="switchSupportTab('intro')" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">발전후원회 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute right-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute right-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#support-section" onclick="switchSupportTab('intro')" class="block hover:text-brand-orange hover:translate-x-1 transition-all">후원회 소개</a></li>
                 <li><a href="#support-section" onclick="switchSupportTab('guide')" class="block hover:text-brand-orange hover:translate-x-1 transition-all">참여하기</a></li>
@@ -390,9 +404,9 @@
           </div>
 
           <!-- 7. 고객참여 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">고객참여 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute right-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute right-0 top-full mt-2 w-60 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <ul class="space-y-3.5 text-slate-600 text-[16px] font-medium">
                 <li><a href="#" class="block hover:text-brand-orange hover:translate-x-1 transition-all">고객의 소리</a></li>
                 <li><a href="#" class="block hover:text-brand-orange hover:translate-x-1 transition-all">고객헌장 및 약속</a></li>
@@ -402,9 +416,9 @@
             </div>
           </div>
           <!-- 8. 전화번호 -->
-          <div class="relative group py-1">
+          <div class="relative nav-dropdown-parent py-1">
             <a href="#" class="bg-slate-100/80 hover:bg-brand-orange hover:text-white px-4 lg:px-5 xl:px-6 py-3.5 rounded-lg transition-all cursor-pointer flex items-center gap-1 text-slate-800 shadow-sm whitespace-nowrap">전화번호 <i class="fa-solid fa-chevron-down text-xs opacity-80"></i></a>
-            <div class="absolute right-0 top-full mt-2 w-72 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+            <div class="nav-dropdown absolute right-0 top-full mt-2 w-72 bg-white border border-slate-200/80 shadow-2xl rounded-2xl p-5 z-50">
               <div class="flex flex-col gap-4 text-slate-700">
                 <!-- 대표전화 -->
                 <div class="flex items-center gap-3">
@@ -2062,6 +2076,22 @@
         header.classList.add('bg-white/90');
       }
     });
+
+    // Navigation Dropdown Hover Controller
+    // Ensures only the hovered menu's dropdown is visible; all others close.
+    (function() {
+      const parents = document.querySelectorAll('.nav-dropdown-parent');
+      parents.forEach(parent => {
+        parent.addEventListener('mouseenter', () => {
+          // Close all other dropdowns first
+          parents.forEach(p => { if (p !== parent) p.classList.remove('nav-open'); });
+          parent.classList.add('nav-open');
+        });
+        parent.addEventListener('mouseleave', () => {
+          parent.classList.remove('nav-open');
+        });
+      });
+    })();
 
 
 
