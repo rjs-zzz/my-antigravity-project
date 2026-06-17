@@ -90,9 +90,11 @@
     /* Hero section interactive reveal */
     #hero-title-block,
     #hero-search-box,
+    #hero-phone-box,
     #hero-booking-grid,
     #hero-title-block-mobile,
     #hero-search-box-mobile,
+    #hero-phone-box-mobile,
     #hero-booking-grid-mobile {
       opacity: 0;
       transform: translateY(1rem);
@@ -103,6 +105,10 @@
     #hero-search-box,
     #hero-search-box-mobile {
       transition-delay: 0.1s;
+    }
+    #hero-phone-box,
+    #hero-phone-box-mobile {
+      transition-delay: 0.15s;
     }
     #hero-booking-grid,
     #hero-booking-grid-mobile {
@@ -119,6 +125,12 @@
         transform: translateY(0);
         pointer-events: auto;
         transition-delay: 0.1s;
+      }
+      #hero-section:hover #hero-phone-box {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition-delay: 0.15s;
       }
       #hero-section:hover #hero-booking-grid {
         opacity: 1;
@@ -137,6 +149,12 @@
       transform: translateY(0);
       pointer-events: auto;
       transition-delay: 0.1s;
+    }
+    #hero-section.revealed #hero-phone-box-mobile {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      transition-delay: 0.15s;
     }
     #hero-section.revealed #hero-booking-grid-mobile {
       opacity: 1;
